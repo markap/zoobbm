@@ -1,0 +1,44 @@
+/*
+ * CSS STYLESHEET
+ * Diese Datei ist das Haupt Stylesheet
+ */
+
+#container {
+	width: 900px;
+	margin: auto;
+}
+
+#header {
+	width: 900px;
+	height: 150px;
+	background-color: #25AB0A;
+}
+
+#login {
+	width: 900px;
+	height: 30px;
+	background-color: #155C16;
+	border-bottom: 2px solid #D1370D;
+
+}
+
+#navi {
+	float: left;
+	width: 200px;
+	height: 700px;
+	background-color: #1CD61C;
+	border-right: 1px dashed #D1370D;
+}
+
+
+#content {
+	width: 900px;
+	height: 600px;
+}
+
+#footer {
+	clear: both;
+	background-color: #25AB0A;
+	height: 30px;
+}
+

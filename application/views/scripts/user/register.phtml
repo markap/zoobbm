@@ -1,0 +1,34 @@
+<script type="text/javascript" src="/js/3rdParty/jQuery.js"></script>
+<script type="text/javascript" src="/js/3rdParty/jquery.validate.js"></script>
+<script type="text/javascript" src="/js/register.js"></script>
+
+<h1>Registrierung</h1>
+
+<?php if (!empty($this->errors)): ?>
+<ul>
+    <?php foreach($this->errors as $error): ?>
+        <li><?php echo $error; ?></li>
+    <?php endforeach; ?>
+</ul>
+<?php endif; ?>
+<?php echo $this->form; ?>
+
+<!--
+<form class="regis" id="register" method="get" action="">
+
+		<p>
+			<label for="firstname">Firstname</label>
+			<input id="firstname" name="firstname" />
+		</p>
+		<p>
+			<label for="lastname">Lastname</label>
+
+			<input id="lastname" name="lastname" />
+		</p>
+		<p>
+			<label for="username">Username</label>
+			<input id="username" name="username" />
+		</p>
+
+</form>
+-->

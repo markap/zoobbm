@@ -1,0 +1,9 @@
+
+<?php echo $this->form; ?>
+
+<?php if (!empty($this->imageList)): ?>
+	<?php foreach ($this->imageList as $image): ?>
+		<?php echo $image['title']; ?>
+		<img src="<?php echo $image['image']; ?>" />
+	<?php endforeach; ?>
+<?php endif; ?>
