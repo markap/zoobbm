@@ -57,11 +57,11 @@ $(document).ready(function(){
 					},
 					mail: {
 						required: "Pflichtfeld",
-						mail: "Bitte geben Sie eine gültige Emailaddresse ein"
+						email: "Bitte geben Sie eine gültige Emailaddresse ein"
 					},
 					mail_repeat: {
 						required: "Pflichtfeld",
-						mail: "Bitte geben Sie eine gültige Emailaddresse ein",
+						email: "Bitte geben Sie eine gültige Emailaddresse ein",
 						equalTo: "Die beiden Emailaddressen stimmen nicht überein"
 					},
 					password: {
