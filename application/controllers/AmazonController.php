@@ -11,19 +11,24 @@ class AmazonController extends Zend_Controller_Action
     public function indexAction()
     {
 		// Verbindung zum AmazonWebservice aufnehmen
-		$query = new Zend_Service_Amazon_Query(
+		$query = new Zend_Service_Amazon(
 							'AKIAI3S5LPYDW7CCEXFQ',
 							'DE',
 							'+vabmr8+C4eyYe5DbmISmHsBZc9NOHVX/QbK6WM9'
  		); 
-      	$query->category('Books')->Keywords('tiere');
-      	$results = $query->search();
+		$results = $query->itemSearch(array(
+								'SearchIndex' => 'Books',
+								'Keywords'	  => 'tiere',
+								'ResponseGroup' => 'Medium'
+						));
  
 		$books = array();
     	foreach ($results as $result) {
 			$books[] = array(
 				'title'  => $result->Title,
-				'image'  => $result->DetailPageURL
+				'link'	 => $result->DetailPageURL,
+				'image'  => $result->MediumImage
+							? $result->MediumImage->Url->getUri() : ''
 			);
       	}
 

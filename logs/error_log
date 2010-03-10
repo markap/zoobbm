@@ -503,3 +503,33 @@
 [Tue Mar 09 18:06:58 2010] [error] [client 127.0.0.1] PHP Notice:  Undefined variable: content in /home/www/zoo/application/controllers/BookingController.php on line 61, referer: http://zoo.localhost/booking
 [Tue Mar 09 18:10:08 2010] [error] [client 127.0.0.1] PHP Fatal error:  Undefined class constant 'TODAY' in /home/www/zoo/application/models/PricesFactory.php on line 49, referer: http://zoo.localhost/booking
 [Tue Mar 09 18:10:21 2010] [error] [client 127.0.0.1] PHP Fatal error:  Call to undefined method Zend_Date::TODAY() in /home/www/zoo/application/models/PricesFactory.php on line 49, referer: http://zoo.localhost/booking
+[Wed Mar 10 15:45:55 2010] [error] [client 127.0.0.1] PHP Parse error:  syntax error, unexpected '?' in /home/www/zoo/application/controllers/AmazonController.php on line 27
+[Wed Mar 10 15:46:04 2010] [error] [client 127.0.0.1] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/www/zoo/application/controllers/AmazonController.php on line 27
+[Wed Mar 10 15:57:43 2010] [error] [client 127.0.0.1] PHP Catchable fatal error:  Object of class Zend_Service_Amazon_Image could not be converted to string in /home/www/zoo/application/views/scripts/amazon/index.phtml on line 4
+[Wed Mar 10 15:58:45 2010] [error] [client 127.0.0.1] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/www/zoo/application/controllers/AmazonController.php on line 34
+[Wed Mar 10 16:00:44 2010] [error] [client 127.0.0.1] PHP Notice:  Undefined property: Zend_Service_Amazon_Item::$Author in /home/www/zoo/application/controllers/AmazonController.php on line 33
+[Wed Mar 10 16:02:16 2010] [error] [client 127.0.0.1] PHP Notice:  Undefined property: Zend_Service_Amazon_Item::$Author in /home/www/zoo/application/controllers/AmazonController.php on line 29
+[Wed Mar 10 16:02:17 2010] [error] [client 127.0.0.1] PHP Notice:  Undefined index: title in /home/www/zoo/application/views/scripts/amazon/index.phtml on line 7
+[Wed Mar 10 16:02:17 2010] [error] [client 127.0.0.1] PHP Notice:  Undefined index: author in /home/www/zoo/application/views/scripts/amazon/index.phtml on line 8
+[Wed Mar 10 16:02:17 2010] [error] [client 127.0.0.1] PHP Notice:  Undefined index: title in /home/www/zoo/application/views/scripts/amazon/index.phtml on line 7
+[Wed Mar 10 16:02:17 2010] [error] [client 127.0.0.1] PHP Notice:  Undefined index: author in /home/www/zoo/application/views/scripts/amazon/index.phtml on line 8
+[Wed Mar 10 16:02:17 2010] [error] [client 127.0.0.1] PHP Notice:  Undefined index: title in /home/www/zoo/application/views/scripts/amazon/index.phtml on line 7
+[Wed Mar 10 16:02:17 2010] [error] [client 127.0.0.1] PHP Notice:  Undefined index: author in /home/www/zoo/application/views/scripts/amazon/index.phtml on line 8
+[Wed Mar 10 16:02:17 2010] [error] [client 127.0.0.1] PHP Notice:  Undefined index: title in /home/www/zoo/application/views/scripts/amazon/index.phtml on line 7
+[Wed Mar 10 16:02:17 2010] [error] [client 127.0.0.1] PHP Notice:  Undefined index: author in /home/www/zoo/application/views/scripts/amazon/index.phtml on line 8
+[Wed Mar 10 16:02:17 2010] [error] [client 127.0.0.1] PHP Notice:  Undefined index: title in /home/www/zoo/application/views/scripts/amazon/index.phtml on line 7
+[Wed Mar 10 16:02:17 2010] [error] [client 127.0.0.1] PHP Notice:  Undefined index: author in /home/www/zoo/application/views/scripts/amazon/index.phtml on line 8
+[Wed Mar 10 16:02:17 2010] [error] [client 127.0.0.1] PHP Notice:  Undefined index: title in /home/www/zoo/application/views/scripts/amazon/index.phtml on line 7
+[Wed Mar 10 16:02:17 2010] [error] [client 127.0.0.1] PHP Notice:  Undefined index: author in /home/www/zoo/application/views/scripts/amazon/index.phtml on line 8
+[Wed Mar 10 16:02:17 2010] [error] [client 127.0.0.1] PHP Notice:  Undefined index: title in /home/www/zoo/application/views/scripts/amazon/index.phtml on line 7
+[Wed Mar 10 16:02:17 2010] [error] [client 127.0.0.1] PHP Notice:  Undefined index: author in /home/www/zoo/application/views/scripts/amazon/index.phtml on line 8
+[Wed Mar 10 16:02:17 2010] [error] [client 127.0.0.1] PHP Notice:  Undefined index: title in /home/www/zoo/application/views/scripts/amazon/index.phtml on line 7
+[Wed Mar 10 16:02:17 2010] [error] [client 127.0.0.1] PHP Notice:  Undefined index: author in /home/www/zoo/application/views/scripts/amazon/index.phtml on line 8
+[Wed Mar 10 16:02:17 2010] [error] [client 127.0.0.1] PHP Notice:  Undefined index: title in /home/www/zoo/application/views/scripts/amazon/index.phtml on line 7
+[Wed Mar 10 16:02:17 2010] [error] [client 127.0.0.1] PHP Notice:  Undefined index: author in /home/www/zoo/application/views/scripts/amazon/index.phtml on line 8
+[Wed Mar 10 16:02:17 2010] [error] [client 127.0.0.1] PHP Notice:  Undefined index: title in /home/www/zoo/application/views/scripts/amazon/index.phtml on line 7
+[Wed Mar 10 16:02:17 2010] [error] [client 127.0.0.1] PHP Notice:  Undefined index: author in /home/www/zoo/application/views/scripts/amazon/index.phtml on line 8
+[Wed Mar 10 16:02:49 2010] [error] [client 127.0.0.1] PHP Notice:  Undefined property: Zend_Service_Amazon_Item::$Author in /home/www/zoo/application/controllers/AmazonController.php on line 29
+[Wed Mar 10 16:03:31 2010] [error] [client 127.0.0.1] PHP Notice:  Undefined property: Zend_Service_Amazon_Item::$Author in /home/www/zoo/application/controllers/AmazonController.php on line 29
+[Wed Mar 10 16:24:07 2010] [error] [client 127.0.0.1] Directory index forbidden by Options directive: /home/www/zoo/public/img/uploads/, referer: http://zoo.localhost/user/profile
+[Wed Mar 10 16:31:34 2010] [error] [client 127.0.0.1] Directory index forbidden by Options directive: /home/www/zoo/public/img/uploads/, referer: http://zoo.localhost/user/profile

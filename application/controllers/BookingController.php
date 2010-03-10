@@ -11,22 +11,34 @@ class BookingController extends Zend_Controller_Action
     public function indexAction()
     {
         $this->view->form = new Form_Booking();
+
+		if ($this->getRequest()->isPost()) {
+			$postValues = $this->getRequest()->getPost();
+
+			$numbers = array(
+					'adults' 		=> $postValues('adult'),
+					'childs' 		=> $postValues('child'),
+					'students' 		=> $postValues('student')
+				);
+
+			$date = array(
+					'startdate' => $postValues('startdate'),
+					'enddate'	=> $postValues('enddate')
+				);
+		
+			try {
+				$prices	 = Model_PricesFactory::getInstance($numbers, $date)->getPrice();
+				$content = $prices->getContent();
+				// save it
+			} catch (Exception $e) {
+				$error = $e->getMessage();
+			}
+
+			$this->view->error 		= isset($error) ? $error : null;
+			$this->view->content 	= isset($content) ? $content : null;
+		}
     }
 
-    public function singleAction()
-    {
-        // action body
-    }
-
-    public function groupAction()
-    {
-        // action body
-    }
-
-    public function guideAction()
-    {
-        // action body
-    }
 
     public function priceajaxAction()
     {

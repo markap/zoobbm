@@ -30,7 +30,7 @@ class Form_EditPrivate extends Zend_Form {
 		// visits 
 		$visit = new Zend_Form_Element_Select('visit');
 		$visit->setLabel('Wie oft besuche ich den Mannheimer Zoo?');
-		
+
 		// favourite animals
 		$animals = new Zend_Form_Element_MultiCheckbox('animal');
 		$animals->setLabel('Lieblingstiere');
@@ -56,7 +56,9 @@ class Form_EditPrivate extends Zend_Form {
 	public function convertOptions(array $options, $id, $name, $select = false) {
 		if ($select === true) {
 			$ret[0] = '';
-		}
+		} else {
+			$ret[0] = 'Alle/ Keine auswählen';
+		}		
 		foreach ($options as $option) {
 			$ret[$option[$id]] = $option[$name];
 		}

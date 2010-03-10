@@ -19,12 +19,15 @@ class Form_Booking extends Zend_Form {
         $startdate = new Zend_Form_Element_Text('startdate');
         $startdate->setLabel('Start:')
                   ->setRequired(true)
+			  	  ->setAttrib('readonly', 'readonly')
                   ->addFilter('StringTrim')
                   ->addFilter('StripTags');
+
  		// Enddate
         $enddate = new Zend_Form_Element_Text('enddate');
         $enddate->setLabel('Ende: (Nur wenn mehrtägig)')
                   ->setRequired(true)
+			  	  ->setAttrib('readonly', 'readonly')
                   ->addFilter('StringTrim')
 				  ->addFilter('StripTags');
 	
