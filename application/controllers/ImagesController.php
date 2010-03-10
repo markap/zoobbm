@@ -30,7 +30,7 @@ class ImagesController extends Zend_Controller_Action
 
 		// connect to Flickr
 		$flickr = new Zend_Service_Flickr('dc57ebb47b856c6d62f47c098d88388e');
-		$images = $flickr->tagSearch($searchKey, array('per_page' => 32));
+		$images = $flickr->tagSearch($searchKey, array('per_page' => 8));
 
 		$imageList = array();
 		foreach ($images as $image) {

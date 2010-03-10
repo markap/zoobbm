@@ -1,0 +1,46 @@
+<script type="text/javascript" src="/js/3rdParty/jQuery.js"></script>
+<script type="text/javascript" src="/js/3rdParty/jquery.thickbox.js"></script>
+<?php echo $this->headLink()->appendStylesheet('/css/3rdParty/jquery.thickbox.css'); ?>
+
+<h1>Umfrage der Woche</h1>
+
+<h2>Das süsseste Neugeborene im Monat Februar</h2>
+
+<br />
+<?php echo $this->success; ?>
+<?php echo $this->error; ?>
+
+<p>
+<?php if ($this->showSurvey !== true): ?>
+<form action="" method="POST">
+	<input type="radio" name="survey" value="lo">
+	Der Babylöwe Max 
+	<a href="<?php echo $this->baseUrl() . 'img/loewe.jpg'; ?>" class="thickbox">  &raquo; Bild
+	</a>
+		<br /><br />
+	<input type="radio" name="survey" value="ba">
+	Der Eisbär Bernhard
+	<a href="<?php echo $this->baseUrl() . 'img/baer.jpg'; ?>" class="thickbox">  &raquo; Bild
+	</a>
+	<br /><br />
+	<input type="radio" name="survey" value="el">
+ 	Budi, der Babyelefant	
+	<a href="<?php echo $this->baseUrl() . 'img/elefant.jpg'; ?>" class="thickbox">  &raquo; Bild
+	</a>
+	<br /><br />
+	<input type="radio" name="survey" value="wa">
+ 	Bene, die Wasseragame 
+	<a href="<?php echo $this->baseUrl() . 'img/wasseragame.jpg'; ?>" class="thickbox">  &raquo; Bild
+	</a>
+	<br /><br />
+
+	<input type="submit" value="Abstimmen"><br />
+</form>
+<?php endif; ?>
+</p>
+
+<?php if ($this->showSurvey === true): ?>
+<p>
+	<?php var_dump($this->surveyPercentage); ?>
+</p>
+<?php endif; ?>

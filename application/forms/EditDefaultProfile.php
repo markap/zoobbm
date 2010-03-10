@@ -45,21 +45,6 @@ class Form_EditDefaultProfile extends Zend_Form {
                    ->addFilter('StripTags');
 
 
-        // Password
-        $pass = new Zend_Form_Element_Password('password');
-        $pass->setLabel('Passwort:')
-             ->setRequired(true)
-             ->addFilter('StringTrim')
-             ->addFilter('StripTags');
-
-        // Password repeat
-        $passRepeat = new Zend_Form_Element_Password('password_repeat');
-        $passRepeat->setLabel('Passwort wiederholen:')
-                   ->setRequired(true)
-                   ->addFilter('StringTrim')
-                   ->addFilter('StripTags');
-
-
 		// Newsletter?
 		$newletter = new Zend_Form_Element_Checkbox('newsletter');
 		$newletter->setLabel('Newsletter erhalten?');
@@ -73,8 +58,6 @@ class Form_EditDefaultProfile extends Zend_Form {
                                  $lastName,
                                  $mail,
                                  $mailRepeat,
-                                 $pass,
-                                 $passRepeat,
 								 $newletter,
                                  $submit
                             ));

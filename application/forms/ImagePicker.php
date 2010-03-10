@@ -42,7 +42,7 @@ class Form_ImagePicker extends Zend_Form {
 	 * 
 	 * @author Martin Kapfhammer
 	 * @param array $categories
-	 * @return $this
+	 * @return $this -> fluent interface
 	 */
 	public function setCategories(array $categories) {
 

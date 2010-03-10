@@ -1,11 +1,21 @@
+
+<?php echo $this->headLink()->appendStylesheet('/css/3rdParty/jquery.ui.css'); ?>
+<script type="text/javascript" src="/js/3rdParty/jQuery.js"></script>
+<script type="text/javascript" src="/js/3rdParty/date.js"></script>
+<script type="text/javascript" src="/js/3rdParty/jquery.ui.js"></script>
+<script type="text/javascript" src="/js/3rdParty/jquery.datePicker.js"></script>
+<script type="text/javascript" src="/js/booking.js"></script>
+
+
+
 <h1>Ticket Buchung</h1>
 
-<p>Hallo <?php echo $this->name; ?>!</p>
+<p>Unser Ticket-Rechner zeigt Ihnen automatisch den günstigsten Tarif an. Zum Beispiel  wird Ihnen ab einer Anzahl von 10 Personen automatisch der Gruppentarif gebucht, ohne dass Sie dies angeben müssen. Eine Übersicht über unsere Preise finden Sie <a href="<?php echo $this->baseUrl . '/booking/prices'; ?>">hier</a>.</p>
 
-<p>Bitte wählen Sie Ihren gewünschten Tarif:</p>
+<p>Sollten Sie uns öfters besuchen, lohnt sich vielleicht unser <a href="<?php echo $this->baseUrl . '/booking/year'; ?>">Jahreskarten angebot</a>.</p>
 
-<ul>
-	<li>Für bis zu 10 Personenlink...</li>
-	<li>Für mehr als 10 Personen</li>
-	<li>Führungen</li>
-</ul>
+<?php echo $this->form; ?>
+
+<a href="#" id="showprices" >Preis anzeigen</a>
+
+<div id="price"></div>

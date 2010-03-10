@@ -4,6 +4,13 @@
 
 <h1>Registrierung</h1>
 
+<?php if ($this->success === true): ?>
+	<p>Herzlichen Glückwunsch! Sie wurden erfolgreich registriert. Hier können Sie sich nun 
+		<a href="<?php echo $this->baseUrl. '/user/login'; ?>">einloggen</a>.
+	</p>
+<?php endif; ?>
+
+
 <?php if (!empty($this->errors)): ?>
 <ul>
     <?php foreach($this->errors as $error): ?>
@@ -11,24 +18,7 @@
     <?php endforeach; ?>
 </ul>
 <?php endif; ?>
+
+
 <?php echo $this->form; ?>
 
-<!--
-<form class="regis" id="register" method="get" action="">
-
-		<p>
-			<label for="firstname">Firstname</label>
-			<input id="firstname" name="firstname" />
-		</p>
-		<p>
-			<label for="lastname">Lastname</label>
-
-			<input id="lastname" name="lastname" />
-		</p>
-		<p>
-			<label for="username">Username</label>
-			<input id="username" name="username" />
-		</p>
-
-</form>
--->

@@ -75,6 +75,7 @@ class Form_Register extends Zend_Form {
                                     )
                         ));
       	$captcha->addFilter('StringTrim');
+		$captcha->removeDecorator('Errors');
 
 
 		// Newsletter?

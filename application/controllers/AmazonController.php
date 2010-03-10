@@ -21,14 +21,9 @@ class AmazonController extends Zend_Controller_Action
  
 		$books = array();
     	foreach ($results as $result) {
-echo "<pre>";
-var_dump($result);
-			$books = array(
+			$books[] = array(
 				'title'  => $result->Title,
-			 	'author' => $result->Author,
-				'image'  => $result->MediumImage 
-							 ? $result->MediumImage->Url->getUri() 
-							 : ''
+				'image'  => $result->DetailPageURL
 			);
       	}
 

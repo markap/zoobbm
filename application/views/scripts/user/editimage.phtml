@@ -1,4 +1,6 @@
-<h1>Bild</h1>
+<h1>Profilbild bearbeiten</h1>
 
-
+<img width="100px" src="<?php echo $this->baseUrl . '/img/uploads/' . $this->image; ?>" alt="Profilbild" >
 <?php echo $this->form; ?>
+
+<a href="<?php echo $this->baseUrl . '/user/profile'; ?>">Zurück zum Profil</a>

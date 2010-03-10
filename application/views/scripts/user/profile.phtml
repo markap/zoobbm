@@ -1,7 +1,19 @@
 <h1>User Profil</h1>
 
+<img width="100px" src="<?php echo $this->baseUrl. '/img/uploads/' . $this->profile['image']; ?>" alt="Profilbild" >
 <a href="<?php echo $this->baseUrl . '/user/editimage'; ?>">Profilbild  bearbeiten</a>
 
 <?php var_dump($this->userData); ?>
 
 <a href="<?php echo $this->baseUrl . '/user/editdefaultprofile'; ?>">Registrierungsdaten  bearbeiten</a>
+<a href="<?php echo $this->baseUrl . '/user/changepassword'; ?>">Passwort ändern</a>
+
+
+<?php var_dump($this->profile); ?>
+<?php var_dump($this->animals); ?>
+<a href="<?php echo $this->baseUrl . '/user/editaddress'; ?>">Adressdaten  bearbeiten</a>
+<a href="<?php echo $this->baseUrl . '/user/editprivate'; ?>">Persönliche Angaben  bearbeiten</a>
+<a href="<?php echo $this->baseUrl . '/community/showmessages'; ?>">Erhaltene Nachrichten ansehen (neu <?php echo $this->unreadMessages; ?>)</a>
+<a href="<?php echo $this->baseUrl . '/community/friends'; ?>">Meine Freune</a>
+<a href="<?php echo $this->baseUrl . '/community/friendrequest'; ?>">Freundschaftsanfrage</a>
+<a href="<?php echo $this->baseUrl . '/community/showsendmessages'; ?>">Gesendete Nachrichten ansehen</a>

@@ -1002,7 +1002,7 @@ $.extend($.validator, {
 			// TODO: write own password methode
 			// @author martin kapfhammer
 			// url for password checking
-			return this.optional(element) || /(?=^.{8,35}$)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/.test(value);
+			return this.optional(element) || /(?=^.{5,35}$)(?![.\n])(?=.*[A-Z]).*$/i.test(value);
 		},
         
 		// http://docs.jquery.com/Plugins/Validation/Methods/date

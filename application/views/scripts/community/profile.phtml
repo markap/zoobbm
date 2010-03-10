@@ -1,0 +1,13 @@
+
+<?php var_dump($this->user); ?>
+<?php var_dump($this->profile); ?>
+
+<a href="<?php echo $this->baseUrl . '/community/message/to/' .
+					$this->userId; ?>">
+		<?php echo $this->user['firstname']; ?> eine private Nachricht schreiben.</a>
+
+<a href="<?php echo $this->baseUrl . '/community/addfriend/user/' .
+					$this->userId; ?>">
+		<?php echo $this->user['firstname']; ?> als Freund hinzufügen.</a>
+
+<a href="<?php echo $this->baseUrl . '/community/index'; ?>">Zurück</a>

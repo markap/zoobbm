@@ -16,8 +16,8 @@ class Model_Validation_NotEmpty {
 	 */
 	static public function notEmpty(array $data) {
 		$empty = false;
-		foreach ($data as $value) {
-			if (!$value) {
+		foreach ($data as $id => $value) {
+			if ((is_numeric($value) && !isset($value)) || (!is_numeric($value) && !$value)) {
 				$empty = true;
 				break;
 			}

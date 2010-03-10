@@ -1,0 +1,19 @@
+
+<h1>Adressdaten bearbeiten</h1>
+
+<?php if ($this->success === true): ?>
+	<p>Änderungen gespeichert.</p>
+<?php endif; ?>
+
+
+<?php if (!empty($this->errors)): ?>
+<ul>
+    <?php foreach($this->errors as $error): ?>
+        <li><?php echo $error; ?></li>
+    <?php endforeach; ?>
+</ul>
+<?php endif; ?>
+
+<?php echo $this->form; ?>
+
+<a href="<?php echo $this->baseUrl . '/user/profile'; ?>">Zurück zum Profil</a>

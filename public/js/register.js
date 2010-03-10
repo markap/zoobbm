@@ -66,12 +66,12 @@ $(document).ready(function(){
 					},
 					password: {
 						required: "Pflichtfeld",
-						url: "Das Passwort muss aus Groß-, Kleinbuchstaben und Sonderzeichen bestehen. Mindestlänge 8 Zeichen"
+						url: "Mindestends acht Zeichen (Buchstaben und Zahlen)."
 					},
 					password_repeat: {
 						required: "Pflichtfeld",
 						equalTo: "Die beiden Passwörter stimmen nicht überein",
-						url: "Das Passwort muss aus Groß-, Kleinbuchstaben und Sonderzeichen bestehen. Mindestlänge 8 Zeichen"
+						url: "Mindestends fünf Zeichen (Buchstaben und Zahlen)."
 					},
 					checker: {
 						required: "Bitte geben Sie den Captcha ein"

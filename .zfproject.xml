@@ -1,0 +1,180 @@
+<?xml version="1.0"?>
+<projectProfile>
+  <projectDirectory>
+    <projectProfileFile/>
+    <applicationDirectory>
+      <apisDirectory enabled="false"/>
+      <configsDirectory>
+        <applicationConfigFile type="ini"/>
+      </configsDirectory>
+      <controllersDirectory>
+        <controllerFile controllerName="index"/>
+        <controllerFile controllerName="error"/>
+        <controllerFile controllerName="amazon">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="booking">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="group"/>
+          <actionMethod actionName="single"/>
+          <actionMethod actionName="guide"/>
+          <actionMethod actionName="priceajax"/>
+        </controllerFile>
+        <controllerFile controllerName="contribution">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="contribution">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="images">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="user">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="login"/>
+          <actionMethod actionName="register"/>
+          <actionMethod actionName="logout"/>
+          <actionMethod actionName="mustbe"/>
+          <actionMethod actionName="profile"/>
+          <actionMethod actionName="editdefaultprofile"/>
+          <actionMethod actionName="editimage"/>
+          <actionMethod actionName="editAddress"/>
+          <actionMethod actionName="editprivate"/>
+          <actionMethod actionName="changepassword"/>
+        </controllerFile>
+        <controllerFile controllerName="community">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="profile"/>
+          <actionMethod actionName="message"/>
+          <actionMethod actionName="showmessages"/>
+          <actionMethod actionName="showsendmessages"/>
+          <actionMethod actionName="addfriend"/>
+          <actionMethod actionName="friends"/>
+          <actionMethod actionName="friendrequest"/>
+          <actionMethod actionName="friendajax"/>
+        </controllerFile>
+        <controllerFile controllerName="webcam">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="survey">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+      </controllersDirectory>
+      <layoutsDirectory enabled="false"/>
+      <modelsDirectory/>
+      <modulesDirectory enabled="false"/>
+      <viewsDirectory>
+        <viewScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="index">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="error">
+            <viewScriptFile forActionName="error"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="login">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="index">
+            <viewScriptFile forActionName="login"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="index">
+            <viewScriptFile forActionName="logout"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="posts">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="posts">
+            <viewScriptFile forActionName="view"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="posts">
+            <viewScriptFile forActionName="add"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="user">
+            <viewScriptFile forActionName="editAddress"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="user">
+            <viewScriptFile forActionName="editprivate"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="user">
+            <viewScriptFile forActionName="changepassword"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="community">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="community">
+            <viewScriptFile forActionName="profile"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="community">
+            <viewScriptFile forActionName="message"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="community">
+            <viewScriptFile forActionName="showmessages"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="community">
+            <viewScriptFile forActionName="showsendmessages"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="community">
+            <viewScriptFile forActionName="addfriend"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="community">
+            <viewScriptFile forActionName="friends"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="community">
+            <viewScriptFile forActionName="friendrequest"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="community">
+            <viewScriptFile forActionName="friendajax"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="webcam">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="survey">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="booking">
+            <viewScriptFile forActionName="priceajax"/>
+          </viewControllerScriptsDirectory>
+        </viewScriptsDirectory>
+        <viewHelpersDirectory/>
+        <viewFiltersDirectory enabled="false"/>
+      </viewsDirectory>
+      <bootstrapFile/>
+    </applicationDirectory>
+    <dataDirectory enabled="false">
+      <cacheDirectory enabled="false"/>
+      <searchIndexesDirectory enabled="false"/>
+      <localesDirectory enabled="false"/>
+      <logsDirectory enabled="false"/>
+      <sessionsDirectory enabled="false"/>
+      <uploadsDirectory enabled="false"/>
+    </dataDirectory>
+    <libraryDirectory>
+      <zfStandardLibraryDirectory enabled="false"/>
+    </libraryDirectory>
+    <publicDirectory>
+      <publicStylesheetsDirectory enabled="false"/>
+      <publicScriptsDirectory enabled="false"/>
+      <publicImagesDirectory enabled="false"/>
+      <publicIndexFile/>
+      <htaccessFile/>
+    </publicDirectory>
+    <projectProvidersDirectory enabled="false"/>
+    <temporaryDirectory enabled="false"/>
+    <testsDirectory>
+      <testPHPUnitConfigFile/>
+      <testApplicationDirectory>
+        <testApplicationBootstrapFile/>
+        <testApplicationControllerDirectory>
+          <testApplicationControllerFile/>
+          <testApplicationControllerFile/>
+          <testApplicationControllerFile/>
+          <testApplicationControllerFile/>
+          <testApplicationControllerFile/>
+        </testApplicationControllerDirectory>
+      </testApplicationDirectory>
+      <testLibraryDirectory>
+        <testLibraryBootstrapFile/>
+      </testLibraryDirectory>
+    </testsDirectory>
+  </projectDirectory>
+</projectProfile>

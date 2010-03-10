@@ -1,1 +1,5 @@
-<h1>Bücher rund um den Tierpark</h1>
+<h1>Bücher rund um die Tiere im Zoo</h1>
+
+<?php foreach ($this->books as $book): ?>
+	<img src="<?php echo $book['image']; ?>" alt="Bild">
+<?php endforeach; ?>

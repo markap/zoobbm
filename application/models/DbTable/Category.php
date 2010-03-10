@@ -25,21 +25,10 @@ class Model_DbTable_Category extends Zend_Db_Table_Abstract {
 		return $result->toArray();
 	}
 
-
-	/**
-	 * searches username and password for authentification
-	 * @author Martin Kapfhammer
-	 * @param string $username
-	 * @param string $password
-	 * @return array|boolean
-	 */
-	public function findCredentials($username, $password) {
-		$stmt =  $this->select()
-						->where('username = ?', $username)
-						->where('password = ?', md5($password));
-		$row  =  $this->fetchRow($stmt);
-
-		return ($row) ? $row : false;
+	public function getCategory($catId) {
+		$where  = array('catid = ' . $catId);
+		$result = $this->fetchAll($where);
+		return $result->toArray();
 	}
-	
+
 }

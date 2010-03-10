@@ -10,36 +10,12 @@ class BookingController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        // user must be logged in
-		if (!Zend_Auth::getInstance()->hasIdentity()) {
-			$redirectSession = new Zend_Session_Namespace('redirect');
-			$redirectSession->next = '/Booking';
-			$this->_redirect('/user/mustbe');
-		}
+        $this->view->form = new Form_Booking();
     }
 
     public function singleAction()
     {
-        // user must be logged in
-		if (!Zend_Auth::getInstance()->hasIdentity()) {
-			$redirectSession = new Zend_Session_Namespace('redirect');
-			$redirectSession->next = '/Booking/Single';
-			$this->_redirect('/user/mustbe');
-		}
-
-		// get full name of the user
-		$userSession = new Zend_Session_Namespace('user');
-		$user		 = $userSession->user;
-		$name		 = $user['firstname'] . ' ' . $user['lastname'];
-
-
-
-
-
-		$form = new Form_Booking();
-
-		$this->view->name = $name;
-		$this->view->form = $form;
+        // action body
     }
 
     public function groupAction()
@@ -52,8 +28,43 @@ class BookingController extends Zend_Controller_Action
         // action body
     }
 
+    public function priceajaxAction()
+    {
+		$this->_helper->layout->disableLayout();
+		$numbers = array(
+				'adults' 		=> $this->_getParam('adult'),
+				'childs' 		=> $this->_getParam('child'),
+				'students' 		=> $this->_getParam('student')
+			);
+
+		$date = array(
+				'startdate' => $this->_getParam('startdate'),
+				'enddate'	=> $this->_getParam('enddate')
+			);
+		
+		try {
+			$prices	 = Model_PricesFactory::getInstance($numbers, $date)->getPrice();
+			$content = $prices->getContent();
+		} catch (Model_NoBookPriceException $e) {
+			$error = $e->getMessage();
+		} catch (Model_NoDateException $e) {
+			$error = $e->getMessage();
+		} catch (Model_NoStartPriceException $e) {
+			$error = $e->getMessage();
+		} catch (Model_StartBiggerEndPriceException $e) {
+			$error = $e->getMessage();
+		} catch (Model_OldDateException $e) {
+			$error = $e->getMessage();
+		}
+
+		$this->view->error 		= isset($error) ? $error : null;
+		$this->view->content 	= isset($content) ? $content : null;
+    }
+
 
 }
+
+
 
 
 

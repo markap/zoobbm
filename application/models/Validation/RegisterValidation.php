@@ -1,8 +1,42 @@
 <?php			
 
+/**
+ * Main class for register validation
+ */
 class Model_Validation_RegisterValidation {
 
-	public static function validate($data) {
+	protected $errors = array();
+
+	/**
+	 * Main method for the validation
+	 */
+	public function validate(array $data) {
+		$this->validateNames(array
+								  ('firstname' 	=> $data['firstname'],
+								   'lastname' 	=> $data['lastname']
+								));
+
+		$this->validateUser(array
+								('user' => $data['user']
+								));
+
+		$this->validateMail(array
+								 ('mail' 		=> $data['mail'],
+								  'mail_repeat' => $data['mail_repeat']
+								));
+	
+		$this->existsMail(array('mail' => $data['mail']));
+
+		$this->validatePassword(array
+									 ('password'		=> $data['password'],
+									  'password_repeat' => $data['password_repeat']
+								));
+
+		return $this->errors;
+
+	}
+
+	public function validateNames(array $data) {
 		$errors = array();
 
 		// Names Validation
@@ -18,7 +52,18 @@ class Model_Validation_RegisterValidation {
 			$errors[] = 'long_last';
 		}
 
+		$this->mergeErrors($errors);
+		return $this;
+	}
+
+	
+	public function validateUser(array $data) {
+
+		$errors = array();
+	
 		// User Validation
+		$lengthValidation  = new Zend_Validate_StringLength(array('max' => 40));
+
 		$isUserShort = $lengthValidation->isValid($data['user']);		
 		if ($isUserShort === false) {
 			$errors[] = 'long_user';
@@ -34,7 +79,15 @@ class Model_Validation_RegisterValidation {
 		if ($existsUser === true) {
 			$errors[] = 'user_exists';
 		}
+
+		$this->mergeErrors($errors);
+		return $this;
+	}
 			
+
+	public function validateMail(array $data) {
+
+		$errors = array();		
 
 		// Mail validation
 		$mailValidate = new Zend_Validate_EmailAddress();
@@ -49,28 +102,55 @@ class Model_Validation_RegisterValidation {
 			$errors[] = 'wrong_mailrepeat';
 		}
 
+		if ($data['mail'] !== $data['mail_repeat']) {
+			$errors[] = 'different_mail';
+		}
+
+		$this->mergeErrors($errors);
+		return $this;
+	}
+
+	public function existsMail(array $data) {
+		$errors = array();
+
 		$uniqueMailValidate = new Zend_Validate_Db_RecordExists('user', 'mail');
 		$existsMail = $uniqueMailValidate->isValid($data['mail']);
 		if ($existsMail === true) {
 			$errors[] = 'mail_exists';
 		}
-		
-		if ($data['mail'] !== $data['mail_repeat']) {
-			$errors[] = 'different_mail';
-		}
+
+		$this->mergeErrors($errors);
+		return $this;
+	}
+
+	public function validatePassword(array $data) {
+		$errors = array();
 
 		// Password Validation
 		// 1 uppercase letter
-		// 1 lowercase letter
 		// 1 number
-		// 8 letters long
-		$validPasswordPattern = "/(?=^.{8,35}$)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/";
+		// 5 letters long
+		$validPasswordPattern =  "/(?=^.{5,35}$)(?![.\n])(?=.*[A-Z]).*$/i";
 		$isValidPassword = preg_match($validPasswordPattern, $data['password']);
 		if ($isValidPassword === 0) {
 			$errors[] = 'wrong_pass';
 		}
 
-		return $errors;
+		if ($data['password'] !== $data['password_repeat']) {
+			$errors[] = 'different_pass';
+		}
+
+		$this->mergeErrors($errors);
+		return $this;
 	}
+
+	protected function mergeErrors(array $errors) {
+		$this->errors = array_merge($this->errors, $errors);
+	}
+
+	public function getErrors() {
+		return $this->errors;
+	}
+
 }
 

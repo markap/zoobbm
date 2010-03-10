@@ -1,0 +1,21 @@
+<h1>Die Zoo Community</h1>
+
+<?php foreach ($this->paginator as $userData): ?>
+	<?php //var_dump($user); ?>
+	<a href="<?php echo $this->baseUrl 
+						. '/community/profile/user/' 
+						. $userData['user']['userid']; ?>
+			">
+	<?php echo $userData['user']['firstname']; ?>
+	</a>
+	<hr />
+
+<?php endforeach; ?>
+
+<?php echo $this->paginationControl(
+					$this->paginator,
+					'Sliding',
+					'/partials/pagination.phtml'); ?>
+																	
+
+

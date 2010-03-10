@@ -1,0 +1,18 @@
+<?php if (!empty($this->messages)): ?>
+    <?php foreach($this->messages as $message): ?>
+		<?php echo $message['date']; ?><br />
+		<?php echo $message['fullname']; ?><br />
+		<?php echo $message['subject']; ?><br />
+		<?php echo $message['message']; ?>
+		<a href="
+		<?php echo $this->baseUrl 
+					. '/community/message/to/'
+					. $message['to']['userid']; ?>">
+		Weitere Nachricht an <?php echo $message['fullname']; ?> schicken</a>
+		<hr />
+    <?php endforeach; ?>
+<?php endif; ?>
+
+
+<a href="<?php echo $this->baseUrl . '/user/profile'; ?>">Zurück zum Profil</a>
+

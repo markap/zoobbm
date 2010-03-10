@@ -13,13 +13,18 @@ class Model_DbTable_User extends Zend_Db_Table_Abstract {
 	 * @var string 
 	 */
 	protected $_name = 'user';
+
+	/**
+	 * @var string
+	 */
 	protected $user = null;
 
 
 	/**
-	 * inserts the new user in the table users
+	 * creates/inserts the new user in the table users
 	 * @author Martin Kapfhammer
-	 * @params array $user
+	 * @param array $user
+	 * @return string insert ID
 	 */
 	public function saveUser($user) {
 	  	$data = array('firstname' 	=> $user['firstname'],
@@ -30,7 +35,7 @@ class Model_DbTable_User extends Zend_Db_Table_Abstract {
 					  'newsletter'  => ($user['newsletter'] === '0') ? 'N' : 'Y'
                     );
 
-       	$this->insert($data);
+       	return $this->insert($data);
 	}
 
 
@@ -60,6 +65,50 @@ class Model_DbTable_User extends Zend_Db_Table_Abstract {
 	 */
 	public function getUser() {
 		return $this->user->toArray();
+	}
+
+	public function fetchUser($userId) {
+		$user = $this->fetchRow('userid = '. $userId);
+		if (!$user) {
+			throw new Exception('Userid nicht gefunden');
+		}
+		return $user->toArray();
+	}
+
+	/**
+	 * updates user data
+	 * @author Martin Kapfhammer
+	 * @param string $userId
+	 * @param string $userData
+	 */
+	public function updateUser($userId, $userData) {
+		$data = array('firstname' 	=> $userData['firstname'],
+			  		  'lastname' 	=> $userData['lastname'],
+			  		  'mail' 		=> $userData['mail'],
+			  		  'newsletter'  => ($userData['newsletter'] === '0') ? 'N' : 'Y'
+				);
+		$where = 'userid = ' . $userId;
+		
+		$this->update($data, $where);
+	}
+
+	/**
+	 * updates user password
+	 * @author Martin Kapfhammer
+	 * @param string $userId
+	 * @param string $password
+	 */
+	public function updatePassword($userId, $password) {
+		$data = array('password' => md5($password));
+		$where = 'userid = ' . $userId;
+
+		$this->update($data, $where);
+	}
+
+	public function getUsers() {
+		$orderBy = array('userid DESC');
+		$result  = $this->fetchAll('1', $orderBy);
+		return $result->toArray();
 	}
 
 }

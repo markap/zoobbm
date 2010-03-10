@@ -1,0 +1,18 @@
+<script type="text/javascript" src="/js/3rdParty/jQuery.js"></script>
+<script type="text/javascript" src="/js/addfriend.js"></script>
+
+
+<h1>Freundschaftsanfragen</h1>
+
+<?php if (!empty($this->friendsProfile)): ?>
+    <?php foreach($this->friendsProfile as $friend): ?>
+		<div id="friend">
+        <a href="javascript:friend(<?php 
+			echo $friend['friend']['fid'] . ',' . $friend['user']['userid']; ?>)">
+		<?php echo $friend['user']['firstname']; ?>
+		</a>
+		</div>
+		<hr />
+    <?php endforeach; ?>
+<?php endif; ?>
+
