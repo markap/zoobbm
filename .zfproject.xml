@@ -59,6 +59,13 @@
         <controllerFile controllerName="survey">
           <actionMethod actionName="index"/>
         </controllerFile>
+        <controllerFile controllerName="investorrelation">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="turnover"/>
+          <actionMethod actionName="getturnover"/>
+          <actionMethod actionName="getvisitor"/>
+          <actionMethod actionName="visitor"/>
+        </controllerFile>
       </controllersDirectory>
       <layoutsDirectory enabled="false"/>
       <modelsDirectory/>
@@ -134,6 +141,21 @@
           <viewControllerScriptsDirectory forControllerName="booking">
             <viewScriptFile forActionName="priceajax"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="investorrelation">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="investorrelation">
+            <viewScriptFile forActionName="turnover"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="investorrelation">
+            <viewScriptFile forActionName="getturnover"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="investorrelation">
+            <viewScriptFile forActionName="getvisitor"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="investorrelation">
+            <viewScriptFile forActionName="visitor"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
@@ -165,6 +187,7 @@
       <testApplicationDirectory>
         <testApplicationBootstrapFile/>
         <testApplicationControllerDirectory>
+          <testApplicationControllerFile/>
           <testApplicationControllerFile/>
           <testApplicationControllerFile/>
           <testApplicationControllerFile/>
