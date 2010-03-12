@@ -10,14 +10,15 @@
 
 <h1>Ticket Buchung</h1>
 
+<?php if (!isset($this->content)): ?>
 <p>Unser Ticket-Rechner zeigt Ihnen automatisch den günstigsten Tarif an. Zum Beispiel  wird Ihnen ab einer Anzahl von 10 Personen automatisch der Gruppentarif gebucht, ohne dass Sie dies angeben müssen. Eine Übersicht über unsere Preise finden Sie <a href="<?php echo $this->baseUrl . '/booking/prices'; ?>">hier</a>.</p>
 
 <p>Sollten Sie uns öfters besuchen, lohnt sich vielleicht unser <a href="<?php echo $this->baseUrl . '/booking/year'; ?>">Jahreskarten angebot</a>.</p>
+<?php endif; ?>
 
+<?php echo $this->error; ?>
+<?php if (isset($this->content)): ?>
+	<p>Danke für Ihre Buchung. Ihre Bestätigung wird Ihnen per Email zugesendet. Wir freuen uns auf Ihren Besuch.</p>
+	<?php var_dump($this->content); ?>
+<?php endif; ?>
 <?php echo $this->form; ?>
-
-<a href="#price" id="showprices" >Preis anzeigen</a>
-
-<div id="price"></div>
-
-<input type="submit" value="Ticket buchen" />

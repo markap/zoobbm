@@ -3,45 +3,71 @@
 class BookingController extends Zend_Controller_Action
 {
 
-    public function init()
-    {
-        /* Initialize action controller here */
+	/**
+     * @var string
+     * userid of the logged user
+     */
+    protected $userId = null;
+
+    /**
+     * @var string
+     * name of the logged user
+     */
+    protected $fullname = null;
+
+
+    /**
+     * called for every actions 
+     */
+    public function init() {
+        // userid from session
+		$userSession 	= new Zend_Session_Namespace('user');
+		$userData    	= $userSession->user;
+		$this->userId   = $userData['userid'];
+		$this->fullname = $userData['firstname'] . ' ' . $userData['lastname'];
     }
 
-    public function indexAction()
-    {
-        $this->view->form = new Form_Booking();
+    public function indexAction() {
 
 		if ($this->getRequest()->isPost()) {
 			$postValues = $this->getRequest()->getPost();
 
 			$numbers = array(
-					'adults' 		=> $postValues('adult'),
-					'childs' 		=> $postValues('child'),
-					'students' 		=> $postValues('student')
+					'adults' 		=> $postValues['adult'],
+					'childs' 		=> $postValues['child'],
+					'students' 		=> $postValues['student']
 				);
 
 			$date = array(
-					'startdate' => $postValues('startdate'),
-					'enddate'	=> $postValues('enddate')
+					'startdate' => $postValues['startdate'],
+					'enddate'	=> $postValues['enddate']
 				);
+			
+			$arguments = array(
+					'description' => $postValues['description']
+			);
 		
 			try {
 				$prices	 = Model_PricesFactory::getInstance($numbers, $date)->getPrice();
+				$ticketDb = new Model_DbTable_Ticket();
+				$ticketDb->bookTicket($this->userId, $numbers, $date, $arguments); 
 				$content = $prices->getContent();
-				// save it
+
 			} catch (Exception $e) {
 				$error = $e->getMessage();
 			}
 
 			$this->view->error 		= isset($error) ? $error : null;
 			$this->view->content 	= isset($content) ? $content : null;
+		} 
+
+		if (!isset($content)) {
+        	$this->view->form = new Form_Booking();
 		}
     }
 
 
-    public function priceajaxAction()
-    {
+    public function priceajaxAction() {
 		$this->_helper->layout->disableLayout();
 		$numbers = array(
 				'adults' 		=> $this->_getParam('adult'),

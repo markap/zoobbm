@@ -26,7 +26,6 @@ class Form_EditAddress extends Zend_Form {
         $birth = new Zend_Form_Element_Text('birth');
         $birth->setLabel('Geburtstag:')
 		  	  ->setRequired(true)
-			  ->setAttrib('readonly', 'readonly')
 		      ->addFilter('StringTrim')
 		      ->addFilter('StripTags');
 

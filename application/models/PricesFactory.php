@@ -6,24 +6,58 @@
  */
 class Model_PricesFactory { 
 
+	/**
+	 * Group Tarif -> 15 persons
+	 */
 	const GROUP = 15;
+
+	/**
+	 * Longterm Tarif -> 3 or more days
+	 */
 	const LONGTERM = 3;
+
+	/**
+	 * instance of the price factory
+	 * @var Model_PricesFactory
+	 */
+	protected static $instance = null;
 
 	protected $numbers = array();
 	protected $sumVisitor = 0;
 	protected $date = array();
 	protected $time = 1;
-	protected static $instance = null;
 
+	/**
+	 * avoid cloning of this class
+	 *
+	 * @author Martin Kapfhammer
+	 */
 	private function __clone() {}
 
+
+	/**
+	 * protected constructor
+	 * avoid to create object from outside
+	 * 
+	 * @author Martin Kapfhammer
+	 * @param array $numbers numbers of the visitors of the zoo
+	 * @param array $date start and enddate 
+	 */
 	protected function __construct(array $numbers, array $date) {
 		$this->numbers = $numbers;
 		$this->date    = $date;
-		$this->sumVisitor = $this->sumNumbers($numbers);
+		$this->sumNumbers($numbers);
 		$this->setTime($date['startdate'], $date['enddate']);
 	}
 
+
+	/**
+	 * sums the numbers from the $numbers array
+	 *
+	 * @author Martin Kapfhammer
+	 * @param array $numbers
+	 * @throws Model_NoBookPriceException
+	 */
 	protected function sumNumbers(array $numbers) {
 		$sum = 0;
 		foreach ($numbers as $value) {
@@ -33,9 +67,23 @@ class Model_PricesFactory {
 		if ((int)$sum === 0) {
 			throw new Model_NoBookPriceException('Keine Personenanzahl ausgewählt');
 		}
-		return $sum;
+		$this->sumNumbers = $sum;
 	}
 
+
+	/**
+	 * validates the dates
+	 * calculates the time difference between start and endtime
+	 * 
+	 * @author Martin Kapfhammer
+	 * @params string $startdate
+	 * @params string $enddate
+	 *
+	 * @throws Model_NoStartPriceException
+	 * @throws Model_NoDateException
+	 * @throws Model_StartBiggerEndPriceException
+	 * @throws Model_OldDateException
+	 */
 	protected function setTime($startdate, $enddate) {
 		if (!$startdate) {
 			throw new Model_NoStartPriceException('Bitte wählen Sie ein gültiges Startdatum');
@@ -48,7 +96,7 @@ class Model_PricesFactory {
 			throw new Model_StartBiggerEndPriceException('Startdatum muss vor Enddatum liegen');
 		}
 		$startdateZ = new Zend_Date($startdate);
-		$enddateZ   = new Zend_Date($enddate);
+		$enddateZ   = ($enddate) ? new Zend_Date($enddate) : null;
 		if ($startdateZ->isEarlier(Zend_Date::now()) ||
 			($enddate && $enddateZ->isEarlier(Zend_Date::now()))) {
 			throw new Model_OldDateException('Zeit liegt in der Gegenwart');

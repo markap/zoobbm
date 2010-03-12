@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	
-	$('#showprices').click(function() {
+	$('#link-label').click(function() {
 		var adult = $('#adult').val();
 		var child = $('#child').val();
 		var student = $('#student').val();
@@ -14,7 +14,7 @@ $(document).ready(function() {
 			+ "/startdate/" + startdate
 			+ "/enddate/" + enddate
 		, function (response) {
-			$("#price").html(response);
+			$("#price-label").html(response);
 		},
 		"text"
 		);	

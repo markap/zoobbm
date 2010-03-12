@@ -15,6 +15,12 @@ class UserController extends Zend_Controller_Action {
 	 */
 	protected $userData = null;
 
+	/**
+	 * current action
+	 * @var string
+	 */
+	protected $action = null;
+
 
 	/**
 	 * called for every action
@@ -25,13 +31,41 @@ class UserController extends Zend_Controller_Action {
 		$this->userId 	= $this->userData['userid'];
     }
 
-    public function indexAction()
-    {
+
+	/**
+     * the user must be logged in
+     * redirect to the mustbe page
+     * set redirect session to current page
+     *
+     * @author Martin Kapfhammer
+     */
+	public function mustBeLogged() {
+
+  		if (!Zend_Auth::getInstance()->hasIdentity()) {
+
+			$controller = $this->_getParam('controller');
+			$action 	= $this->_getParam('action');
+
+            $redirectSession = new Zend_Session_Namespace('redirect');
+            $redirectSession->next = "/$controller/$action";
+            $this->_redirect('/user/mustbe');
+        }
+	}
+
+
+	/**
+	 * redirect to the userprofile
+	 */
+    public function indexAction() {
 		$this->_redirect('/user/profile');
     }
 
-    public function loginAction()
-    {
+
+	/**
+	 * login action
+	 */
+    public function loginAction() {
+
         $loginForm = new Form_Login();
                                                                 
 		// user authentification component
@@ -74,12 +108,16 @@ class UserController extends Zend_Controller_Action {
 		$this->view->loginForm = $loginForm;
     }
 
-    public function registerAction()
-    {
+
+	/**
+	 * register new users
+	 */
+    public function registerAction() {
         // action body
 		$form = new Form_Register();
 		$request  = $this->getRequest();
 		$registered = false;  // hide form when successfull registered
+		$this->view->errors = array();
 
 		if ($request->isPost()) {
 
@@ -106,14 +144,9 @@ class UserController extends Zend_Controller_Action {
 							$this->view->errors = $errors;
 						}
 					} else {
-						$this->view->errors = array();
 						$this->view->errors[] = 'Captcha Wert ist falsch';
 					}
 			} else {
-				$this->view->errors = array(); 
-				//PHP BUG !!! 
-				// more info: http://weierophinney.net/matthew/
-				// archives/131-Overloading-arrays-in-PHP-5.2.0.html
 				$this->view->errors[] = 'Bitte alle Felder ausfüllen';
 			}
 		}
@@ -123,8 +156,14 @@ class UserController extends Zend_Controller_Action {
 		}
     }
 
-    public function logoutAction()
-    {
+
+	/**
+	 * logout the user
+	 * unset the redirect session to avoid
+	 * that the next user will be redirect 
+	 * the wrong way
+	 */
+    public function logoutAction() {
         // action body
 		$auth = Zend_Auth::getInstance();
 		$auth->clearIdentity();
@@ -134,19 +173,21 @@ class UserController extends Zend_Controller_Action {
 
     }
 
-    public function mustbeAction()
-    {
+
+	/**
+	 * show mustbe when the user must be logged, but is not
+	 */
+    public function mustbeAction() {
         // just render view
     }
 
-    public function profileAction()
-    {
-        // user must be logged in
-		if (!Zend_Auth::getInstance()->hasIdentity()) {
-			$redirectSession = new Zend_Session_Namespace('redirect');
-			$redirectSession->next = '/User/Profile';
-			$this->_redirect('/user/mustbe');
-		}
+
+	/**
+	 * show the profile of the logged user
+	 */
+    public function profileAction() {
+
+		$this->mustBeLogged();
 		
 		// DB Profile Class
 		$profileDb = new Model_DbTable_Profile();	
@@ -165,140 +206,137 @@ class UserController extends Zend_Controller_Action {
 		$this->view->unreadMessages = $unreadMessages;
     }
 
-    public function editdefaultprofileAction()
-    {
-        $userSession = new Zend_Session_Namespace('user');
-                        		$userData	 = $userSession->user;
-                        		$userId		 = $userData['userid'];
-                        
-                        		$form = new Form_EditDefaultProfile();
-                        
-                        		// handle request
-                        		$request = $this->getRequest();
-                        		if ($request->isPost()) {
-                        
-                        			$postValues = $request->getPost();
-                        
-                        			if (Model_Validation_NotEmpty::notEmpty($postValues) === false) { 
-                        
-                        					if ($form->isValid($postValues)) {
-                        
-                        						$registerValidation = new Model_Validation_RegisterValidation();
-                        						$errors = $registerValidation->validateNames(array(
-                        																		'firstname' => $postValues['firstname'],
-                        																		'lastname'  => $postValues['lastname']))
-                        													 ->validateMail(array(
-                        																		'mail' 		  => $postValues['mail'],
-                        																		'mail_repeat' => $postValues['mail_repeat']))
-                        													 ->getErrors();
-                        																										
-                        
-                        						// error array emtpy -> register successfull
-                        						if (empty($errors)) {
-                        							// update user in db
-                        							$user = new Model_DbTable_User();
-                        							$user->updateUser($userId, $postValues);
-                        	
-                        							//update user in session also
-                        							$updatedUserData = array('userid' 		=> $userData['userid'],
-                        													 'firstname' 	=> $postValues['firstname'], 
-                        													 'lastname' 	=> $postValues['lastname'],
-                        													 'username' 	=> $userData['username'],
-                        													 'password' 	=> $userData['password'],
-                        													 'mail' 		=> $postValues['mail'],
-                        													 'newsletter' 	=> $postValues['newsletter']
-                        													);
-                        							$userSession->user = $updatedUserData;
-                
-                									$this->view->success = true;
-                        							
-                        						} else {
-                        							$this->view->errors = $errors;
-                        						}
-                        					}
-                        			} else {
-                        				$this->view->errors = array();
-                        				$this->view->errors[] = 'Bitte alle Felder ausfüllen';
-                        			}
-                        		}
-                        			
-                        
-                        		$userData	 = $userSession->user;
-                        		// fill formular with current values
-                        		$form->populate(array('firstname' 	=> $userData['firstname'],
-                        							  'lastname'  	=> $userData['lastname'],
-                        							  'mail'	  	=> $userData['mail'],
-                        							  'mail_repeat' => $userData['mail'],
-                        							  'newsletter'  => ($userData['newsletter'] === 'Y') ? 1 : 0
-                        							)); 
-                        
-                        		$this->view->form 	  = $form;
-    }
+    public function editdefaultprofileAction() {
 
-    public function editimageAction()
-    {
-        // action body
-                        		$form = new Form_EditImage();
-                        
-                        		// userid from session
-                        		$userSession = new Zend_Session_Namespace('user');
-                        		$userData	 = $userSession->user;
-                        		$userId 	 = $userData['userid'];
-                        
-                        		// DB Profile Class
-                        		$profileDb = new Model_DbTable_Profile();	
-                        		
-                        		$request = $this->getRequest();
-                        		if ($request->isPost()) {
-                        			if ($form->isValid($request->getPost())) {
-                        				if ($form->getElement('image')->receive()) {
-                        					$pathName = $form->getElement('image')->getFileName();
-                        					// get file-name
-                        					$fileName  = substr($pathName, strrpos($pathName, '/') + 1);
-                        					$profileDb->updateImage($userId, $fileName);
-                        				}
-                        			}
-                        		}
-                        
-                        		$profile = $profileDb->getProfile($userId);	
-                        		$image 	 = $profile['image'];
-                        
-                        		$this->view->image 	= $image;
-                        		$this->view->form 	= $form;
-    }
+		$this->mustBeLogged();
 
-    public function editaddressAction()
-    {
-        // action body
-                		$form = new Form_EditAddress();
-                
-                		// userid from session
-                		$userSession = new Zend_Session_Namespace('user');
-                		$userData	 = $userSession->user;
-                		$userId 	 = $userData['userid'];
-                
-                
-                		$profileDb = new Model_DbTable_Profile();
-                        $profile   = $profileDb->getProfile($userId);	
-                
-                		// request handling
-                		$request = $this->getRequest();
-                        
-                		if ($request->isPost()) {
-                
-                			$postValues = $request->getPost();
-							$profileDb->updateAddress($userId, $postValues);	
-							$profile = $profileDb->getProfile($userId);
+		$form = new Form_EditDefaultProfile();
+
+		// handle request
+		$request = $this->getRequest();
+		if ($request->isPost()) {
+
+			$postValues = $request->getPost();
+
+			if (Model_Validation_NotEmpty::notEmpty($postValues) === false) { 
+
+					if ($form->isValid($postValues)) {
+
+						$registerValidation = new Model_Validation_RegisterValidation();
+						$errors = $registerValidation->validateNames(array(
+																		'firstname' => $postValues['firstname'],
+																		'lastname'  => $postValues['lastname']))
+													 ->validateMail(array(
+																		'mail' 		  => $postValues['mail'],
+																		'mail_repeat' => $postValues['mail_repeat']))
+													 ->getErrors();
+																										
+
+						// error array emtpy -> register successfull
+						if (empty($errors)) {
+							// update user in db
+							$user = new Model_DbTable_User();
+							$user->updateUser($this->userId, $postValues);
+	
+							//update user in session also
+							$updatedUserData = array('userid' 		=> $userData['userid'],
+													 'firstname' 	=> $postValues['firstname'], 
+													 'lastname' 	=> $postValues['lastname'],
+													 'username' 	=> $userData['username'],
+													 'password' 	=> $userData['password'],
+													 'mail' 		=> $postValues['mail'],
+													 'newsletter' 	=> $postValues['newsletter']
+													);
+							$userSession->user = $updatedUserData;
+
 							$this->view->success = true;
-                
-                		}
-                
-                		$form->populate($profile);
-                		$this->view->form = $form;
+							
+						} else {
+							$this->view->errors = $errors;
+						}
+					}
+			} else {
+				$this->view->errors = array();
+				$this->view->errors[] = 'Bitte alle Felder ausfüllen';
+			}
+		}
+			
+
+		$userData	 = $userSession->user;
+		// fill formular with current values
+		$form->populate(array('firstname' 	=> $userData['firstname'],
+							  'lastname'  	=> $userData['lastname'],
+							  'mail'	  	=> $userData['mail'],
+							  'mail_repeat' => $userData['mail'],
+							  'newsletter'  => ($userData['newsletter'] === 'Y') ? 1 : 0
+							)); 
+
+		$this->view->form 	  = $form;
     }
 
-    public function editprivateAction()
-    {
+
+	/**
+	 * upload the user image
+	 */
+    public function editimageAction() {
+
+		$this->mustBeLogged();
+		
+		$form = new Form_EditImage();
+
+		// DB Profile Class
+		$profileDb = new Model_DbTable_Profile();	
+		
+		$request = $this->getRequest();
+		if ($request->isPost()) {
+			if ($form->isValid($request->getPost())) {
+				if ($form->getElement('image')->receive()) {
+					$pathName = $form->getElement('image')->getFileName();
+					$fileName  = substr($pathName, strrpos($pathName, '/') + 1);
+					$profileDb->updateImage($this->userId, $fileName);
+				}
+			}
+		}
+
+		$profile = $profileDb->getProfile($this->userId);	
+		$image 	 = $profile['image'];
+
+		$this->view->image 	= $image;
+		$this->view->form 	= $form;
+    }
+
+
+	/**
+	 * edit user addressdata, birthday, phone
+	 */
+    public function editaddressAction() {
+		$this->mustBeLogged();
+
+		$form = new Form_EditAddress();
+
+		$profileDb = new Model_DbTable_Profile();
+		$profile   = $profileDb->getProfile($this->userId);	
+
+		// request handling
+		$request = $this->getRequest();
+		if ($request->isPost()) {
+			$postValues = $request->getPost();
+			$profileDb->updateAddress($this->userId, $postValues);	
+			$profile = $profileDb->getProfile($this->userId);
+			$this->view->success = true;
+		}
+
+		$form->populate($profile);
+		$this->view->form = $form;
+    }
+
+
+	/**
+	 * edit some personal data, e.g. favourite animals 
+	 */
+    public function editprivateAction() {
+		$this->mustBeLogged();
+
 		$form = new Form_EditPrivate();
 
 		// set animals from Db to checkboxes 
@@ -341,21 +379,19 @@ class UserController extends Zend_Controller_Action {
 		$this->view->form = $form;
     }
 
-    public function changepasswordAction()
-    {
-        // action body
+
+	/**
+	 * change the password
+	 */
+    public function changepasswordAction() {
+		$this->mustBeLogged();
+
 		$form = new Form_ChangePassword();
-
-		// userid from session
-		$userSession = new Zend_Session_Namespace('user');
-		$userData	 = $userSession->user;
-		$userId 	 = $userData['userid'];
-
+		$this->view->errors = array();
 
 		$request = $this->getRequest();
-				
 		if ($request->isPost()) {
-			
+
 			$postValues = $request->getPost();
 
 			if (Model_Validation_NotEmpty::notEmpty($postValues) === false) {
@@ -371,18 +407,16 @@ class UserController extends Zend_Controller_Action {
 																		  'password_repeat' => $postValues['password_repeat']))
 												 ->getErrors();
 					if (empty($errors)) {
-						$userDb->updatePassword($userId, $postValues['password']);
+						$userDb->updatePassword($this->userId, $postValues['password']);
 						$this->view->success = true;		
 					} else {
 						$this->view->errors = $errors;
 					}
 
 				} else {
-					$this->view->errors = array();
 					$this->view->errors[] = 'Benutzerdaten nicht gefunden'; 
 				}
 			} else {
-				$this->view->errors = array();
 				$this->view->errors[] = 'Bitte alle Felder ausfüllen';
 			}
 		}

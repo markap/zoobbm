@@ -34,7 +34,7 @@ class Form_Message extends Zend_Form {
 
 		// Submit Button
         $submit = new Zend_Form_Element_Submit('Senden');
-        $submit->setAttrib('id', 'register_submit');
+        $submit->setAttrib('id', 'message_submit');
 
         // Add Elements to Form
         $this->addElements(array($subject,

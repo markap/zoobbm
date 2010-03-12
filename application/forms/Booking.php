@@ -56,6 +56,12 @@ class Form_Booking extends Zend_Form {
 		      ->addFilter('StringTrim')
 		      ->addFilter('StripTags');
 
+		$link = new Form_Note('link', array('label' => 'Preis berechnen'));
+		$note = new Form_Note('price');
+
+		// Submit Button
+        $submit = new Zend_Form_Element_Submit('Ticket Buchen');
+        $submit->setAttrib('id', 'ticket_submit');
 
         // Add Elements to Form
         $this->addElements(array($startdate,
@@ -64,6 +70,9 @@ class Form_Booking extends Zend_Form {
 								 $childs,
 								 $students,
 								 $description,
+								 $link,
+								 $note,
+								 $submit
                             ));
 
     }

@@ -41,12 +41,44 @@ class CommunityController extends Zend_Controller_Action
 			$redirectSession->next = '/community/' . $action . $params; 
 			$this->_redirect('/user/mustbe');
 		}
-
     }
 
-    public function indexAction()
-    {
-        // action body
+
+	/**
+     * the user must be logged in
+     * redirect to the mustbe page
+     * set redirect session to current page
+     *
+     * @author Martin Kapfhammer
+	 * @param array $getParams 
+     */
+	public function mustBeLogged(array $getParams = array()) {
+
+  		if (!Zend_Auth::getInstance()->hasIdentity()) {
+
+			$controller = $this->_getParam('controller');
+			$action 	= $this->_getParam('action');
+
+			$get = '';
+			if (!empty($getParams)) {
+				foreach ($getParams as $value) {
+					$get .= "/$value/$this->_getParam($value)";
+				}
+			}
+
+            $redirectSession = new Zend_Session_Namespace('redirect');
+            $redirectSession->next = "/$controller/$action" . $get;
+            $this->_redirect('/user/mustbe');
+        }
+	}
+
+
+	/**
+	 * show all users of the community
+	 */
+    public function indexAction() {
+		$this->mustBeLogged();
+
 		$userDb = new Model_DbTable_User();
 		$users  = $userDb->getUsers();
 			
@@ -66,12 +98,16 @@ class CommunityController extends Zend_Controller_Action
 		$paginator->setItemCountPerPage(3);
 		$paginator->setCurrentPageNumber($page);
 
-
 		$this->view->paginator = $paginator;
     }
 
-    public function profileAction()
-    {
+
+	/**
+	 * show the user profile
+	 */
+    public function profileAction() {
+		$this->mustBeLogged(array('user'));
+
         // show the user profile
 		$userId = $this->_getParam('user');
 		$this->view->userId = $userId;
@@ -91,14 +127,17 @@ class CommunityController extends Zend_Controller_Action
 		$this->view->profile  = $profile;
     }
 
-    public function messageAction()
-    {
-        $toId = $this->_getParam('to');
-                                                
+
+	/**
+	 * write a message to a user
+	 */
+    public function messageAction() {
+		$this->mustBeLogged(array('to'));
+
+        $toId 	= $this->_getParam('to');
 		$userDb = new Model_DbTable_User();
 		$receiver	= $userDb->fetchUser($toId);
 		$this->view->receiver = $receiver;
-
 
 		// handle request
 		$request = $this->getRequest();
@@ -117,12 +156,17 @@ class CommunityController extends Zend_Controller_Action
 
 		// show form
 		if ($success === false) {
-			$this->view->form = new Form_Messages();
+			$this->view->form = new Form_Message();
 		}
     }
 
-    public function showmessagesAction()
-    {
+
+	/**
+	 * show all received messages
+	 */
+    public function showmessagesAction() {
+		$this->mustBeLogged();
+
 		$messagesDb = new Model_DbTable_Message();
 		$messages   = $messagesDb->getReceivedMessages($this->userId);
 
@@ -146,8 +190,13 @@ class CommunityController extends Zend_Controller_Action
 		$this->view->messages = $messages;
     }
 
-    public function showsendmessagesAction()
-    {
+
+	/**
+	 * show sended messages
+	 */
+    public function showsendmessagesAction() {
+		$this->mustBeLogged();
+
 		$messagesDb = new Model_DbTable_Message();
 		$messages   = $messagesDb->getSendedMessages($this->userId);
 
@@ -167,9 +216,13 @@ class CommunityController extends Zend_Controller_Action
 		$this->view->messages = $messages;
     }
 
-    public function addfriendAction()
-    {
-        // action body
+
+	/**
+	 * add friends
+	 */
+    public function addfriendAction() {
+		$this->mustBeLogged(array('user'));
+
 		$form = new Form_Message();
 
 		$userDb = new Model_DbTable_User();
@@ -204,9 +257,13 @@ class CommunityController extends Zend_Controller_Action
 		}
     }
 
-    public function friendsAction()
-    {
-        // action body
+
+	/**
+	 * show my friends
+	 */
+    public function friendsAction() {
+		$this->mustBeLogged();
+
 		$friendDb = new Model_DbTable_Friend();
 		$friends  = $friendDb->getFriends($this->userId);
 
@@ -227,9 +284,13 @@ class CommunityController extends Zend_Controller_Action
 		$this->view->friendsProfile = $friendsProfile;
     }
 
-    public function friendrequestAction()
-    {
-        // action body
+	
+	/**
+	 * show friend requests
+	 */
+    public function friendrequestAction() {
+		$this->mustBeLogged();
+
 		$friendDb = new Model_DbTable_Friend();
 		$friends  = $friendDb->getFriendsRequest($this->userId);
 			
@@ -249,9 +310,11 @@ class CommunityController extends Zend_Controller_Action
 		$this->view->friendsProfile = $friendsProfile;
     }
 
-    public function friendajaxAction()
-    {
-        // action body
+	
+	/**
+	 * accept friends requests per ajax
+	 */
+    public function friendajaxAction() {
 		$this->_helper->layout->disableLayout();
 		$friendId = $this->_getParam('friend');
 		$userId = $this->_getParam('user');
@@ -262,7 +325,6 @@ class CommunityController extends Zend_Controller_Action
 		$user = $userDb->fetchUser($userId);
 		$this->view->fullname = $user['firstname'] . ' ' . $user['lastname'];
     }
-
 
 }
 
