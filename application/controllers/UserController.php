@@ -15,12 +15,6 @@ class UserController extends Zend_Controller_Action {
 	 */
 	protected $userData = null;
 
-	/**
-	 * current action
-	 * @var string
-	 */
-	protected $action = null;
-
 
 	/**
 	 * called for every action
@@ -39,7 +33,7 @@ class UserController extends Zend_Controller_Action {
      *
      * @author Martin Kapfhammer
      */
-	public function mustBeLogged() {
+	protected function mustBeLogged() {
 
   		if (!Zend_Auth::getInstance()->hasIdentity()) {
 
@@ -206,8 +200,11 @@ class UserController extends Zend_Controller_Action {
 		$this->view->unreadMessages = $unreadMessages;
     }
 
-    public function editdefaultprofileAction() {
 
+	/**
+	 * edit basic user data
+	 */
+    public function editdefaultprofileAction() {
 		$this->mustBeLogged();
 
 		$form = new Form_EditDefaultProfile();
@@ -220,59 +217,87 @@ class UserController extends Zend_Controller_Action {
 
 			if (Model_Validation_NotEmpty::notEmpty($postValues) === false) { 
 
-					if ($form->isValid($postValues)) {
+				$errors = $this->validateNewRegisterData($postValues);
+				if (empty($errors)) {  // no errors? changes successfull!
 
-						$registerValidation = new Model_Validation_RegisterValidation();
-						$errors = $registerValidation->validateNames(array(
-																		'firstname' => $postValues['firstname'],
-																		'lastname'  => $postValues['lastname']))
-													 ->validateMail(array(
-																		'mail' 		  => $postValues['mail'],
-																		'mail_repeat' => $postValues['mail_repeat']))
-													 ->getErrors();
-																										
+					$user = new Model_DbTable_User();
+					$user->updateUser($this->userId, $postValues);
 
-						// error array emtpy -> register successfull
-						if (empty($errors)) {
-							// update user in db
-							$user = new Model_DbTable_User();
-							$user->updateUser($this->userId, $postValues);
-	
-							//update user in session also
-							$updatedUserData = array('userid' 		=> $userData['userid'],
-													 'firstname' 	=> $postValues['firstname'], 
-													 'lastname' 	=> $postValues['lastname'],
-													 'username' 	=> $userData['username'],
-													 'password' 	=> $userData['password'],
-													 'mail' 		=> $postValues['mail'],
-													 'newsletter' 	=> $postValues['newsletter']
-													);
-							$userSession->user = $updatedUserData;
-
-							$this->view->success = true;
-							
-						} else {
-							$this->view->errors = $errors;
-						}
-					}
+					$userSession->user = $this->getNewUserSessionData($userData, $postValues);
+					$this->view->success = true;
+					
+				} else {
+					$this->view->errors = $errors;
+				}
 			} else {
 				$this->view->errors = array();
 				$this->view->errors[] = 'Bitte alle Felder ausfüllen';
 			}
 		}
 			
-
-		$userData	 = $userSession->user;
-		// fill formular with current values
-		$form->populate(array('firstname' 	=> $userData['firstname'],
-							  'lastname'  	=> $userData['lastname'],
-							  'mail'	  	=> $userData['mail'],
-							  'mail_repeat' => $userData['mail'],
-							  'newsletter'  => ($userData['newsletter'] === 'Y') ? 1 : 0
-							)); 
-
-		$this->view->form 	  = $form;
+		$form->populate($this->getEditDefaultProfileFormData($userSession->user));
+		$this->view->form = $form;
     }
+
+
+	/**
+	 * validates the new register data
+	 * and return an error array
+	 *
+	 * @author Martin Kapfhammer
+	 * @param array $postValues
+	 * @return array errors of the validation, could be empty
+	 */
+	protected function validateNewRegisterData(array $postValues) {
+		$registerValidation = new Model_Validation_RegisterValidation();
+		$registerValidation->validateNames(array(
+										'firstname' => $postValues['firstname'],
+										'lastname'  => $postValues['lastname']
+										));
+		$registerValidation->validateMail(array(
+										'mail' 		  => $postValues['mail'],
+										'mail_repeat' => $postValues['mail_repeat']
+										));
+		return $registerValidation->getErrors();
+	}
+
+
+	/**
+	 * returns updated user session data
+	 *
+	 * @author Martin Kapfhammer
+	 * @param array $oldUserData data from the current session
+	 * @param array $postValues data from $_POST
+	 * @return array $updatedUserData
+	 */
+	protected function getNewUserSessionData(array $oldUserData, array $postValues) {
+		$updatedUserData = array('userid' 		=> $oldUserData['userid'],
+							 	 'firstname' 	=> $postValues['firstname'], 
+							 	 'lastname' 	=> $postValues['lastname'],
+							 	 'username' 	=> $oldUserData['username'],
+							 	 'password' 	=> $oldUserData['password'],
+							 	 'mail' 		=> $postValues['mail'],
+							 	 'newsletter' 	=> $postValues['newsletter']
+							);
+		return $updatedUserData;
+	}
+
+
+	/**
+	 * returns data for the "EditDefaultProfileForm" 
+	 *
+	 * @author Martin Kapfhammer
+	 * @param array $userData
+	 * @return array data for form populating
+	 */
+	protected function getEditDefaultProfileFormData(array $userData) {
+		return array('firstname' 	=> $userData['firstname'],
+					  'lastname'  	=> $userData['lastname'],
+					  'mail'	  	=> $userData['mail'],
+					  'mail_repeat' => $userData['mail'],
+					  'newsletter'  => ($userData['newsletter'] === 'Y') ? 1 : 0
+					); 
+	}
 
 
 	/**

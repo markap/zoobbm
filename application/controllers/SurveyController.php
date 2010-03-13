@@ -1,20 +1,17 @@
 <?php
 
-class SurveyController extends Zend_Controller_Action
-{
+class SurveyController extends Zend_Controller_Action {
 
-    public function init()
-    {
-        /* Initialize action controller here */
+    public function init() {
     }
 
-    public function indexAction()
-    {
+	
+	/**
+	 * show a survey
+	 */
+    public function indexAction() {
 		$surveyDb   = new Model_DbTable_Survey();	
-
 		$surveySession = new Zend_Session_Namespace('survey');
-
-
 		$isSurveyDone  = $surveySession->done;
 		if ($isSurveyDone !== true) {
 			$request 	= $this->getRequest();
@@ -51,10 +48,7 @@ class SurveyController extends Zend_Controller_Action
 
 		$this->view->surveyPercentage = $surveyPercentage;
 		$this->view->showSurvey       = $surveySession->done;
-
-		
     }
-
 
 }
 

@@ -19,28 +19,12 @@ class CommunityController extends Zend_Controller_Action
     /**
      * called for every actions 
      */
-    public function init()
-    {
+    public function init() {
         // userid from session
 		$userSession 	= new Zend_Session_Namespace('user');
 		$userData    	= $userSession->user;
 		$this->userId   = $userData['userid'];
 		$this->fullname = $userData['firstname'] . ' ' . $userData['lastname'];
-
-		// user must be logged in for all community actions
-		if (!Zend_Auth::getInstance()->hasIdentity()) {
-			$action = $this->_getParam('action');
-			$params = '';
-			if ($action === 'profile' || $action === 'addfriend') {
-				$params = '/user/' . $this->_getParam('user');	
-			}	
-			if ($action === 'message') {
-				$params = '/to/' . $this->_getParam('to');	
-			}	
-			$redirectSession = new Zend_Session_Namespace('redirect');
-			$redirectSession->next = '/community/' . $action . $params; 
-			$this->_redirect('/user/mustbe');
-		}
     }
 
 
@@ -52,7 +36,7 @@ class CommunityController extends Zend_Controller_Action
      * @author Martin Kapfhammer
 	 * @param array $getParams 
      */
-	public function mustBeLogged(array $getParams = array()) {
+	protected function mustBeLogged(array $getParams = array()) {
 
   		if (!Zend_Auth::getInstance()->hasIdentity()) {
 

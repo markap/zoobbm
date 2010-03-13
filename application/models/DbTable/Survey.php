@@ -17,7 +17,7 @@ class Model_DbTable_Survey extends Zend_Db_Table_Abstract {
 
 	/**
 	 * updates survey data
-* 
+	 * 
 	 * @author Martin Kapfhammer
 	 * @param string $key 
 	 * @param string $value
@@ -29,6 +29,13 @@ class Model_DbTable_Survey extends Zend_Db_Table_Abstract {
        	$this->update($data, $where);
 	}
 
+
+	/**
+	 * returns formatted survey data
+	 * 
+	 * @author Martin Kapfhammer
+	 * @return array $ret
+	 */
 	public function getSurveyData() {
 		$orderBy = array('sid DESC');
 		$results = $this->fetchAll('1', $orderBy);

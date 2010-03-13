@@ -2,12 +2,13 @@
 
 /**
  * prices factory 
+ * returns Model_PricesInterface for the different Tarifs
  * @package models
  */
 class Model_PricesFactory { 
 
 	/**
-	 * Group Tarif -> 15 persons
+	 * Group Tarif -> 15 persons or more
 	 */
 	const GROUP = 15;
 
@@ -22,10 +23,47 @@ class Model_PricesFactory {
 	 */
 	protected static $instance = null;
 
+	/**
+	 * numbers of the people who booked
+	 * @var array
+	 */
 	protected $numbers = array();
+	
+	/**
+	 * sum of the people who booked
+	 * @var integer
+	 */
 	protected $sumVisitor = 0;
+
+	/**
+	 * start and enddate
+	 * @var array
+	 */
 	protected $date = array();
+
+	/**
+	 * time between start- and enddate
+	 * @var integer
+	 */
 	protected $time = 1;
+
+
+	/**
+	 * return a instance of the price-factory
+	 *
+	 * @author Martin Kapfhammer
+	 *
+	 * @param array $numbers numbers of the people who booked
+	 * @param array $date day(s) of booking
+	 * @return Model_PricesFactory self::$instance
+	 */
+	static public function getInstance(array $numbers, array $date) {
+		if (self::$instance === null) {
+			self:: $instance = new Model_PricesFactory($numbers, $date);
+		}
+		return self::$instance;
+	}
+
 
 	/**
 	 * avoid cloning of this class
@@ -72,7 +110,7 @@ class Model_PricesFactory {
 
 
 	/**
-	 * validates the dates
+	 * validates the dates and
 	 * calculates the time difference between start and endtime
 	 * 
 	 * @author Martin Kapfhammer
@@ -106,34 +144,64 @@ class Model_PricesFactory {
 		}
 	}
 
-	static public function getInstance(array $numbers, array $date) {
-		if (self::$instance === null) {
-			self:: $instance = new Model_PricesFactory($numbers, $date);
-		}
-		return self::$instance;
-	}
 
+	/**
+	 * factory method
+	 * return the right Prices-Object 
+	 *
+	 * @author Martin Kapfhammer
+	 *
+	 * @return Model_PricesInterface
+	 */
 	public function getPrice() {
-		if ($this->sumVisitor >= self::GROUP && $this->time >= self::LONGTERM) {
-
-			$groupPrices 	= new Model_GroupPrices($this->numbers, $this->date);  
-			$longTermPrices = new Model_LongTermPrices($this->numbers, $this->date);  
-			if ($groupPrices->getPrice() > $longTermPrices->getPrice()) {
-				return $longTermPrices;
-			} else {
-				return $groupPrices;
-			}
+		if ($this->isGroup() && $this->isLongTerm()) {
+			return $this->getCheaperPrice();
 		}
-
-		if ($this->sumVisitor >= self::GROUP) {
+		if ($this->isGroup()) {
 			return new Model_GroupPrices($this->numbers, $this->date);  
 		}
-		if ($this->time >= self::LONGTERM) {
+		if ($this->isLongTerm()) {
 			return new Model_LongTermPrices($this->numbers, $this->date);  
 		}
-
 		return new Model_Prices($this->numbers, $this->date);
 	}
 
+
+	/**
+	 * checks if the booking is GroupTarif
+	 * @author Martin Kapfhammer
+	 * @return boolean
+	 */
+	private function isGroup() {
+		return ($this->sumVisitor >= self::GROUP);
+	}
+
+
+	/**
+	 * checks if the booking is LongTermTarif
+	 * @author Martin Kapfhammer
+	 * @return boolean
+	 */
+	private function isLongTerm() {
+		return ($this->time >= self::LONGTERM);
+	}
+
+
+	/**
+	 * booking is LongTerm and Group
+	 * return the cheapest
+	 * 
+	 * @author Martin Kapfhammer
+	 * @return Model_PricesInterface
+	 */
+	private function getCheaperPrice() {
+		$groupPrices 	= new Model_GroupPrices($this->numbers, $this->date);  
+		$longTermPrices = new Model_LongTermPrices($this->numbers, $this->date);  
+		if ($groupPrices->getPrice() > $longTermPrices->getPrice()) {
+			return $longTermPrices;
+		} else {
+			return $groupPrices;
+		}
+	}
 
 }

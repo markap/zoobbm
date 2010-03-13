@@ -18,11 +18,11 @@ class Model_DbTable_Visit extends Zend_Db_Table_Abstract {
 	/**
 	 * returns all visits 
 	 * @author Martin Kapfhammer
+	 * @return array $result
 	 */
 	public function getVisits() {
 		$orderby = array('name ASC');
 		$result  = $this->fetchAll('1', $orderby);
 		return $result->toArray();
 	}
-
 }

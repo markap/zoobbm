@@ -21,9 +21,12 @@ class Model_AuthAdapter implements Zend_Auth_Adapter_Interface {
 	 */
 	protected $userDb;
 
+
 	/**
-	 * contructor
+	 * constructor
 	 * @author Martin Kapfhammer
+	 * @param string $username
+	 * @param string $password
 	 */
 	public function __construct($username, $password) {
 		$this->username = $username;
@@ -31,11 +34,12 @@ class Model_AuthAdapter implements Zend_Auth_Adapter_Interface {
 		$this->userDb 	= new Model_DbTable_User();
 	}
 
+
 	/**
 	 * user authentification 
-	 * must be implemented
+	 *
 	 * @author Martin Kapfhammer
-	 * @return Zend_Auth_Result
+	 * @return Zend_Auth_Result $result
 	 */
 	public function authenticate() {
 		$match = $this->userDb->findCredentials($this->username, $this->password);
@@ -55,6 +59,7 @@ class Model_AuthAdapter implements Zend_Auth_Adapter_Interface {
 
 	}
 
+
 	/**
 	 * returns the user
 	 *
@@ -64,6 +69,5 @@ class Model_AuthAdapter implements Zend_Auth_Adapter_Interface {
 	public function getUser() {
 		return $this->userDb->getUser();
 	}
-
 
 }

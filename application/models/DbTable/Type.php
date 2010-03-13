@@ -18,6 +18,7 @@ class Model_DbTable_Type extends Zend_Db_Table_Abstract {
 	/**
 	 * returns all types 
 	 * @author Martin Kapfhammer
+	 * @return array $result
 	 */
 	public function getTypes() {
 		$orderby = array('name ASC');

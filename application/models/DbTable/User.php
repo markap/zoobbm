@@ -57,6 +57,7 @@ class Model_DbTable_User extends Zend_Db_Table_Abstract {
 		return ($row) ? $row : false;
 	}
 
+
 	/** 
 	 * returns the user 
 	 * 
@@ -67,6 +68,14 @@ class Model_DbTable_User extends Zend_Db_Table_Abstract {
 		return $this->user->toArray();
 	}
 
+
+	/**
+	 * returns user from db for a special id
+	 * 
+	 * @author Martin Kapfhammer
+	 * @param string $userId
+	 * @return array $user
+	 */
 	public function fetchUser($userId) {
 		$user = $this->fetchRow('userid = '. $userId);
 		if (!$user) {
@@ -74,6 +83,7 @@ class Model_DbTable_User extends Zend_Db_Table_Abstract {
 		}
 		return $user->toArray();
 	}
+
 
 	/**
 	 * updates user data
@@ -92,6 +102,7 @@ class Model_DbTable_User extends Zend_Db_Table_Abstract {
 		$this->update($data, $where);
 	}
 
+
 	/**
 	 * updates user password
 	 * @author Martin Kapfhammer
@@ -105,6 +116,12 @@ class Model_DbTable_User extends Zend_Db_Table_Abstract {
 		$this->update($data, $where);
 	}
 
+
+	/**
+	 * return all users
+	 * @author Martin Kapfhammer
+	 * @return array $result
+	 */
 	public function getUsers() {
 		$orderBy = array('userid DESC');
 		$result  = $this->fetchAll('1', $orderBy);

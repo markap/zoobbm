@@ -2,9 +2,15 @@
 
 /**
  * Main class for register validation
+ * @package models/Validation
  */
 class Model_Validation_RegisterValidation {
 
+
+	/**
+	 * errors of validation
+	 * @var array
+	 */
 	protected $errors = array();
 
 	/**

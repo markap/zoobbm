@@ -23,10 +23,10 @@ class Model_DbTable_Profile extends Zend_Db_Table_Abstract {
 	 * @param string $userId 
 	 */
 	public function createProfile($userId) {
-
 		$data = array('userid' => (int)$userId);
 		$this->insert($data);
 	}
+
 
 	/**
 	 * updates the profile Image 
@@ -35,13 +35,20 @@ class Model_DbTable_Profile extends Zend_Db_Table_Abstract {
 	 * @params string $imagePath
 	 */
 	public function updateImage($userId, $imagePath) {
-
 		$data = array('image' 	=> $imagePath);
 		$where = 'userid = '. $userId;
 
 		$this->update($data, $where);
 	}
 
+
+	/**
+	 * updates the users address data, phone etc.
+	 * 
+	 * @author Martin Kapfhammer
+	 * @param string $userId
+	 * @param array $data
+	 */
 	public function updateAddress($userId, $data) {
 		$data = array('phone' 	=> $data['phone'], 
                       'street' 	=> $data['street'],
@@ -53,9 +60,16 @@ class Model_DbTable_Profile extends Zend_Db_Table_Abstract {
 		$where = 'userid = '. $userId;
 
 		$this->update($data, $where);
-
 	}
 
+
+	/**
+	 * updates the users personal data
+	 *
+	 * @author Martin Kapfhammer
+	 * @param string $userId
+	 * @param array $data
+	 */
 	public function updatePrivate($userId, $data) {
 		$data = array('type'  		=> $data['type'],
 					  'visit' 		=> $data['visit'],
@@ -65,6 +79,7 @@ class Model_DbTable_Profile extends Zend_Db_Table_Abstract {
 		
 		$this->update($data, $where);
 	}
+
 
 	/**
 	 * return user profile for given id

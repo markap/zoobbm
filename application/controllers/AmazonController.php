@@ -1,16 +1,17 @@
 <?php
 
-class AmazonController extends Zend_Controller_Action
-{
+class AmazonController extends Zend_Controller_Action {
 
-    public function init()
-    {
-        /* Initialize action controller here */
+    public function init() {
     }
 
-    public function indexAction()
-    {
-		// Verbindung zum AmazonWebservice aufnehmen
+	
+	/**
+	 * show the books from amazon
+	 */
+    public function indexAction() {
+
+		// Connect to AmazonWebservice 
 		$query = new Zend_Service_Amazon(
 							'AKIAI3S5LPYDW7CCEXFQ',
 							'DE',
@@ -31,17 +32,8 @@ class AmazonController extends Zend_Controller_Action
 							? $result->MediumImage->Url->getUri() : ''
 			);
       	}
-
 		$this->view->books = $books;
-
-
     }
-
-
-
-
-
-
 
 
 
