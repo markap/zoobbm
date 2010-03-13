@@ -66,7 +66,7 @@ $(document).ready(function(){
 					},
 					password: {
 						required: "Pflichtfeld",
-						url: "Mindestends acht Zeichen (Buchstaben und Zahlen)."
+						url: "Mindestends fünf Zeichen (Buchstaben und Zahlen)."
 					},
 					password_repeat: {
 						required: "Pflichtfeld",

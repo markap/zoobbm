@@ -572,3 +572,21 @@
 [Fri Mar 12 20:36:54 2010] [error] [client 127.0.0.1] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/www/zoo/application/controllers/CommunityController.php on line 64
 [Fri Mar 12 20:38:23 2010] [error] [client 127.0.0.1] PHP Fatal error:  Class 'Form_Messages' not found in /home/www/zoo/application/controllers/CommunityController.php on line 159
 [Fri Mar 12 20:38:26 2010] [error] [client 127.0.0.1] PHP Fatal error:  Class 'Form_Messages' not found in /home/www/zoo/application/controllers/CommunityController.php on line 159
+[Sat Mar 13 20:03:35 2010] [error] [client 127.0.0.1] Directory index forbidden by Options directive: /home/www/zoo/public/img/uploads/, referer: http://zoo.localhost/user/profile
+[Sat Mar 13 20:03:42 2010] [error] [client 127.0.0.1] Directory index forbidden by Options directive: /home/www/zoo/public/img/uploads/, referer: http://zoo.localhost/user/profile
+[Sat Mar 13 20:08:12 2010] [error] [client 127.0.0.1] PHP Warning:  Missing argument 1 for Zend_Db_Select::where(), called in /home/www/zoo/application/models/DbTable/Message.php on line 79 and defined in /home/www/zoo/library/Zend/Db/Select.php on line 461
+[Sat Mar 13 20:08:12 2010] [error] [client 127.0.0.1] PHP Notice:  Undefined variable: cond in /home/www/zoo/library/Zend/Db/Select.php on line 463
+[Sat Mar 13 20:08:56 2010] [error] [client 127.0.0.1] Directory index forbidden by Options directive: /home/www/zoo/public/img/uploads/, referer: http://zoo.localhost/user/profile
+[Sat Mar 13 20:20:47 2010] [error] [client 127.0.0.1] Directory index forbidden by Options directive: /home/www/zoo/public/img/uploads/, referer: http://zoo.localhost/user/profile
+[Sat Mar 13 20:23:07 2010] [error] [client 127.0.0.1] Directory index forbidden by Options directive: /home/www/zoo/public/img/uploads/, referer: http://zoo.localhost/user/profile
+[Sat Mar 13 20:23:48 2010] [error] [client 127.0.0.1] Directory index forbidden by Options directive: /home/www/zoo/public/img/uploads/, referer: http://zoo.localhost/user/profile
+[Sat Mar 13 20:23:52 2010] [error] [client 127.0.0.1] Directory index forbidden by Options directive: /home/www/zoo/public/img/uploads/, referer: http://zoo.localhost/user/profile
+[Sat Mar 13 20:24:59 2010] [error] [client 127.0.0.1] Directory index forbidden by Options directive: /home/www/zoo/public/img/uploads/, referer: http://zoo.localhost/user/profile
+[Sat Mar 13 20:26:43 2010] [error] [client 127.0.0.1] Directory index forbidden by Options directive: /home/www/zoo/public/img/uploads/, referer: http://zoo.localhost/user/profile
+[Sat Mar 13 20:26:58 2010] [error] [client 127.0.0.1] Directory index forbidden by Options directive: /home/www/zoo/public/img/uploads/, referer: http://zoo.localhost/user/profile
+[Sat Mar 13 20:28:21 2010] [error] [client 127.0.0.1] Directory index forbidden by Options directive: /home/www/zoo/public/img/uploads/, referer: http://zoo.localhost/user/profile
+[Sat Mar 13 20:29:20 2010] [error] [client 127.0.0.1] PHP Notice:  Undefined index: read in /home/www/zoo/application/controllers/CommunityController.php on line 165, referer: http://zoo.localhost/user/profile
+[Sat Mar 13 20:29:20 2010] [error] [client 127.0.0.1] PHP Notice:  Undefined index: read in /home/www/zoo/application/controllers/CommunityController.php on line 169, referer: http://zoo.localhost/user/profile
+[Sat Mar 13 20:30:29 2010] [error] [client 127.0.0.1] PHP Notice:  Undefined index: read in /home/www/zoo/application/controllers/CommunityController.php on line 169, referer: http://zoo.localhost/user/profile
+[Sat Mar 13 20:31:24 2010] [error] [client 127.0.0.1] Directory index forbidden by Options directive: /home/www/zoo/public/img/uploads/, referer: http://zoo.localhost/user/profile
+[Sat Mar 13 20:31:32 2010] [error] [client 127.0.0.1] Directory index forbidden by Options directive: /home/www/zoo/public/img/uploads/, referer: http://zoo.localhost/user/profile

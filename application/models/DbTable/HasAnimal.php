@@ -16,8 +16,11 @@ class Model_DbTable_HasAnimal extends Zend_Db_Table_Abstract {
 
 
 	/**
-	 * returns all animals for one user
+	 * returns all favourite animals IDS for one user
+	 *
 	 * @author Martin Kapfhammer
+	 * @param string $userId
+	 * @return array $ret
 	 */
 	public function getAnimals($userId) {
 		$orderby = array('catid ASC');
@@ -28,10 +31,19 @@ class Model_DbTable_HasAnimal extends Zend_Db_Table_Abstract {
 		foreach ($result->toArray() as $animal) {
 			$ret[] = $animal['catid'];
 		}
-
 		return $ret;
 	}
 
+
+	/**
+	 * updates the user-animal relation:
+	 * compares the old relation with the new relation
+ 	 * inserts new and deletes old
+	 *	
+	 * @author Martin Kapfhammer
+	 * @param string $userId
+	 * @param array $newAnimals
+	 */	
 	public function updateAnimals($userId, $newAnimals) {
 		$newVals = array(); // array with animals ids
 		foreach ($newAnimals as $animal) {
@@ -47,7 +59,7 @@ class Model_DbTable_HasAnimal extends Zend_Db_Table_Abstract {
 
 		if (!empty($delete)) {
 			foreach ($delete as $catId) {
-				$this->deleteAnimals($catId);
+				$this->deleteAnimals($userId, $catId);
 			}
 		}
 		if (!empty($insert)) {
@@ -57,11 +69,28 @@ class Model_DbTable_HasAnimal extends Zend_Db_Table_Abstract {
 		}
 	}
 
-	protected function deleteAnimals($catId) {
-		$where = array('catid = ' . $catId);
+
+	/**
+ 	 * delete a user - animal relation 
+	 *
+	 * @author Martin Kapfhammer
+	 * @param string $userId
+	 * @param string $catId
+	 */
+	protected function deleteAnimals($userId, $catId) {
+		$where = array('userid' => $userId,
+					   'catid'	=> $catId);
 		$this->delete($where);
 	}
 
+
+	/**
+ 	 * inserts a user - animal relation 
+	 *
+	 * @author Martin Kapfhammer
+	 * @param string $userId
+	 * @param string $catId
+	 */
 	protected function insertAnimals($userId, $catId) {
 		$data = array('userid' => $userId,
 					  'catid'  => $catId);
@@ -69,6 +98,14 @@ class Model_DbTable_HasAnimal extends Zend_Db_Table_Abstract {
 		$this->insert($data);
 	}
 
+
+	/**
+	 * return all animals NAMES for one user
+	 *
+	 * @author Martin Kapfhammer
+	 * @param string $userId
+	 * @return array $animal
+	 */
 	public function getAnimalNames($userId) {
 		$animalIds  = $this->getAnimals($userId);
 		$categoryDb = new Model_DbTable_Category();
@@ -78,7 +115,6 @@ class Model_DbTable_HasAnimal extends Zend_Db_Table_Abstract {
 			$animals[] = $animal[0]['name']; 
 		}
 		return $animals;
-	
 	}
 
 }

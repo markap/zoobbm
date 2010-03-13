@@ -28,14 +28,20 @@ class Model_DbTable_Message extends Zend_Db_Table_Abstract {
                       'message' => $message['message'], 
                       'subject' => $message['subject'],
 					  'date'    => date('d.m.Y'),
-					  'read'	=> 'N'
+					  'read_'	=> 'N'
                     );
 
        	$this->insert($data);
 	}
 
 
-
+	/**
+	 * returns the received messages
+	 *
+	 * @author Martin Kapfhammer
+ 	 * @param string $userId
+	 * @return array $result
+	 */
 	public function getReceivedMessages($userId) {
 		$orderBy = array('mid DESC');
 		$where   = array('toid = ' . $userId);
@@ -44,6 +50,14 @@ class Model_DbTable_Message extends Zend_Db_Table_Abstract {
 		return $result->toArray();
 	}
 
+
+	/**
+	 * returns sended messages
+	 *
+	 * @author Martin Kapfhammer
+ 	 * @param string $userId
+	 * @return array $result
+	 */
 	public function getSendedMessages($userId) {
 		$orderBy = array('mid DESC');
 		$where   = array('fromid = ' . $userId);
@@ -52,21 +66,33 @@ class Model_DbTable_Message extends Zend_Db_Table_Abstract {
 		return $result->toArray();
 	}
 
+
+	/**
+	 * counts the unread messages
+ 	 *
+	 * @author Martin Kapfhammer
+	 * @param string $userId
+	 * @return integer $formattedResult
+	 */
 	public function getUnreadMessages($userId) {
 		$select = $this->select();
-		$select->from($this,
-					  array('COUNT(*) as read'))
-				->where('toid = ' . $userId);
-				//:TODO fix
-				//->where('read = ?' , '"N"');
+		$select->from($this, array('COUNT(*) as read_'))
+			   ->where('toid = ?', $userId)
+			   ->where('read_ = ?', 'N');
+
 		$result = $this->fetchAll($select);
 		$formattedResult = $result->toArray();
-		return $formattedResult[0]['read'];
+		return $formattedResult[0]['read_'];
 	}
 
 
+	/**
+	 * set messages read
+	 * @author Martin Kapfhammer
+	 * @param string $messageId
+	 */
 	public function setMessageRead($messageId) {
-		$data 	= array('read' => 'Y');
+		$data 	= array('read_' => 'Y');
 		$where	= 'mid = ' . $messageId;
 		
 		$this->update($data, $where);

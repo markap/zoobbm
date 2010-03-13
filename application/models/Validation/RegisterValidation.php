@@ -14,27 +14,25 @@ class Model_Validation_RegisterValidation {
 	protected $errors = array();
 
 	/**
-	 * Main method for the validation
+	 * Main method for the validation of register data
+	 * when you need to validate all register data
+	 * executes the other methods of this class
+	 *
+	 * @author Martin Kapfhammer
+	 * @param array $data registration data
+	 * @return array $this->errors
+	 *
 	 */
 	public function validate(array $data) {
-		$this->validateNames(array
-								  ('firstname' 	=> $data['firstname'],
+		$this->validateNames(array('firstname' 	=> $data['firstname'],
 								   'lastname' 	=> $data['lastname']
 								));
-
-		$this->validateUser(array
-								('user' => $data['user']
-								));
-
-		$this->validateMail(array
-								 ('mail' 		=> $data['mail'],
+		$this->validateUser(array('user' => $data['user']));
+		$this->validateMail(array('mail' 		=> $data['mail'],
 								  'mail_repeat' => $data['mail_repeat']
 								));
-	
 		$this->existsMail(array('mail' => $data['mail']));
-
-		$this->validatePassword(array
-									 ('password'		=> $data['password'],
+		$this->validatePassword(array('password'		=> $data['password'],
 									  'password_repeat' => $data['password_repeat']
 								));
 
@@ -42,6 +40,14 @@ class Model_Validation_RegisterValidation {
 
 	}
 
+
+	/**
+	 * validates the lastname and the firstname
+	 * 
+	 * @author Martin Kapfhammer
+	 * @param array $data
+	 * @return Model_Validation_RegisterValidation $this to use fluent interfaces
+	 */
 	public function validateNames(array $data) {
 		$errors = array();
 
@@ -62,7 +68,14 @@ class Model_Validation_RegisterValidation {
 		return $this;
 	}
 
-	
+
+	/**
+	 * validates the username 
+	 * 
+	 * @author Martin Kapfhammer
+	 * @param array $data
+	 * @return Model_Validation_RegisterValidation $this to use fluent interfaces
+	 */
 	public function validateUser(array $data) {
 
 		$errors = array();
@@ -89,8 +102,15 @@ class Model_Validation_RegisterValidation {
 		$this->mergeErrors($errors);
 		return $this;
 	}
-			
 
+
+	/**
+	 * validates email 
+	 * 
+	 * @author Martin Kapfhammer
+	 * @param array $data
+	 * @return Model_Validation_RegisterValidation $this to use fluent interfaces
+	 */
 	public function validateMail(array $data) {
 
 		$errors = array();		
@@ -116,6 +136,14 @@ class Model_Validation_RegisterValidation {
 		return $this;
 	}
 
+
+	/**
+	 * checks if a mail already exists 
+	 * 
+	 * @author Martin Kapfhammer
+	 * @param array $data
+	 * @return Model_Validation_RegisterValidation $this to use fluent interfaces
+	 */
 	public function existsMail(array $data) {
 		$errors = array();
 
@@ -129,11 +157,19 @@ class Model_Validation_RegisterValidation {
 		return $this;
 	}
 
+
+	/**
+	 * validates password
+	 *
+	 * @author Martin Kapfhammer
+	 * @param array $data
+	 * @return Model_Validation_RegisterValidation $this to use fluent interfaces
+	 */
 	public function validatePassword(array $data) {
 		$errors = array();
 
 		// Password Validation
-		// 1 uppercase letter
+		// 1 letter
 		// 1 number
 		// 5 letters long
 		$validPasswordPattern =  "/(?=^.{5,35}$)(?![.\n])(?=.*[A-Z]).*$/i";
@@ -150,13 +186,26 @@ class Model_Validation_RegisterValidation {
 		return $this;
 	}
 
+
+	/**
+ 	 * merge the errors arrays
+	 * 
+	 * @author Martin Kapfhammer
+	 * @param array $errors
+	 */
 	protected function mergeErrors(array $errors) {
 		$this->errors = array_merge($this->errors, $errors);
 	}
 
+
+	/**
+	 * return the errors
+	 * 
+	 * @author Martin Kapfhammer
+	 * @return array $this->errors
+	 */
 	public function getErrors() {
 		return $this->errors;
 	}
-
 }
 

@@ -33,8 +33,13 @@ class Model_DbTable_Friend extends Zend_Db_Table_Abstract {
        	$this->insert($data);
 	}
 
+
 	/**
 	 * get friend requests
+	 * 
+	 * @author Martin Kapfhammer
+	 * @param string $userId
+	 * @return array $result
 	 */
 	public function getFriendsRequest($userId) {
 		$orderBy = array('fid DESC');
@@ -44,8 +49,13 @@ class Model_DbTable_Friend extends Zend_Db_Table_Abstract {
 		return $result->toArray();
 	}
 
+
 	/**
 	 * get friends
+	 *
+	 * @author Martin Kapfhammer
+	 * @param string $userId
+	 * @return array $result
 	 */
 	public function getFriends($userId) {
 		$orderBy = array('fid DESC');
@@ -57,6 +67,13 @@ class Model_DbTable_Friend extends Zend_Db_Table_Abstract {
 		return $result->toArray();
 	}
 
+
+	/**
+	 * set friend active
+	 * 
+	 * @author Martin Kapfhammer
+	 * @param string $friendId
+	 */
 	public function setFriendActive($friendId) {
 		$data 	= array('active' => 'Y');
 		$where 	= array('fid = ' . $friendId);	

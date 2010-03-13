@@ -18,6 +18,7 @@ class Model_DbTable_Category extends Zend_Db_Table_Abstract {
 	/**
 	 * returns all categories 
 	 * @author Martin Kapfhammer
+	 * @return array $result
 	 */
 	public function getCategories() {
 		$orderby = array('name ASC');
@@ -25,6 +26,14 @@ class Model_DbTable_Category extends Zend_Db_Table_Abstract {
 		return $result->toArray();
 	}
 
+
+	/**
+	 * return one special category
+	 *
+	 * @author Martin Kapfhammer
+	 * @param string $catId
+	 * @return array $result
+	 */	
 	public function getCategory($catId) {
 		$where  = array('catid = ' . $catId);
 		$result = $this->fetchAll($where);

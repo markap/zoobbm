@@ -162,11 +162,11 @@ class CommunityController extends Zend_Controller_Action
 				'message'  => $message['message'],
 				'date'	   => $message['date'],
 				'from' 	   => $user,
-				'read' 	   => $message['read'],
+				'read_'    => $message['read_'],
 				'fullname' => $user['firstname'] . ' ' .
 							  $user['lastname']
 			);		
-			if ($message['read'] === 'N') {
+			if ($message['read_'] === 'N') {
 				$messagesDb->setMessageRead($message['mid']);
 			}
 		}
