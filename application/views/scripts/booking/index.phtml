@@ -20,5 +20,6 @@
 <?php if (isset($this->content)): ?>
 	<p>Danke für Ihre Buchung. Ihre Bestätigung wird Ihnen per Email zugesendet. Wir freuen uns auf Ihren Besuch.</p>
 	<?php var_dump($this->content); ?>
+	<a href="<?php echo $this->baseUrl . '/pdf/' . $this->ticketName; ?>">Ticket downloaden</a>	
 <?php endif; ?>
 <?php echo $this->form; ?>

@@ -18,6 +18,11 @@ class Model_PricesFactory {
 	const LONGTERM = 3;
 
 	/**
+ 	 * seconds of one day
+	 */
+	const SECONDS_PER_DAY = 86400;
+
+	/**
 	 * instance of the price factory
 	 * @var Model_PricesFactory
 	 */
@@ -140,7 +145,7 @@ class Model_PricesFactory {
 			throw new Model_OldDateException('Zeit liegt in der Gegenwart');
 		}
 		if ($enddate) {
-			$this->time = $enddateZ->sub($startdateZ)/86400 + 1; 
+			$this->time = $enddateZ->sub($startdateZ)/self::SECONDS_PER_DAY + 1; 
 		}
 	}
 

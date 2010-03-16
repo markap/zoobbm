@@ -3,33 +3,39 @@
 class BookingController extends Zend_Controller_Action
 {
 
-	/**
+    /**
      * @var string
-     * userid of the logged user
      */
     protected $userId = null;
 
     /**
      * @var string
-     * name of the logged user
      */
     protected $fullname = null;
+
+	/**
+	 * @var string
+	 */ 
+	protected $username =null;
 
 
     /**
      * called for every actions 
+     * 
      */
-    public function init() {
+    public function init()
+    {
         // userid from session
 		$userSession 	= new Zend_Session_Namespace('user');
 		$userData    	= $userSession->user;
 		$this->userId   = $userData['userid'];
 		$this->fullname = $userData['firstname'] . ' ' . $userData['lastname'];
+		$this->username = $userData['username'];
     }
 
-    public function indexAction() {
-
-		if ($this->getRequest()->isPost()) {
+    public function indexAction()
+    {
+        if ($this->getRequest()->isPost()) {
 			$postValues = $this->getRequest()->getPost();
 
 			$numbers = array(
@@ -50,8 +56,9 @@ class BookingController extends Zend_Controller_Action
 			try {
 				$prices	 = Model_PricesFactory::getInstance($numbers, $date)->getPrice();
 				$ticketDb = new Model_DbTable_Ticket();
-				$ticketDb->bookTicket($this->userId, $numbers, $date, $arguments); 
+				$ticketId = $ticketDb->bookTicket($this->userId, $numbers, $date, $arguments); 
 				$content = $prices->getContent();
+				$this->view->ticketName = $this->writePdfTicket($ticketId, $content);
 
 			} catch (Exception $e) {
 				$error = $e->getMessage();
@@ -62,13 +69,13 @@ class BookingController extends Zend_Controller_Action
 		} 
 
 		if (!isset($content)) {
-        	$this->view->form = new Form_Booking();
+			$this->view->form = new Form_Booking();
 		}
     }
 
-
-    public function priceajaxAction() {
-		$this->_helper->layout->disableLayout();
+    public function priceajaxAction()
+    {
+        $this->_helper->layout->disableLayout();
 		$numbers = array(
 				'adults' 		=> $this->_getParam('adult'),
 				'childs' 		=> $this->_getParam('child'),
@@ -99,8 +106,32 @@ class BookingController extends Zend_Controller_Action
 		$this->view->content 	= isset($content) ? $content : null;
     }
 
+	
+	/**
+	 * create a pdf for booking confirmation
+	 *
+	 * @author Martin Kapfhammer
+	 * @param string $ticketId
+	 * @param array $content the booking details
+	 * @return string $ticketName
+	 */
+    protected function writePdfTicket($ticketId, array $content) {
+		$pdf = new Model_BookingPdf();
+		$pdf->setHeader('Online Ticketbuchung');
+		$pdf->setUserData($this->userId, $this->fullname, $this->username);
+		$pdf->setBookingDetails($content);
+		$pdf->setPayText();
+		$pdf->setEAN();
+		$pdf->setFooter();
+		$ticketName = 'booking' . $ticketId . '.pdf';
+		$pdf->savePdf($ticketName);
+		return $ticketName; 
+    }
+
 
 }
+
+
 
 
 

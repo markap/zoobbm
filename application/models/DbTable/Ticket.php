@@ -23,6 +23,7 @@ class Model_DbTable_Ticket extends Zend_Db_Table_Abstract {
 	 * @param string $userId 
 	 * @param array $number
 	 * @param array $date
+	 * @return string id of the ticket
 	 */
 	public function bookTicket($userId, array $number, array $date, array $arguments) {
 
@@ -35,7 +36,7 @@ class Model_DbTable_Ticket extends Zend_Db_Table_Abstract {
 					  'description'	=> $arguments['description']
                     );
 
-		$this->insert($data);
+		return $this->insert($data);
 	}
 
 }

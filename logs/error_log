@@ -590,3 +590,19 @@
 [Sat Mar 13 20:30:29 2010] [error] [client 127.0.0.1] PHP Notice:  Undefined index: read in /home/www/zoo/application/controllers/CommunityController.php on line 169, referer: http://zoo.localhost/user/profile
 [Sat Mar 13 20:31:24 2010] [error] [client 127.0.0.1] Directory index forbidden by Options directive: /home/www/zoo/public/img/uploads/, referer: http://zoo.localhost/user/profile
 [Sat Mar 13 20:31:32 2010] [error] [client 127.0.0.1] Directory index forbidden by Options directive: /home/www/zoo/public/img/uploads/, referer: http://zoo.localhost/user/profile
+[Mon Mar 15 20:51:36 2010] [error] [client 127.0.0.1] PHP Parse error:  syntax error, unexpected T_PUBLIC in /home/www/zoo/application/controllers/BookingController.php on line 71
+[Tue Mar 16 09:37:31 2010] [error] [client 127.0.0.1] PHP Fatal error:  Class 'Model_Pdf' not found in /home/www/zoo/application/controllers/BookingController.php on line 110
+[Tue Mar 16 09:37:51 2010] [error] [client 127.0.0.1] PHP Notice:  Undefined variable: pdf in /home/www/zoo/application/models/Pdf.php on line 32
+[Tue Mar 16 09:37:51 2010] [error] [client 127.0.0.1] PHP Fatal error:  Call to a member function newPage() on a non-object in /home/www/zoo/application/models/Pdf.php on line 32
+[Tue Mar 16 09:38:05 2010] [error] [client 127.0.0.1] PHP Notice:  Undefined variable: page in /home/www/zoo/application/models/Pdf.php on line 45
+[Tue Mar 16 09:38:05 2010] [error] [client 127.0.0.1] PHP Fatal error:  Call to a member function setLineColor() on a non-object in /home/www/zoo/application/models/Pdf.php on line 45
+[Tue Mar 16 09:38:25 2010] [error] [client 127.0.0.1] PHP Notice:  Use of undefined constant PDFPATH - assumed 'PDFPATH' in /home/www/zoo/application/models/Pdf.php on line 60
+[Tue Mar 16 10:25:07 2010] [error] [client 127.0.0.1] PHP Parse error:  syntax error, unexpected T_LNUMBER in /home/www/zoo/application/models/BookingPdf.php on line 17, referer: http://zoo.localhost/booking
+[Tue Mar 16 10:25:28 2010] [error] [client 127.0.0.1] PHP Notice:  Undefined variable: tihs in /home/www/zoo/application/models/BookingPdf.php on line 17, referer: http://zoo.localhost/booking
+[Tue Mar 16 10:25:28 2010] [error] [client 127.0.0.1] PHP Notice:  Trying to get property of non-object in /home/www/zoo/application/models/BookingPdf.php on line 17, referer: http://zoo.localhost/booking
+[Tue Mar 16 10:25:28 2010] [error] [client 127.0.0.1] PHP Fatal error:  Call to a member function drawText() on a non-object in /home/www/zoo/application/models/BookingPdf.php on line 17, referer: http://zoo.localhost/booking
+[Tue Mar 16 10:51:11 2010] [error] [client 127.0.0.1] PHP Fatal error:  Call to undefined method Model_BookingPdf::openPdf() in /home/www/zoo/application/controllers/BookingController.php on line 125, referer: http://zoo.localhost/booking
+[Tue Mar 16 10:52:01 2010] [error] [client 127.0.0.1] Directory index forbidden by Options directive: /home/www/zoo/public/pdf/
+[Tue Mar 16 10:55:01 2010] [error] [client 127.0.0.1] PHP Parse error:  syntax error, unexpected ')' in /home/www/zoo/application/controllers/BookingController.php on line 125, referer: http://zoo.localhost/booking
+[Tue Mar 16 10:55:35 2010] [error] [client 127.0.0.1] PHP Notice:  Use of undefined constant SECONDS_PER_DAY - assumed 'SECONDS_PER_DAY' in /home/www/zoo/application/models/PricesFactory.php on line 148, referer: http://zoo.localhost/booking
+[Tue Mar 16 10:55:35 2010] [error] [client 127.0.0.1] PHP Warning:  Division by zero in /home/www/zoo/application/models/PricesFactory.php on line 148, referer: http://zoo.localhost/booking

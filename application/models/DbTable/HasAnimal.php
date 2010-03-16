@@ -25,7 +25,7 @@ class Model_DbTable_HasAnimal extends Zend_Db_Table_Abstract {
 	public function getAnimals($userId) {
 		$orderby = array('catid ASC');
 		$where   = array('userid = ' . $userId);
-		$result  = $this->fetchAll($userId, $orderby);
+		$result  = $this->fetchAll($where, $orderby);
 	
 		$ret = array();
 		foreach ($result->toArray() as $animal) {

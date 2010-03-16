@@ -19,6 +19,7 @@
           <actionMethod actionName="single"/>
           <actionMethod actionName="guide"/>
           <actionMethod actionName="priceajax"/>
+          <actionMethod actionName="pdfticket"/>
         </controllerFile>
         <controllerFile controllerName="contribution">
           <actionMethod actionName="index"/>
@@ -155,6 +156,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="investorrelation">
             <viewScriptFile forActionName="visitor"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="booking">
+            <viewScriptFile forActionName="pdfticket"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
