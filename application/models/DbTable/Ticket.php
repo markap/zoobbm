@@ -39,4 +39,52 @@ class Model_DbTable_Ticket extends Zend_Db_Table_Abstract {
 		return $this->insert($data);
 	}
 
+	
+	/**
+	 * returns all tickets booked in future
+	 *
+	 * @author Martin Kapfhammer
+ 	 * @param string $userId
+	 * @return array $result
+	 */
+	public function getFutureTickets($userId) {
+		$orderBy = array('starttime ASC');	
+		$where   = 'userid = ' . $userId .
+						' AND (starttime >= "' . date('d.m.Y')
+						. '" OR endtime >= "' . date('d.m.Y'). '")';
+
+		$result = $this->fetchAll($where, $orderBy);
+		return $result->toArray();
+	}
+
+
+	/**
+	 * returns all old tickets 
+	 *
+	 * @author Martin Kapfhammer
+ 	 * @param string $userId
+	 * @return array $result
+	 */
+	public function getOldTickets($userId) {
+		$orderBy = array('starttime ASC');	
+		$where   = 'userid = ' . $userId .
+						' AND (starttime < "' . date('d.m.Y')
+						. '" AND endtime  < "' . date('d.m.Y'). '")';
+
+		$result = $this->fetchAll($where, $orderBy);
+		return $result->toArray();
+	}
+
+
+	/**
+	 * deletes a ticket
+	 *
+	 * @author Martin Kapfhammer
+	 * @param string $ticketId
+	 */
+	public function deleteTicket($ticketId) {
+		$where = 'tid = ' . $ticketId;	
+		$this->delete($where);
+	}
+
 }

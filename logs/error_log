@@ -606,3 +606,13 @@
 [Tue Mar 16 10:55:01 2010] [error] [client 127.0.0.1] PHP Parse error:  syntax error, unexpected ')' in /home/www/zoo/application/controllers/BookingController.php on line 125, referer: http://zoo.localhost/booking
 [Tue Mar 16 10:55:35 2010] [error] [client 127.0.0.1] PHP Notice:  Use of undefined constant SECONDS_PER_DAY - assumed 'SECONDS_PER_DAY' in /home/www/zoo/application/models/PricesFactory.php on line 148, referer: http://zoo.localhost/booking
 [Tue Mar 16 10:55:35 2010] [error] [client 127.0.0.1] PHP Warning:  Division by zero in /home/www/zoo/application/models/PricesFactory.php on line 148, referer: http://zoo.localhost/booking
+[Tue Mar 16 11:28:41 2010] [error] [client 127.0.0.1] PHP Parse error:  syntax error, unexpected T_PUBLIC in /home/www/zoo/application/controllers/BookingController.php on line 78, referer: http://zoo.localhost/booking
+[Tue Mar 16 11:35:43 2010] [error] [client 127.0.0.1] PHP Fatal error:  Call to undefined method Model_DbTable_Ticket::getTickets() in /home/www/zoo/application/controllers/BookingController.php on line 137
+[Tue Mar 16 11:41:35 2010] [error] [client 127.0.0.1] PHP Parse error:  syntax error, unexpected ')' in /home/www/zoo/application/models/DbTable/Ticket.php on line 52
+[Tue Mar 16 11:55:32 2010] [error] [client 127.0.0.1] PHP Notice:  Undefined variable: tickets in /home/www/zoo/application/controllers/BookingController.php on line 137
+[Tue Mar 16 11:55:32 2010] [error] [client 127.0.0.1] PHP Notice:  Undefined variable: oldTickets in /home/www/zoo/application/controllers/BookingController.php on line 138
+[Tue Mar 16 11:55:32 2010] [error] [client 127.0.0.1] PHP Parse error:  syntax error, unexpected T_ENDIF in /home/www/zoo/application/views/scripts/booking/showtickets.phtml on line 18
+[Tue Mar 16 11:55:43 2010] [error] [client 127.0.0.1] PHP Parse error:  syntax error, unexpected T_ENDIF in /home/www/zoo/application/views/scripts/booking/showtickets.phtml on line 18
+[Tue Mar 16 12:23:08 2010] [error] [client 127.0.0.1] PHP Parse error:  syntax error, unexpected T_PUBLIC in /home/www/zoo/application/controllers/BookingController.php on line 83
+[Tue Mar 16 12:28:34 2010] [error] [client 127.0.0.1] PHP Notice:  Undefined variable: ticktsDb in /home/www/zoo/application/controllers/BookingController.php on line 144
+[Tue Mar 16 12:28:34 2010] [error] [client 127.0.0.1] PHP Fatal error:  Call to a member function getFutureTickets() on a non-object in /home/www/zoo/application/controllers/BookingController.php on line 144

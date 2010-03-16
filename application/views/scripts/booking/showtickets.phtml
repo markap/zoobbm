@@ -1,0 +1,28 @@
+<script type="text/javascript" src="/js/3rdParty/jQuery.js"></script>
+<script type="text/javascript" src="/js/showtickets.js"></script>
+
+<h1>Ihre Ticketsbuchungen</h1>
+
+<div id="storno"></div>
+
+<?php if (!empty($this->tickets)): ?>
+<h2>Zukünftige Tickets</h2>
+    <?php foreach($this->tickets as $ticket): ?>
+		<div class="ticket">
+       <?php var_dump($ticket); ?>
+	   <a href="<?php echo $this->baseUrl . '/pdf/booking' . $ticket['tid'] . '.pdf'; ?>">Ticket zum download</a>
+		<span class="delete" id="<?php echo $ticket['tid']; ?>">Stornieren</span>
+		<hr />
+		</div>
+    <?php endforeach; ?>
+<?php endif; ?>
+
+<?php if (!empty($this->oldTickets)): ?>
+<h2>Abgelaufene Tickets</h2>
+    <?php foreach($this->oldTickets as $oldTicket): ?>
+       <?php var_dump($oldTicket); ?>
+	   <a href="<?php echo $this->baseUrl . '/pdf/booking' . $oldTicket['tid'] . '.pdf'; ?>">Ticket zum download</a>
+		<hr />
+    <?php endforeach; ?>
+<?php endif; ?>
+
