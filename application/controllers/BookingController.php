@@ -5,30 +5,21 @@ class BookingController extends Zend_Controller_Action
 
     /**
      * @var string
-     * 
-     * 
      */
     protected $userId = null;
 
     /**
      * @var string
-     * 
-     * 
      */
     protected $fullname = null;
 
     /**
      * @var string
-     * 
-     * 
      */
     protected $username = null;
 
     /**
      * called for every actions 
-     * 
-     * 
-     * 
      */
     public function init()
     {

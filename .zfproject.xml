@@ -55,6 +55,7 @@
           <actionMethod actionName="friends"/>
           <actionMethod actionName="friendrequest"/>
           <actionMethod actionName="friendajax"/>
+          <actionMethod actionName="findfriend"/>
         </controllerFile>
         <controllerFile controllerName="webcam">
           <actionMethod actionName="index"/>
@@ -68,6 +69,12 @@
           <actionMethod actionName="getturnover"/>
           <actionMethod actionName="getvisitor"/>
           <actionMethod actionName="visitor"/>
+        </controllerFile>
+        <controllerFile controllerName="game">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="map">
+          <actionMethod actionName="index"/>
         </controllerFile>
       </controllersDirectory>
       <layoutsDirectory enabled="false"/>
@@ -168,6 +175,15 @@
           <viewControllerScriptsDirectory forControllerName="booking">
             <viewScriptFile forActionName="stornoajax"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="community">
+            <viewScriptFile forActionName="findfriend"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="game">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="map">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
@@ -199,6 +215,8 @@
       <testApplicationDirectory>
         <testApplicationBootstrapFile/>
         <testApplicationControllerDirectory>
+          <testApplicationControllerFile/>
+          <testApplicationControllerFile/>
           <testApplicationControllerFile/>
           <testApplicationControllerFile/>
           <testApplicationControllerFile/>

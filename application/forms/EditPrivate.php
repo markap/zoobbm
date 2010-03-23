@@ -50,8 +50,17 @@ class Form_EditPrivate extends Zend_Form {
 
     }
 
+
 	/** 
 	 * converts data from mysql in the right format
+	 *
+	 * @author Martin Kapfhammer
+	 *
+ 	 * @param array $options options of the later form element
+	 * @param string $id name of the db id-column
+	 * @param string $name name of the db name-column
+	 * @param boolean $select different handling for cb/selectbox
+	 * @return array $ret options in the right format
 	 */
 	public function convertOptions(array $options, $id, $name, $select = false) {
 		if ($select === true) {

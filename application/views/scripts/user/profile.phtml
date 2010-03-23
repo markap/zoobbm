@@ -1,19 +1,78 @@
-<h1>User Profil</h1>
+<div id="profil">
 
-<img width="100px" src="<?php echo $this->baseUrl. '/img/uploads/' . $this->profile['image']; ?>" alt="Profilbild" >
-<a href="<?php echo $this->baseUrl . '/user/editimage'; ?>">Profilbild  bearbeiten</a>
-
-<?php var_dump($this->userData); ?>
-
-<a href="<?php echo $this->baseUrl . '/user/editdefaultprofile'; ?>">Registrierungsdaten  bearbeiten</a>
-<a href="<?php echo $this->baseUrl . '/user/changepassword'; ?>">Passwort ändern</a>
+	<h1>User Profil</h1>
 
 
-<?php var_dump($this->profile); ?>
-<?php var_dump($this->animals); ?>
-<a href="<?php echo $this->baseUrl . '/user/editaddress'; ?>">Adressdaten  bearbeiten</a>
-<a href="<?php echo $this->baseUrl . '/user/editprivate'; ?>">Persönliche Angaben  bearbeiten</a>
-<a href="<?php echo $this->baseUrl . '/community/showmessages'; ?>">Erhaltene Nachrichten ansehen (neu <?php echo $this->unreadMessages; ?>)</a>
-<a href="<?php echo $this->baseUrl . '/community/friends'; ?>">Meine Freune</a>
-<a href="<?php echo $this->baseUrl . '/community/friendrequest'; ?>">Freundschaftsanfrage</a>
-<a href="<?php echo $this->baseUrl . '/community/showsendmessages'; ?>">Gesendete Nachrichten ansehen</a>
+	<img width="100px" src="<?php echo $this->baseUrl. '/img/uploads/' . $this->profile['image']; ?>" alt="Profilbild" ><br>
+	<a href="<?php echo $this->baseUrl . '/user/editimage'; ?>">Profilbild  bearbeiten</a>
+	<br />
+	<br />
+
+
+	<div class="cube">
+		<?php //var_dump($this->userData); ?>
+		<h3>Persönliche Angaben</h3>
+		<dl>
+			<dt>Vorname:</dt>
+			<dd><?php echo $this->userData["firstname"]; ?></dd>
+			<dt>Nachname:</dt>
+			<dd><?php echo $this->userData["lastname"]; ?></dd>
+			<dt>E-Mail:</dt>
+			<dd><?php echo $this->userData["mail"]; ?></dd>
+			<br />
+			<dd><a href="<?php echo $this->baseUrl . '/user/editdefaultprofile'; ?>">Registrierungsdaten  bearbeiten</a></dd>
+			<dd><a href="<?php echo $this->baseUrl . '/user/changepassword'; ?>">Passwort ändern</a></dd>	
+		</dl>	
+	</div>
+	<div class="cube">
+		
+		<dl>
+			<h3>Weitere Angaben</h3>
+			<dt>Geburtstag:</dt>
+			<dd><?php echo $this->profile["birth"]; ?></dd>
+			<dt>Wie oft besuche ich den Zoo?</dt>
+			<dd><?php echo $this->profile["visit"]; ?></dd>
+			<dt>Was bin ich?</dt>
+			<dd><?php echo $this->profile["type"]; ?></dd>
+			<dt>Über mich:</dt>
+			<dd><?php echo $this->profile["description"]; ?></dd>
+			<br />
+			<dd><a href="<?php echo $this->baseUrl . '/user/editprivate'; ?>">Persönliche Angaben  bearbeiten</a></dd>
+		</dl>
+	</div>
+	<div class="cube">
+		<h3>Adressdaten</h3>
+		<dl>
+			<dt>Straße: <?php echo $this->profile["street"]; ?></dt>
+			<dt>Postleitzahl: <?php echo $this->profile["plz"]; ?></dt>
+			<dt>Stadt: <?php echo $this->profile["city"]; ?></dt>
+			<br />
+			<dd><a href="<?php echo $this->baseUrl . '/user/editaddress'; ?>">Adressdaten  bearbeiten</a></dd>
+		</dl>
+	</div>
+	<div class="cube">
+		<br />
+		<br />
+		Lieblingstiere: <?php echo $this->animals["0"]; ?>, <?php echo $this->animals["1"]; ?><br />
+
+	</div>
+
+	<div class="cube">
+
+		<a href="<?php echo $this->baseUrl . '/community/showmessages'; ?>">Erhaltene Nachrichten ansehen (neu <?php echo $this->unreadMessages; ?>)</a><br/>
+		<a href="<?php echo $this->baseUrl . '/community/friends'; ?>">Meine Freunde</a><br/>
+		<a href="<?php echo $this->baseUrl . '/community/friendrequest'; ?>">Freundschaftsanfrage</a><br/>
+		<a href="<?php echo $this->baseUrl . '/community/showsendmessages'; ?>">Gesendete Nachrichten ansehen</a><br/>
+
+	</div>
+
+</div>
+
+
+<?php //var_dump($this->profile); ?>
+
+<?php //var_dump($this->animals); ?>
+
+
+
+

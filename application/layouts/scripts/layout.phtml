@@ -16,7 +16,7 @@
   </head>
   <body id="container">
 	<div id="header">
-		<h1>Zoo Mannheim</h1>
+		<img src="<?php echo $this->baseUrl . '/img/header.jpg'; ?>">
 	</div>
 	<div id="login">
 			<?php
@@ -37,13 +37,31 @@
 	</div>
 	
 	<div id="navi">
+		<ul>
+			<li><a href="<?php echo $this->baseUrl . '/index'; ?>">Start</a></li>
+			<li><a href="<?php echo $this->baseUrl . '/booking'; ?>">Tickets</a></li>
+			<li><a href="<?php echo $this->baseUrl . '/images'; ?>">Bilder</a></li>
+			<li><a href="<?php echo $this->baseUrl . '/webcam'; ?>">Zoo Webcam</a></li>
+			<br />
+			<li><a href="<?php echo $this->baseUrl . 'survey'; ?>">Umfrage</a></li>
+			<br />
+			<br />
+			<?php if (Zend_Auth::getInstance()->hasIdentity()): ?>
+			<li><a href="<?php echo $this->baseUrl . '/user/profile'; ?>">Profil</a></li>
+			<li><a href="<?php echo $this->baseUrl . '/community/friends'; ?>">Meine Freunde</a></li>
+			<li><a href="<?php echo $this->baseUrl . '/community/showmessages'; ?>">Neue Nachrichten [<?php echo $this->unreadMessages; ?>]</a></li>
+			<?php endif; ?>
+			
+		</ul>
 	</div>
 
 	<div id="content">
 		<?php echo $this->layout()->content; ?>
 	</div>
 
-	<div id="footer"></div>
+	<div id="footer" align="right">
+	Hier kommt irgendein Text hin
+	</div>
 
   </body>
 </html>

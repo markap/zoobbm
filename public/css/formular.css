@@ -1,0 +1,17 @@
+button, input, textarea, checkbox, select {
+	border-top-width: thin;
+	border-right-width: thin;
+	border-bottom-width: thin;
+	border-left-width: thin;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #003900;
+	border-right-color: #003900;
+	border-bottom-color: #003900;
+	border-left-color: #003900;
+	font-family:arial,helvetica,sans-serif;
+	font-size:15px;
+	
+}

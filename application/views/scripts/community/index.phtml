@@ -1,7 +1,7 @@
 <h1>Die Zoo Community</h1>
 
 <?php foreach ($this->paginator as $userData): ?>
-	<?php //var_dump($user); ?>
+	<?php var_dump($userData); ?>
 	<a href="<?php echo $this->baseUrl 
 						. '/community/profile/user/' 
 						. $userData['user']['userid']; ?>

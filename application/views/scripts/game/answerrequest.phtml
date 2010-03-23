@@ -1,0 +1,13 @@
+
+<?php if($this->isAnswerRight): ?>
+	<?php echo $this->rightAnswer; ?> ist richtig. Sehr gut!
+<?php else: ?>
+	<?php echo $this->myAnswer; ?> ist falsch.
+	<?php echo $this->rightAnswer; ?> wäre richtig gewesen.
+<?php endif; ?>
+
+<?php echo $this->playedQuestions; ?>
+<?php echo $this->rightAnswers; ?>
+<?php echo $this->wrongAnswers; ?>
+
+<a href="<?php echo $this->baseUrl . '/game'; ?>">Weiter</a>

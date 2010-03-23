@@ -616,3 +616,24 @@
 [Tue Mar 16 12:23:08 2010] [error] [client 127.0.0.1] PHP Parse error:  syntax error, unexpected T_PUBLIC in /home/www/zoo/application/controllers/BookingController.php on line 83
 [Tue Mar 16 12:28:34 2010] [error] [client 127.0.0.1] PHP Notice:  Undefined variable: ticktsDb in /home/www/zoo/application/controllers/BookingController.php on line 144
 [Tue Mar 16 12:28:34 2010] [error] [client 127.0.0.1] PHP Fatal error:  Call to a member function getFutureTickets() on a non-object in /home/www/zoo/application/controllers/BookingController.php on line 144
+[Sun Mar 21 19:51:32 2010] [error] [client 127.0.0.1] PHP Fatal error:  Call to undefined function m_FindFriend() in /home/www/zoo/application/controllers/CommunityController.php on line 351
+[Sun Mar 21 20:30:54 2010] [error] [client 127.0.0.1] PHP Fatal error:  Class 'Model_FindFriend' not found in /home/www/zoo/application/controllers/CommunityController.php on line 355, referer: http://zoo.localhost/community/findfriend
+[Sun Mar 21 20:31:08 2010] [error] [client 127.0.0.1] PHP Fatal error:  Call to undefined method Model_FindFriend::findFriends() in /home/www/zoo/application/controllers/CommunityController.php on line 356, referer: http://zoo.localhost/community/findfriend
+[Tue Mar 23 09:32:38 2010] [error] [client 127.0.0.1] PHP Fatal error:  Class 'Model_Exception_QuestionNotFound' not found in /home/www/zoo/application/models/DbTable/Question.php on line 31
+[Tue Mar 23 09:33:47 2010] [error] [client 127.0.0.1] PHP Fatal error:  Call to a member function getQuestionId() on a non-object in /home/www/zoo/application/controllers/GameController.php on line 38
+[Tue Mar 23 09:34:41 2010] [error] [client 127.0.0.1] PHP Fatal error:  Call to a member function getQuestionId() on a non-object in /home/www/zoo/application/controllers/GameController.php on line 30
+[Tue Mar 23 09:34:51 2010] [error] [client 127.0.0.1] PHP Fatal error:  Call to a member function getQuestionId() on a non-object in /home/www/zoo/application/controllers/GameController.php on line 30
+[Tue Mar 23 09:36:15 2010] [error] [client 127.0.0.1] PHP Fatal error:  Call to a member function getQuestionId() on a non-object in /home/www/zoo/application/controllers/GameController.php on line 30
+[Tue Mar 23 09:37:20 2010] [error] [client 127.0.0.1] question not found|7|question
+[Tue Mar 23 09:37:30 2010] [error] [client 127.0.0.1] question not found|6|question, referer: http://zoo.localhost/game
+[Tue Mar 23 09:43:15 2010] [error] [client 127.0.0.1] question not found|5|question, referer: http://zoo.localhost/game
+[Tue Mar 23 09:43:35 2010] [error] [client 127.0.0.1] PHP Fatal error:  Call to undefined method Model_Question::getCategories() in /home/www/zoo/application/controllers/GameController.php on line 38
+[Tue Mar 23 09:44:58 2010] [error] [client 127.0.0.1] PHP Fatal error:  Call to undefined method Model_Question::getQuestionId() in /home/www/zoo/application/controllers/GameController.php on line 30
+[Tue Mar 23 09:45:03 2010] [error] [client 127.0.0.1] PHP Fatal error:  Call to undefined method Model_Question::getQuestionId() in /home/www/zoo/application/controllers/GameController.php on line 30
+[Tue Mar 23 09:45:12 2010] [error] [client 127.0.0.1] PHP Notice:  Undefined index: level in /home/www/zoo/application/views/scripts/game/index.phtml on line 10
+[Tue Mar 23 09:45:43 2010] [error] [client 127.0.0.1] PHP Fatal error:  Call to undefined method Model_Question::getQuestionId() in /home/www/zoo/application/controllers/GameController.php on line 100, referer: http://zoo.localhost/game
+[Tue Mar 23 09:47:56 2010] [error] [client 127.0.0.1] PHP Fatal error:  Call to undefined method Model_Question::getQuestionId() in /home/www/zoo/application/controllers/GameController.php on line 100, referer: http://zoo.localhost/game
+[Tue Mar 23 09:48:33 2010] [error] [client 127.0.0.1] PHP Fatal error:  Call to undefined method Model_Question::getQuestionId() in /home/www/zoo/application/controllers/GameController.php on line 30
+[Tue Mar 23 09:59:31 2010] [error] [client 127.0.0.1] (13)Permission denied: file permissions deny server access: /home/www/zoo/public/css/style.css, referer: http://zoo.localhost/game/result
+[Tue Mar 23 09:59:36 2010] [error] [client 127.0.0.1] (13)Permission denied: file permissions deny server access: /home/www/zoo/public/css/style.css, referer: http://zoo.localhost/game
+[Tue Mar 23 09:59:48 2010] [error] [client 127.0.0.1] (13)Permission denied: file permissions deny server access: /home/www/zoo/public/css/style.css, referer: http://zoo.localhost/

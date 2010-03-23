@@ -1,0 +1,39 @@
+<?php echo $this->headScript()->appendFile('/js/3rdParty/jQuery.js'); ?>
+<?php echo $this->headScript()->appendFile('/js/3rdParty/jquery.countdown.js'); ?>
+<?php echo $this->headScript()->appendFile('/js/3rdParty/jquery.countdown-de.js'); ?>
+<?php echo $this->headScript()->appendFile('/js/play.js'); ?>
+<?php echo $this->headLink()->appendStylesheet('/css/3rdParty/jquery.countdown.css'); ?>
+
+<?php if ($this->pageNotFound !== true): ?>	
+
+	<?php echo $this->question['question']; ?>
+
+
+	<img height="300px" src="<?php echo $this->baseUrl . '/img/' . $this->question['image'] . '.jpg'; ?>" alt="fragebild" />
+
+	<div id="answer_score">
+	
+	<div style="width: 60px;" id="countdown"></div>
+
+	<?php if ($this->answers !== 'nochoice'): ?>
+		<span id="<?php echo $this->answers[0]; ?>" class="answer" ><?php echo $this->answers[1]; ?></span>
+		<span id="<?php echo $this->answers[2]; ?>" class="answer" ><?php echo $this->answers[3]; ?></span>
+		<span id="<?php echo $this->answers[4]; ?>" class="answer" ><?php echo $this->answers[5]; ?></span>
+		<span id="<?php echo $this->answers[6]; ?>" class="answer" ><?php echo $this->answers[7]; ?></span>
+	<?php else: ?>
+		<input type="text" id="input_answer" />
+		<span id="send_answer">Beantworten</span>
+	<?php endif; ?>
+
+	<?php echo $this->playedQuestions; ?>
+	<?php echo $this->rightAnswers; ?>
+	<?php echo $this->wrongAnswers; ?>
+	</div>
+
+<?php else: ?>
+
+	<p>Die Frage existiert nicht.</p>
+	<p>Error: <?php echo $this->errorId; ?>|<?php echo $this->className; ?></p>
+	<a href="<?php echo $this->baseUrl . '/game'; ?>">Nächste Frage</a>
+
+<?php endif; ?>
