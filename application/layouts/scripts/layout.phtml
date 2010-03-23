@@ -13,6 +13,7 @@
     <meta name="language" content="de" />
 
     <?php echo $this->headLink()->appendStylesheet('/css/style.css'); ?>
+    <?php echo $this->headLink()->appendStylesheet('/css/formular.css'); ?>
   </head>
   <body id="container">
 	<div id="header">
@@ -43,7 +44,7 @@
 			<li><a href="<?php echo $this->baseUrl . '/images'; ?>">Bilder</a></li>
 			<li><a href="<?php echo $this->baseUrl . '/webcam'; ?>">Zoo Webcam</a></li>
 			<br />
-			<li><a href="<?php echo $this->baseUrl . 'survey'; ?>">Umfrage</a></li>
+			<li><a href="<?php echo $this->baseUrl . '/survey'; ?>">Umfrage</a></li>
 			<br />
 			<br />
 			<?php if (Zend_Auth::getInstance()->hasIdentity()): ?>

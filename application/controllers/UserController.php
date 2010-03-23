@@ -15,13 +15,15 @@ class UserController extends Zend_Controller_Action {
 	 */
 	protected $userData = null;
 
+	protected $userSession = null;
+
 
 	/**
 	 * called for every action
 	 */
     public function init() {
-		$userSession  	= new Zend_Session_Namespace('user');
-		$this->userData	= $userSession->user;
+		$this->userSession  	= new Zend_Session_Namespace('user');
+		$this->userData	= $this->userSession->user;
 		$this->userId 	= $this->userData['userid'];
     }
 
@@ -223,7 +225,7 @@ class UserController extends Zend_Controller_Action {
 					$user = new Model_DbTable_User();
 					$user->updateUser($this->userId, $postValues);
 
-					$userSession->user = $this->getNewUserSessionData($userData, $postValues);
+					$this->userSession->user = $this->getNewUserSessionData($userData, $postValues);
 					$this->view->success = true;
 					
 				} else {
@@ -235,7 +237,7 @@ class UserController extends Zend_Controller_Action {
 			}
 		}
 			
-		$form->populate($this->getEditDefaultProfileFormData($userSession->user));
+		$form->populate($this->getEditDefaultProfileFormData($this->userSession->user));
 		$this->view->form = $form;
     }
 
