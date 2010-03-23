@@ -94,6 +94,7 @@ class Zend_Db_Adapter_Pdo_Mysql extends Zend_Db_Adapter_Pdo_Abstract
         }
 
         parent::_connect();
+		$this->query('SET NAMES utf8');
     }
 
     /**
