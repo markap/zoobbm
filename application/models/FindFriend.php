@@ -13,11 +13,6 @@ class Model_FindFriend {
 	protected $name = null;
 
 	/**
- 	 * @var string
-	 */
-	protected $age = null;
-
-	/**
  	 * @var array
  	 */
 	protected $aninal = array();
@@ -41,7 +36,6 @@ class Model_FindFriend {
  	 */
 	public function __construct(array $searchData) {
 		$this->name = $searchData['name'];
-		$this->age  = $searchData['age'];
 		$this->animal = isset($searchData['animal']) ? $searchData['animal'] : array();
 		$this->vist   = isset($searchData['visit']) ? $searchData['visit'] : array();
 		$this->type = isset($searchData['type']) ? $searchData['type'] : array();
@@ -51,33 +45,23 @@ class Model_FindFriend {
 	/**
 	 * @return array $result
 	 */
-	public function fiendFriends() {
-		$result = array();
-		$result[] = $this->checkName();
-		$result[] = $this->checkAge();
-		$result[] = $this->checkAnimal();
-		$result[] = $this->checkVisit();
-		$result[] = $this->checkType();
-		var_dump($result);
+	public function getFriends() {
+		$this->checkName();
+		$this->checkAnimal();
 	}
 
 	protected function checkName() {
 		if (!$this->name) {
 			return null;
 		}
-		// hat string leerzeichen?
-		// trennen
-		// sowohl nachnamen und vorname suchen
-		//return $result;
+		$partOne = substr($this->name, strpos($this->name, ' ')); 
+		$partTwo = substr($this->name, 0, strpos($this->name, ' ')); 
+		$user    = new Model_DbTable_User();
+		$result  = $user->findUser($partOne, $partTwo);
+echo "<pre>";
+var_dump($result);
 	}
 
-	protected function checkAge() {
-		if ((int)$this->age === 0) {
-			return null;
-		}
-		// alter auf datum umrechnen
-		// sql abfrage vorbereiten ...
-	}
 
 	protected function checkAnimal() {
 		if (empty($this->animal)) {

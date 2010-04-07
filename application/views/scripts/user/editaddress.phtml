@@ -6,21 +6,35 @@
 <script type="text/javascript" src="/js/editaddress.js"></script>
 
 
-<h1>Adressdaten bearbeiten</h1>
+<br />
+<br />
+<h1 align="center">Adressdaten bearbeiten</h1>
+<br />
+
+
+
+	
+<?php if (!empty($this->errors)): ?>
+
+	<div class="error">
+		<ul>
+			<?php foreach($this->errors as $error): ?>
+				<li><?php echo $error; ?></li>
+			<?php endforeach; ?>
+		</ul>
+	</div>
+<?php endif; ?>
+
+	
+<?php echo $this->form; ?>
 
 <?php if ($this->success === true): ?>
-	<p>Änderungen gespeichert.</p>
+	<div class="success">
+			<p>Änderungen gespeichert.</p>
+	</div>
 <?php endif; ?>
 
-
-<?php if (!empty($this->errors)): ?>
-<ul>
-    <?php foreach($this->errors as $error): ?>
-        <li><?php echo $error; ?></li>
-    <?php endforeach; ?>
-</ul>
-<?php endif; ?>
-
-<?php echo $this->form; ?>
+<br />
+<br />
 
 <a href="<?php echo $this->baseUrl . '/user/profile'; ?>">Zurück zum Profil</a>

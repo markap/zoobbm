@@ -21,20 +21,6 @@ class Form_FindFriend extends Zend_Form {
 		  	  ->setRequired(true)
 		      ->addFilter('StringTrim')
 		      ->addFilter('StripTags');
-
-		// age 
-		$age = new Zend_Form_Element_Select('age');
-		$age->setLabel('Ungefähres Alter:')
-			->setMultiOptions(array(0 => '',
-									1 => '15 Jahre oder jünger',
-								    2 => 'Zwischen 15 - 20 Jahren',
-								    3 => 'Zwischen 20 - 25 Jahren',	
-								    4 => 'Zwischen 25 - 30 Jahren',	
-								    5 => 'Zwischen 30 - 40 Jahren',	
-								    6 => 'Zwischen 40 - 50 Jahre',
-								    7 => '50 Jahre oder älter'
-								));
-
 		
 		// favourite animals
 		$animals = new Zend_Form_Element_MultiCheckbox('animal');
@@ -55,7 +41,6 @@ class Form_FindFriend extends Zend_Form {
 
         // Add Elements to Form
         $this->addElements(array($name,
-								 $age,
 								 $animals,
 								 $type,
 								 $visit,

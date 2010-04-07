@@ -142,7 +142,7 @@ class Model_PricesFactory {
 		$enddateZ   = ($enddate) ? new Zend_Date($enddate) : null;
 		if ($startdateZ->isEarlier(Zend_Date::now()) ||
 			($enddate && $enddateZ->isEarlier(Zend_Date::now()))) {
-			throw new Model_OldDateException('Zeit liegt in der Gegenwart');
+			throw new Model_OldDateException('Zeit liegt in der Vergangenheit');
 		}
 		if ($enddate) {
 			$this->time = $enddateZ->sub($startdateZ)/self::SECONDS_PER_DAY + 1; 

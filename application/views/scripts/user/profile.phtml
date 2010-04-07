@@ -1,70 +1,111 @@
-<div id="profil">
-
-	<h1>User Profil</h1>
-
-
-	<img width="100px" src="<?php echo $this->baseUrl. '/img/uploads/' . $this->profile['image']; ?>" alt="Profilbild" ><br>
-	<a href="<?php echo $this->baseUrl . '/user/editimage'; ?>">Profilbild  bearbeiten</a>
+<div id="profile">
 	<br />
 	<br />
-
-
-	<div class="cube">
+	<h1 align="center">Mein Profil</h1>
+	<br />
+	<br />
+	<br />
+	<div id="messages">
+		<h3>Community</h3>
+		<table>
+			<tr>
+				<td><a href="<?php echo $this->baseUrl . '/community/showmessages'; ?>">Erhaltene Nachrichten ansehen (neu <?php echo $this->unreadMessages; ?>)</a></td>
+				<td><a href="<?php echo $this->baseUrl . '/community/showsendmessages'; ?>">Gesendete Nachrichten ansehen</a></td>
+			</tr>
+			<tr>
+				<td><a href="<?php echo $this->baseUrl . '/community/friends'; ?>">Meine Freunde</a></td>
+				<td><a href="<?php echo $this->baseUrl . '/community/friendrequest'; ?>">Freundschaftsanfrage</a></td>
+			</tr>
+		</table>
+	</div>
+	<br />
+	<br />
 		<?php //var_dump($this->userData); ?>
-		<h3>Persönliche Angaben</h3>
-		<dl>
-			<dt>Vorname:</dt>
-			<dd><?php echo $this->userData["firstname"]; ?></dd>
-			<dt>Nachname:</dt>
-			<dd><?php echo $this->userData["lastname"]; ?></dd>
-			<dt>E-Mail:</dt>
-			<dd><?php echo $this->userData["mail"]; ?></dd>
-			<br />
-			<dd><a href="<?php echo $this->baseUrl . '/user/editdefaultprofile'; ?>">Registrierungsdaten  bearbeiten</a></dd>
-			<dd><a href="<?php echo $this->baseUrl . '/user/changepassword'; ?>">Passwort ändern</a></dd>	
-		</dl>	
-	</div>
-	<div class="cube">
 		
-		<dl>
-			<h3>Weitere Angaben</h3>
-			<dt>Geburtstag:</dt>
-			<dd><?php echo $this->profile["birth"]; ?></dd>
-			<dt>Wie oft besuche ich den Zoo?</dt>
-			<dd><?php echo $this->profile["visit"]; ?></dd>
-			<dt>Was bin ich?</dt>
-			<dd><?php echo $this->profile["type"]; ?></dd>
-			<dt>Über mich:</dt>
-			<dd><?php echo $this->profile["description"]; ?></dd>
-			<br />
-			<dd><a href="<?php echo $this->baseUrl . '/user/editprivate'; ?>">Persönliche Angaben  bearbeiten</a></dd>
-		</dl>
-	</div>
-	<div class="cube">
-		<h3>Adressdaten</h3>
-		<dl>
-			<dt>Straße: <?php echo $this->profile["street"]; ?></dt>
-			<dt>Postleitzahl: <?php echo $this->profile["plz"]; ?></dt>
-			<dt>Stadt: <?php echo $this->profile["city"]; ?></dt>
-			<br />
-			<dd><a href="<?php echo $this->baseUrl . '/user/editaddress'; ?>">Adressdaten  bearbeiten</a></dd>
-		</dl>
-	</div>
-	<div class="cube">
+		<h3>Persönliche Angaben</h3>
+		<table>
+			<colgroup>
+				<col class="tableleft">
+				<col class="tablecenter">
+				<col class="tableright">
+			</colgroup>
+			<tr>
+				<td rowspan="3"><a href="<?php echo $this->baseUrl . '/user/editimage'; ?>"><img width="100px" src="<?php echo $this->baseUrl. '/img/uploads/' . $this->profile['image'] . '.jpg'; ?>" alt="Profilbild ändern" id="tablelink"></a></td>
+				<td>Vorname:</td>
+				<td><?php echo $this->userData["firstname"]; ?></td>
+			</tr>
+			<tr>
+				<td>Nachname:</td>
+				<td><?php echo $this->userData["lastname"]; ?></td>
+			</tr>
+			<tr>
+				<td>E-Mail:</td>
+				<td><?php echo $this->userData["mail"]; ?></td>
+			</tr>
+
+			<tr>
+				<td><a href="<?php echo $this->baseUrl . '/user/editdefaultprofile'; ?>">Registrierungsdaten  bearbeiten</a></td>
+				<td><a href="<?php echo $this->baseUrl . '/user/changepassword'; ?>">Passwort ändern</a></td>
+			</tr>
+		</table>
 		<br />
 		<br />
-		Lieblingstiere: <?php echo $this->animals["0"]; ?>, <?php echo $this->animals["1"]; ?><br />
+	
+		<h3>Weitere Angaben</h3>
+		<table>
+			<tr>	
+				<td width="450">Geburtstag:</td>
+				<td><?php echo $this->profile["birth"]; ?></td>
+			</tr>
+			<tr>
+				<td>Straße:</td>
+				<td><?php echo $this->profile["street"]; ?></td>
+			</tr>
+			<tr>
+				<td>Postleitzahl:</td>
+				<td><?php echo $this->profile["plz"]; ?></td>
+			</tr>
+			<tr>
+				<td>Stadt:</td>
+				<td><?php echo $this->profile["city"]; ?></td>
+			</tr>
+			<tr>
+				<td><a href="<?php echo $this->baseUrl . '/user/editaddress'; ?>">Adressdaten  bearbeiten</a></td>
+			</tr>
+		</table>			
+		<br />
+		<br />
+		
+		<h3>Über mich</h3>
+		<table>
 
-	</div>
-
-	<div class="cube">
-
-		<a href="<?php echo $this->baseUrl . '/community/showmessages'; ?>">Erhaltene Nachrichten ansehen (neu <?php echo $this->unreadMessages; ?>)</a><br/>
-		<a href="<?php echo $this->baseUrl . '/community/friends'; ?>">Meine Freunde</a><br/>
-		<a href="<?php echo $this->baseUrl . '/community/friendrequest'; ?>">Freundschaftsanfrage</a><br/>
-		<a href="<?php echo $this->baseUrl . '/community/showsendmessages'; ?>">Gesendete Nachrichten ansehen</a><br/>
-
-	</div>
+			<tr>
+				<td width="450">Wie oft besuche ich den Zoo?</td>
+				<td><?php echo $this->profile["visit"]; ?></td>
+			</tr>
+			<tr>
+				<td>Was bin ich?</td>
+				<td><?php echo $this->profile["type"]; ?></td>
+			</tr>
+			<tr>
+				<td>Über mich:</td>
+				<td><?php echo $this->profile["description"]; ?></td>
+			</tr>
+			<tr>
+				<td>Lieblingstiere:</td>				
+				<td>
+				<?php if (!empty($this->animals)): ?>
+					<?php foreach($this->animals as $animals): ?>
+						<?php echo $animals; ?>,
+					<?php endforeach; ?>
+				<?php endif; ?>	
+				</td>
+			</tr>
+			
+			<tr>
+				<td><a href="<?php echo $this->baseUrl . '/user/editprivate'; ?>">Persönliche Angaben  bearbeiten</a></td>
+			</tr>
+		</table>	
 
 </div>
 

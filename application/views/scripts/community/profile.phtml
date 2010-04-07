@@ -1,13 +1,68 @@
+<div id="profile">
 
-<?php var_dump($this->user); ?>
-<?php var_dump($this->profile); ?>
+	<?php //var_dump($this->user); ?><br />
+	<?php //var_dump($this->profile); ?>
+	<br />
+	<br />
+	<h1 align="center"><?php echo $this->user['username'] ?>' Profil</h1>
+	<br />
+	<br />
+	<br />
+	<h3><?php echo $this->user['username'] ?></h3>
+	<table border="0">
+		<colgroup>
+			<col class="tableleft">
+			<col class="tablecenter">
+			<col class="tableright">
+		</colgroup>
+		<tr>
+		<?php echo $this->profile['image']; ?>
+			<td rowspan="5" class="tableleft"><img width="100px" src="<?php echo '/img/' . $this->profile['image']; ?>"></td>
+			<td>Vorname</td>
+			<td><?php echo $this->user['firstname'] ?></td>
+		</tr>
+		<tr>
+			<td>Nachname</td>
+			<td><?php echo $this->user['lastname'] ?></td>
+		</tr>
+		<tr>
+			<td>E-Mail</td>
+			<td><?php echo $this->user['mail'] ?></td>
+		</tr>
+		<tr>
+			<td>Geburtsdatum</td>
+			<td><?php echo $this->profile['birth'] ?></td>
+		</tr>
+		<tr>
+			<td>Über mich</td>
+			<td><?php echo $this->profile['description'] ?></td>
+		</tr>
+	</table>
+	
+	<table  id="tablelink">
+		<tr>
+			<td>
+				<a href="<?php echo $this->baseUrl . '/community/message/to/' .
+								$this->userId; ?>">
+					<?php echo $this->user['firstname']; ?> eine Nachricht schreiben.</a>
+			</td>
+		</tr>
+		<tr>
+			<td>
+		<a href="<?php echo $this->baseUrl . '/community/addfriend/user/' .
+							$this->userId; ?>">
+				<?php echo $this->user['firstname']; ?> als Freund hinzufügen.</a>
+			</td>
+		</tr>
+		<tr>
+			<td><a href="<?php echo $this->baseUrl . '/community/index'; ?>"><br />< Zurück</a></td>
+		</tr>
+		
+	</table>
+		
+		<br />
 
-<a href="<?php echo $this->baseUrl . '/community/message/to/' .
-					$this->userId; ?>">
-		<?php echo $this->user['firstname']; ?> eine private Nachricht schreiben.</a>
-
-<a href="<?php echo $this->baseUrl . '/community/addfriend/user/' .
-					$this->userId; ?>">
-		<?php echo $this->user['firstname']; ?> als Freund hinzufügen.</a>
-
-<a href="<?php echo $this->baseUrl . '/community/index'; ?>">Zurück</a>
+		<br />
+		
+</div>
+ 

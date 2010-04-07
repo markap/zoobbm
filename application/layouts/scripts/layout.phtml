@@ -13,47 +13,76 @@
     <meta name="language" content="de" />
 
     <?php echo $this->headLink()->appendStylesheet('/css/style.css'); ?>
-    <?php echo $this->headLink()->appendStylesheet('/css/formular.css'); ?>
+	<?php echo $this->headLink()->appendStylesheet('/css/formular.css'); ?>
   </head>
   <body id="container">
 	<div id="header">
 		<img src="<?php echo $this->baseUrl . '/img/header.jpg'; ?>">
 	</div>
 	<div id="login">
+		<div id="login1">
+
+			<a href="<?php echo $this->baseUrl . '/index'; ?>">Start</a>
+			<a href="<?php echo $this->baseUrl . '/game'; ?>">Das Spiel</a>
+			<a href="<?php echo $this->baseUrl . '/images'; ?>">Bilder</a>
+			<a href="<?php echo $this->baseUrl . '/shop'; ?>">Shop</a>
+		</div>
+		<div id="login2" align="right">
 			<?php
 			if (Zend_Auth::getInstance()->hasIdentity()) {
-				$userSession = new Zend_Session_Namespace('user');
-				$user 		 = $userSession->user;
-				$name    	 = $user['firstname'] . ' ' . $user['lastname'];
-				$link = "/user/logout";
-				$text = "Logout";
-				echo 'Herzlich Willkommen ' . $name . '   &raquo;';
+			$userSession = new Zend_Session_Namespace('user');
+			$user 		 = $userSession->user;
+			$name    	 = $user['firstname'] . ' ' . $user['lastname'];
+			$link = "/user/logout";
+			$text = "Logout";
+			echo 'Herzlich Willkommen ' . $name . '   &raquo;'; 
 			} else {
 				$link = "/user/login";	
 				$text = "Login";
 			}
 			echo '<a href="' . $this->baseUrl().$link; 
-			?>
-			"><?php echo $text ?></a>
+			?>">
+		<?php echo $text ?></a>
+		</div>
 	</div>
-	
 	<div id="navi">
+		<br />
+		<br />
+		<br />
+		
+		<h3>Allgemein</h3>
 		<ul>
 			<li><a href="<?php echo $this->baseUrl . '/index'; ?>">Start</a></li>
 			<li><a href="<?php echo $this->baseUrl . '/booking'; ?>">Tickets</a></li>
-			<li><a href="<?php echo $this->baseUrl . '/images'; ?>">Bilder</a></li>
+			<br />
+			<br />
+		</ul>
+		<h3>Interaktiv</h3>
+		<ul>
 			<li><a href="<?php echo $this->baseUrl . '/webcam'; ?>">Zoo Webcam</a></li>
-			<br />
 			<li><a href="<?php echo $this->baseUrl . '/survey'; ?>">Umfrage</a></li>
+			<li><a href="<?php echo $this->baseUrl . '/game'; ?>">Spiel</a></li>
+			
 			<br />
 			<br />
-			<?php if (Zend_Auth::getInstance()->hasIdentity()): ?>
+		</ul>
+		<h3>Community</h3>
+		<ul>
+			<li><a href="<?php echo $this->baseUrl . '/community'; ?>">Die Zoo-Community</a></li>
+			<li><a href="<?php echo $this->baseUrl . '/'; ?>">Gästebuch</a></li>
+			<br />
+			<br />
+		</ul>
+		<?php if (Zend_Auth::getInstance()->hasIdentity()): ?>
+
+		<h3>Privat</h3>
+		<ul>
 			<li><a href="<?php echo $this->baseUrl . '/user/profile'; ?>">Profil</a></li>
 			<li><a href="<?php echo $this->baseUrl . '/community/friends'; ?>">Meine Freunde</a></li>
 			<li><a href="<?php echo $this->baseUrl . '/community/showmessages'; ?>">Neue Nachrichten [<?php echo $this->unreadMessages; ?>]</a></li>
-			<?php endif; ?>
-			
+
 		</ul>
+		<?php endif; ?>
 	</div>
 
 	<div id="content">
@@ -61,7 +90,7 @@
 	</div>
 
 	<div id="footer" align="right">
-	Hier kommt irgendein Text hin
+		Hier kommt irgendein Text hin
 	</div>
 
   </body>

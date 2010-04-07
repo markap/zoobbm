@@ -8,7 +8,9 @@
         <applicationConfigFile type="ini"/>
       </configsDirectory>
       <controllersDirectory>
-        <controllerFile controllerName="index"/>
+        <controllerFile controllerName="index">
+          <actionMethod actionName="findfrienddefault"/>
+        </controllerFile>
         <controllerFile controllerName="error"/>
         <controllerFile controllerName="amazon">
           <actionMethod actionName="index"/>
@@ -56,6 +58,8 @@
           <actionMethod actionName="friendrequest"/>
           <actionMethod actionName="friendajax"/>
           <actionMethod actionName="findfriend"/>
+          <actionMethod actionName="findfriendajax"/>
+          <actionMethod actionName="findfrienddefault"/>
         </controllerFile>
         <controllerFile controllerName="webcam">
           <actionMethod actionName="index"/>
@@ -183,6 +187,15 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="map">
             <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="community">
+            <viewScriptFile forActionName="findfriendajax"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="index">
+            <viewScriptFile forActionName="findfrienddefault"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="community">
+            <viewScriptFile forActionName="findfrienddefault"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

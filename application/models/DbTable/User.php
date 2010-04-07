@@ -128,4 +128,28 @@ class Model_DbTable_User extends Zend_Db_Table_Abstract {
 		return $result->toArray();
 	}
 
+
+	/**
+	 * finds a user
+	 * searches for name parts in first-, last-, und username
+	 *
+	 * @author Martin Kapfhammer
+ 	 * @param string $namePartOne 
+ 	 * @param string $namePartTwo 
+	 * @return array $result
+ 	 */ 
+	public function findUser($namePartOne, $namePartTwo) {
+		$orderBy = array('userid DESC');
+		$where = 'firstname like "%' . $namePartOne . '%"
+					or lastname like "%' . $namePartOne . '%"
+					or username like "%' . $namePartOne . '%"';
+		if ($namePartTwo) {
+			$where = ' or firstname like "%' . $namePartTwo . '%"
+					or lastname like "%' . $namePartTwo . '%"
+					or username like "%' . $namePartTwo . '%"';	
+		}
+		$result = $this->fetchAll($where, $orderBy);
+		return $result->toArray();
+	}
+
 }

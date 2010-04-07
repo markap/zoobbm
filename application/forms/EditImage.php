@@ -20,7 +20,7 @@ class Form_EditImage extends Zend_Form {
 		// Image Element
 		$image = new Zend_Form_Element_File('image');
 		$image->setLabel('Profil Bild:');
-		$image->setDestination('/home/www/zooproject/public/img/uploads');
+		$image->setDestination('/home/www/zoo/public/img/uploads');
 		$image->addValidator('Count', false, 1);
 		$image->addValidator('Size', false, 204800);
 		$image->addValidator('Extension', false, 'jpg,png,gif');

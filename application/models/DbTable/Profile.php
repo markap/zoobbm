@@ -96,4 +96,15 @@ class Model_DbTable_Profile extends Zend_Db_Table_Abstract {
 		return $profile->toArray();
 	}
 
+
+	public function findBirth($startDate, $endDate) {
+		$orderBy = array('userid DESC');
+		$where = 'str_to_date(birth, "%d.%m.%Y") >= ' . $startDate;
+//				   . ' and str_to_date(birth, "%Y.%m.%d") >= ' . $endDate;
+		$result = $this->fetchAll($where, $orderBy);
+		return $result->toArray(); 
+		
+
+	}
+
 }

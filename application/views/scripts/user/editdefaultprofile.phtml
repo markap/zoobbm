@@ -1,14 +1,18 @@
 
 <?php if ($this->success === true): ?>
-	<p>Änderungen gespeichert.</p>
+	<div class="success">
+		<p>Änderungen gespeichert.</p>
+	</div>
 <?php endif; ?>
 
 <?php if (!empty($this->errors)): ?>
-<ul>
-    <?php foreach($this->errors as $error): ?>
-        <li><?php echo $error; ?></li>
-    <?php endforeach; ?>
-</ul>
+	<div class="error">
+		<ul>
+			<?php foreach($this->errors as $error): ?>
+				<li><?php echo $error; ?></li>
+			<?php endforeach; ?>
+		</ul>
+	</div>
 <?php endif; ?>
 
 <?php echo $this->form; ?>

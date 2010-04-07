@@ -3,6 +3,14 @@
 <script type="text/javascript" src="/js/editprivate.js"></script>
 <h1>Persönliche Angabe bearbeiten</h1>
 
-<?php echo $this->success; ?>
+
+
 
 <?php echo $this->form; ?>
+
+<?php if (isset($this->success)): ?>
+
+	<div class="success">
+		<?php echo $this->success; ?>
+	</div>
+<?php endif; ?>

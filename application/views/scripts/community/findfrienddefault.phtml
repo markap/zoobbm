@@ -1,0 +1,10 @@
+<?php echo $this->headLink()->appendStylesheet('/css/3rdParty/jquery.ui.css'); ?>
+<script type="text/javascript" src="/js/3rdParty/jQuery.js"></script>
+<script type="text/javascript" src="/js/findfriend.js"></script>
+
+
+<?php echo $this->form; ?>
+
+<a href="<?php echo $this->baseUrl . '/community/findfriend'; ?>">Erweiterte Suche</a>
+
+<div id="showfriends"></div>

@@ -25,4 +25,9 @@ class Model_DbTable_Visit extends Zend_Db_Table_Abstract {
 		$result  = $this->fetchAll('1', $orderby);
 		return $result->toArray();
 	}
+
+	public function getVisit($visitid) {
+		$result = $this->fetchRow('vid = ' . $visitid)->toArray();
+		return $result['name'];
+	}
 }
