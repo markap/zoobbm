@@ -9,7 +9,8 @@ class SurveyController extends Zend_Controller_Action {
 	/**
 	 * show a survey
 	 */
-    public function indexAction() {
+    public function indexAction() 
+	{
 		$surveyDb   = new Model_DbTable_Survey();	
 		$surveySession = new Zend_Session_Namespace('survey');
 		$isSurveyDone  = $surveySession->done;

@@ -12,13 +12,22 @@
 
     <meta name="language" content="de" />
 
-    <?php echo $this->headLink()->appendStylesheet('/css/style.css'); ?>
+	<?php 
+		$style = (isset($_COOKIE['style'])) ? $_COOKIE['style'] : 'style';
+		$available_styles = array('style', 'blue');
+		if (!in_array($style, $available_styles)) $style = 'style';
+		$link  = '/css/' . $style . '.css';
+    	echo $this->headLink()->appendStylesheet($link); 
+	?>
 	<?php echo $this->headLink()->appendStylesheet('/css/formular.css'); ?>
   </head>
   <body id="container">
 	<div id="header">
 		<img src="<?php echo $this->baseUrl . '/img/header.jpg'; ?>">
 	</div>
+	<?php $link = str_replace('/', '_', getenv('REQUEST_URI')); ?>
+	<a href="/index/index/style/style/back/<?php echo $link; ?>">Standard</a>
+	<a href="/index/index/style/blue/back/<?php echo $link; ?>">Blau</a>
 	<div id="login">
 		<div id="login1">
 

@@ -720,3 +720,9 @@
 [Wed Apr 07 15:29:24 2010] [error] [client 127.0.0.1] PHP Notice:  Undefined variable: typeDb in /home/www/zoo/application/controllers/UserController.php on line 193, referer: http://zoo.localhost/user/editdefaultprofile
 [Wed Apr 07 15:29:24 2010] [error] [client 127.0.0.1] PHP Fatal error:  Call to a member function getType() on a non-object in /home/www/zoo/application/controllers/UserController.php on line 193, referer: http://zoo.localhost/user/editdefaultprofile
 [Wed Apr 07 15:32:26 2010] [error] [client 127.0.0.1] PHP Notice:  Object of class Zend_Date could not be converted to int in /home/www/zoo/application/models/PricesFactory.php on line 143, referer: http://zoo.localhost/booking
+[Wed Apr 07 16:25:04 2010] [error] [client 127.0.0.1] Directory index forbidden by Options directive: /home/www/zoo/public/img/uploads/, referer: http://zoo.localhost/user/editimage
+[Tue Apr 13 09:47:56 2010] [error] [client 127.0.0.1] PHP Fatal error:  Call to undefined function gentenv() in /home/www/zoo/application/layouts/scripts/layout.phtml on line 23
+[Tue Apr 13 09:51:22 2010] [error] [client 127.0.0.1] PHP Notice:  Undefined index: style in /home/www/zoo/application/layouts/scripts/layout.phtml on line 15
+[Tue Apr 13 09:51:22 2010] [error] [client 127.0.0.1] PHP Notice:  Undefined index: style in /home/www/zoo/application/layouts/scripts/layout.phtml on line 15, referer: http://zoo.localhost/
+[Tue Apr 13 09:53:09 2010] [error] [client 127.0.0.1] PHP Notice:  Undefined index: style in /home/www/zoo/application/layouts/scripts/layout.phtml on line 16
+[Tue Apr 13 09:58:10 2010] [error] [client 127.0.0.1] PHP Parse error:  syntax error, unexpected ';' in /home/www/zoo/application/controllers/IndexController.php on line 13, referer: http://zoo.localhost/
