@@ -15,6 +15,9 @@ class UserController extends Zend_Controller_Action {
 	 */
 	protected $userData = null;
 
+	/**
+	 * @var Zend_Session_Namespace
+	 */
 	protected $userSession = null;
 
 

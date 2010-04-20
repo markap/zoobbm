@@ -3,14 +3,51 @@
 	<br />
 	<br />
 	<br />
-	<h1 align="center"><?php echo $this->fullname; ?>'s Freunde</h1>
+	<h1><?php echo $this->fullname; ?>'s Freunde</h1>
 	<br />
 	<br />
 	<br />
-
-	<?php var_dump($this->friendsProfile); ?>
-
-
 	
+	 <?php var_dump($this->friendsProfile); ?> 
 	
+	<?php if (!empty($this->friendsProfile)): ?>
+	
+	<h3><?php echo $this->fullname; ?> hat <?php echo count($this->friendsProfile); ?> Freund(e)</h3>
+		<table>
+			<colgroup>
+				<col class="tableleft">
+				<col class="tablecenter">
+				<col class="tableright">
+			</colgroup>
+			<tr>
+				<td rowspan="6">
+				<img src="<?php echo $this->baseUrl."/img/uploads/".$friendsProfile['profile']['image']; ?>" width="100px"> </td>
+
+			</tr>
+			<tr>
+				<td>Vorname</td>
+				<td><?php echo $this->friendsProfile[0]['user']['firstname']; ?></td>
+			</tr>
+			<tr>
+				<td>Nachname</td>
+				<td><?php echo $this->friendsProfile[0]['user']['lastname']; ?></td>
+			</tr>
+			<tr>
+				<td>E-Mail</td>
+				<td><?php echo $this->friendsProfile['user']['mail']; ?></td>
+			</tr>
+			<tr>
+				<td><a href="<?php echo $this->baseUrl. '/community/profile/user/'. $this->friendsProfile[0]['user']['userid']; ?>"><?php echo 'Profil anschauen'; ?></a></td>
+			</tr>
+		</table>
+	<?php else: ?>
+	
+		<table>
+			<tr>
+				<th><?php echo $this->fullname; ?> hat <?php echo count($friendsProfile); ?> Freunde</th>
+			</tr>
+		</table>
+		
+	
+	<?php endif; ?>
 </div>

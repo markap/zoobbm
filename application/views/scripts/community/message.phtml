@@ -1,6 +1,14 @@
 <h1>Private Nachricht an <?php echo $this->receiver['firstname'] . ' ' . $this->receiver['lastname']; ?>.</h1>
 
-<?php echo $this->error; ?>
-<?php echo $this->success; ?>
 
+<?php if (isset($this->success)): ?>
+	<div class="success">
+		<?php echo $this->success; ?>
+	</div>
+<?php endif; ?>
+<?php if (isset($this->error)): ?>
+	<div class="error">
+		<?php echo $this->error; ?>
+	</div>
+<?php endif; ?>
 <?php echo $this->form; ?>

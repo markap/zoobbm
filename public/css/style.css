@@ -11,8 +11,29 @@
 #header {
 	width: 900px;
 	height: 150px;
-	background-color: #3d301d;
+	background: #3d301d url(/img/header.jpg);
 }
+
+#header td.theme-green {
+	background:#008800;
+	width:50px;
+	height:20px;
+	border:2px solid #000000;
+}
+
+#header td.theme-blue {
+	background:#000088;
+	width:50px;
+	height:20px;
+	border:2px solid #000000;
+}
+
+#header a {
+	display:block;
+	width:100%;
+	height:100%;
+}
+
 
 #login {
 	width: 900px;
@@ -112,6 +133,10 @@ body {
 	font-family:arial,helvetica,sans-serif;
 	background:#FFFFFF;
 	color:#003900;
+}
+
+h1 {
+	text-align:center;
 }
 
 a {
@@ -228,4 +253,135 @@ h3 {
 	padding-left:3px;
 	background:#C2DBA5;
 	font-weight:bold;
+}
+
+
+#amazon {
+	display:block;
+	width:670px;
+	height:650px;
+	border: 0px solid #202020;
+}
+
+#amazon img {
+	height:80px;
+}
+
+#vote1 {
+	font-weight:bold;
+	text-align:center;
+	height:20px;
+	background-color:#FF0000;
+}
+
+#vote2 {
+	font-weight:bold;
+	text-align:center;
+	height:20px;
+	background-color:#00FF00;
+}
+
+#vote3 {
+	font-weight:bold;
+	text-align:center;
+	height:20px;
+	background-color:#0000FF;
+}
+
+#vote4 {
+	font-weight:bold;
+	text-align:center;
+	height:20px;
+	background-color:#884488;
+}
+
+
+
+#showmessage {
+	width:670px;
+	height:650px;
+	border: 0px solid #202020;
+}
+
+#showmessage table {
+	border:0px;
+	width:400px;
+	background:#eff9e5;
+	text-align:left;
+}
+
+#showmessage #date {
+	font-size:80%;
+}
+
+#showmessage th {
+	background:#C2DBA5;
+}
+#showmessage h3 {
+	background:#C2DBA5;
+	width:395px;
+	margin:0px;
+	padding-left:5px;
+}
+#showmessage h1 {
+	margin:0px;
+}
+
+
+#game a {
+	font-weight:bold;
+	width:200px;
+	margin-left:80%;
+}
+
+#game h3 {
+	background:#C2DBA5;
+	width:400px;
+	margin:0 auto;
+}
+
+#game .answer {
+	border:1px solid #003900;
+	width:300px;
+	padding:3px;
+	cursor:pointer;
+}
+
+#game .answer:hover {
+	background:#dee8d4;
+}
+
+#send_answer {
+	border:1px solid #003900;
+	padding:3px;
+	cursor:pointer;
+}
+
+#send_answer:hover {
+	background:#dee8d4;
+}
+
+#statistik {
+	margin:0 auto;
+	width:400px;
+	background:#eff9e5;
+}
+
+#questions {
+	width:500px;
+	background:#eff9e5;
+	padding:5px;
+}
+
+#questions th {
+	width:200px;
+}
+
+#questions td {
+	padding:5px;
+}
+
+#countdown {
+	width:60px;
+	height:55px;
 }

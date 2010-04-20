@@ -23,12 +23,18 @@ class BookingController extends Zend_Controller_Action
      */
     public function init()
     {
+		if (!Zend_Auth::getInstance()->hasIdentity()) {
+			$redirectSession = new Zend_Session_Namespace('redirect');
+			$redirectSession->next = "/booking/index";
+			$this->_redirect('/user/mustbe');
+		}
         // userid from session
 		$userSession 	= new Zend_Session_Namespace('user');
 		$userData    	= $userSession->user;
 		$this->userId   = $userData['userid'];
 		$this->fullname = $userData['firstname'] . ' ' . $userData['lastname'];
 		$this->username = $userData['username'];
+		
     }
 
     public function indexAction()

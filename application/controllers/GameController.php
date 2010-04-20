@@ -16,7 +16,7 @@ class GameController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        $questionIds = array(1);
+        $questionIds = array(1,2,3,4,5);
 
         // use always the same game object
         if ($this->gameSession->game === null) {

@@ -22,12 +22,25 @@
 	<?php echo $this->headLink()->appendStylesheet('/css/formular.css'); ?>
   </head>
   <body id="container">
+
 	<div id="header">
-		<img src="<?php echo $this->baseUrl . '/img/header.jpg'; ?>">
-	</div>
+	
 	<?php $link = str_replace('/', '_', getenv('REQUEST_URI')); ?>
-	<a href="/index/index/style/style/back/<?php echo $link; ?>">Standard</a>
-	<a href="/index/index/style/blue/back/<?php echo $link; ?>">Blau</a>
+
+		<table align="right">
+			<tr>
+				<td class="theme-blue">
+					<a href="/index/index/style/blue/back/<?php echo $link; ?>"></a>
+				</td>
+				<td class="theme-green">
+					<a href="/index/index/style/style/back/<?php echo $link; ?>"></a>
+				</td>
+			</tr>
+		</table>
+	</div>
+	
+
+	
 	<div id="login">
 		<div id="login1">
 
@@ -62,7 +75,7 @@
 		<h3>Allgemein</h3>
 		<ul>
 			<li><a href="<?php echo $this->baseUrl . '/index'; ?>">Start</a></li>
-			<li><a href="<?php echo $this->baseUrl . '/booking'; ?>">Tickets</a></li>
+			<li><a href="<?php echo $this->baseUrl . '/booking'; ?>">Tickets</a></li>			
 			<br />
 			<br />
 		</ul>
@@ -78,17 +91,32 @@
 		<h3>Community</h3>
 		<ul>
 			<li><a href="<?php echo $this->baseUrl . '/community'; ?>">Die Zoo-Community</a></li>
-			<li><a href="<?php echo $this->baseUrl . '/'; ?>">Gästebuch</a></li>
+			<li><a href="<?php echo $this->baseUrl . '/'; ?>">Gï¿½stebuch</a></li>
 			<br />
 			<br />
 		</ul>
+		<h3>Weiteres</h3>
+		<ul>
+			<li><a href="<?php echo $this->baseUrl . '/investorrelation'; ?>">Investor-Relations</a></li>
+			<li><a href="<?php echo $this->baseUrl . '/amazon'; ?>">Amazon</a></li>
+			<br />
+			<br />
+		</ul>
+		
+		
+		
+		
 		<?php if (Zend_Auth::getInstance()->hasIdentity()): ?>
-
 		<h3>Privat</h3>
 		<ul>
 			<li><a href="<?php echo $this->baseUrl . '/user/profile'; ?>">Profil</a></li>
 			<li><a href="<?php echo $this->baseUrl . '/community/friends'; ?>">Meine Freunde</a></li>
-			<li><a href="<?php echo $this->baseUrl . '/community/showmessages'; ?>">Neue Nachrichten [<?php echo $this->unreadMessages; ?>]</a></li>
+			<li><a href="<?php echo $this->baseUrl . '/community/showmessages'; ?>">Neue Nachrichten</a></li>
+			<li><a href="<?php echo $this->baseUrl . '/community/findfrienddefault'; ?>">Freunde suchen</a></li>
+			<br />
+			<li><a href="<?php echo $this->baseUrl . '/booking/showtickets'; ?>">Gebuchte Tickets</a></li>
+			
+			
 
 		</ul>
 		<?php endif; ?>

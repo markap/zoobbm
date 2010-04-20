@@ -1,13 +1,36 @@
+<div id="game">
+	<br />
+	<br />
+	<br />
+	<?php if($this->isAnswerRight): ?>
+		<div class="success">
+			<?php echo $this->rightAnswer; ?> ist richtig. Sehr gut!
+		</div>
+	<?php else: ?>
+		<div class="error">
+			<?php echo $this->myAnswer; ?> ist falsch.
+			<?php echo $this->rightAnswer; ?> wäre richtig gewesen.
+		</div>
+	<?php endif; ?>
+	<br />
+	<a href="<?php echo $this->baseUrl . '/game'; ?>">Weiter >></a>
+	<br />
+	<br />
+	<h3>Statistik</h3>
+	<table id="statistik">
+		<tr>
+			<td>Beantwortete Fragen</td>
+			<td><?php echo $this->playedQuestions; ?></td>
+		</tr>
+		<tr>
+			<td>Richtige Antworten</td>
+			<td><?php echo $this->rightAnswers; ?></td>
+		</tr>
+		<tr>
+			<td>Falsche Antworten</td>
+			<td><?php echo $this->wrongAnswers; ?></td>
+		</tr>
+	</table>
 
-<?php if($this->isAnswerRight): ?>
-	<?php echo $this->rightAnswer; ?> ist richtig. Sehr gut!
-<?php else: ?>
-	<?php echo $this->myAnswer; ?> ist falsch.
-	<?php echo $this->rightAnswer; ?> wäre richtig gewesen.
-<?php endif; ?>
-
-<?php echo $this->playedQuestions; ?>
-<?php echo $this->rightAnswers; ?>
-<?php echo $this->wrongAnswers; ?>
-
-<a href="<?php echo $this->baseUrl . '/game'; ?>">Weiter</a>
+	
+</div>

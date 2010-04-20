@@ -4,36 +4,86 @@
 <?php echo $this->headScript()->appendFile('/js/play.js'); ?>
 <?php echo $this->headLink()->appendStylesheet('/css/3rdParty/jquery.countdown.css'); ?>
 
-<?php if ($this->pageNotFound !== true): ?>	
-
-	<?php echo $this->question['question']; ?>
-
-
-	<img height="300px" src="<?php echo $this->baseUrl . '/img/' . $this->question['image'] . '.jpg'; ?>" alt="fragebild" />
-
-	<div id="answer_score">
+<div id="game">
+	<h1>Das Zoo-Spiel</h1>
+	<br />
+	<br />
+	<br />
+	<?php if ($this->pageNotFound !== true): ?>	
 	
-	<div style="width: 60px;" id="countdown"></div>
-
 	<?php if ($this->answers !== 'nochoice'): ?>
-		<span id="<?php echo $this->answers[0]; ?>" class="answer" ><?php echo $this->answers[1]; ?></span>
-		<span id="<?php echo $this->answers[2]; ?>" class="answer" ><?php echo $this->answers[3]; ?></span>
-		<span id="<?php echo $this->answers[4]; ?>" class="answer" ><?php echo $this->answers[5]; ?></span>
-		<span id="<?php echo $this->answers[6]; ?>" class="answer" ><?php echo $this->answers[7]; ?></span>
+
+		<table id="questions">
+			<tr>
+				<th><?php echo $this->question['question']; ?></th>
+			</tr>
+			<tr>
+				<td rowspan="5"><img height="150px" src="<?php echo $this->baseUrl . '/img/' . $this->question['image'] . '.jpg'; ?>" alt="fragebild" /></td>
+			</tr>
+			<tr>
+				<td><span id="<?php echo $this->answers[0]; ?>" class="answer" ><?php echo $this->answers[1]; ?></span></td>
+			</tr>
+			<tr>
+				<td><span id="<?php echo $this->answers[2]; ?>" class="answer" ><?php echo $this->answers[3]; ?></span></td>
+			</tr>
+			<tr>
+				<td><span id="<?php echo $this->answers[4]; ?>" class="answer" ><?php echo $this->answers[5]; ?></span></td>
+			</tr>
+			<tr>
+				<td><span id="<?php echo $this->answers[6]; ?>" class="answer" ><?php echo $this->answers[7]; ?></span></td>
+			</tr>
+		</table>
+		<?php else: ?>
+		<table id="questions">
+			<tr>
+				<th><?php echo $this->question['question']; ?></th>
+			</tr>
+			<tr>
+				<td rowspan="5"><img height="150px" src="<?php echo $this->baseUrl . '/img/' . $this->question['image'] . '.jpg'; ?>" alt="fragebild" /></td>
+			</tr>
+			<tr>
+				<td>
+					<input type="text" id="input_answer" />
+					<br />
+					<br />
+					<span id="send_answer">Beantworten</span>
+				</td>
+			</tr>
+		</table>
+		<?php endif; ?>
+		
+
+		<div id="answer_score">
+		
+		<div style="width: 60px;" id="countdown"></div>
+
+		<br />
+		<br />
+		<br />
+		<br />
+		
+		<h3>Statistik</h3>
+		<table id="statistik">
+			<tr>
+				<td>Beantwortete Fragen</td>
+				<td><?php echo $this->playedQuestions; ?></td>
+			</tr>
+			<tr>
+				<td>Richtige Antworten</td>
+				<td><?php echo $this->rightAnswers; ?></td>
+			</tr>
+			<tr>
+				<td>Falsche Antworten</td>
+				<td><?php echo $this->wrongAnswers; ?></td>
+			</tr>
+		</table>
+		</div>
+
 	<?php else: ?>
-		<input type="text" id="input_answer" />
-		<span id="send_answer">Beantworten</span>
+
+		<p>Die Frage existiert nicht.</p>
+		<p>Error: <?php echo $this->errorId; ?>|<?php echo $this->className; ?></p>
+		<a href="<?php echo $this->baseUrl . '/game'; ?>">Nächste Frage</a>
+
 	<?php endif; ?>
-
-	<?php echo $this->playedQuestions; ?>
-	<?php echo $this->rightAnswers; ?>
-	<?php echo $this->wrongAnswers; ?>
-	</div>
-
-<?php else: ?>
-
-	<p>Die Frage existiert nicht.</p>
-	<p>Error: <?php echo $this->errorId; ?>|<?php echo $this->className; ?></p>
-	<a href="<?php echo $this->baseUrl . '/game'; ?>">Nächste Frage</a>
-
-<?php endif; ?>
+</div>

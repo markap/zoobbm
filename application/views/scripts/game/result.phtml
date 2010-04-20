@@ -1,6 +1,49 @@
-<h1>Ihr Ergebnis</h1>
+<div id="game">
+
+	<h1>Ihr Ergebnis</h1>
 
 
-<?php echo $this->playedQuestions; ?>
-<?php echo $this->rightAnswers; ?>
-<?php echo $this->wrongAnswers; ?>
+	<h3>Statistik</h3>
+	<table id="statistik">
+		<tr>
+			<td>Beantwortete Fragen</td>
+			<td><?php echo $this->playedQuestions; ?></td>
+		</tr>
+		<tr>
+			<td>Richtige Antworten</td>
+			<td><?php echo $this->rightAnswers; ?></td>
+		</tr>
+		<tr>
+			<td>Falsche Antworten</td>
+			<td><?php echo $this->wrongAnswers; ?></td>
+		</tr>
+	</table>
+	
+	<br />
+	<br />
+<h3>
+	<?php
+
+		switch ($this->rightAnswers) {
+			case 0:
+				echo "Du läufst wohl mit geschlossenen Augen durch den Zoo";
+				break;
+			case 1:
+				echo "Du hast den Zoo schon einmal besucht";
+				break;
+			case 2:
+				echo "Du magst Tiere";
+				break;
+			case 3:
+				echo "Gut gemacht!";
+				break;
+			case 4:
+				echo "Fast alles richtig. Sehr gute Leistung!";
+				break;
+			case 5:
+				echo "Alle Antworten richtig. Du könntest Zoo-Führer werden!";
+				break;
+		}
+	?>
+</h3>
+</div>
