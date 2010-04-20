@@ -26,8 +26,19 @@ class Model_DbTable_Visit extends Zend_Db_Table_Abstract {
 		return $result->toArray();
 	}
 
+
+	/**
+	 * returns the visits for a visitid
+	 * 
+	 * @param string $visitid
+	 * @return string
+	 */
 	public function getVisit($visitid) {
-		$result = $this->fetchRow('vid = ' . $visitid)->toArray();
+		$result = $this->fetchRow('vid = ' . $visitid);
+		if ($result === null) {
+			return '';
+		}
+		$result = $result->toArray();
 		return $result['name'];
 	}
 }

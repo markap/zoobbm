@@ -26,8 +26,19 @@ class Model_DbTable_Type extends Zend_Db_Table_Abstract {
 		return $result->toArray();
 	}
 
+
+	/**
+	 * returns the type for a typeid
+	 * 
+	 * @param string $typeid
+	 * @return string
+	 */
 	public function getType($typeid) {
-		$result = $this->fetchRow('tid = ' . $typeid)->toArray();
+		$result = $this->fetchRow('tid = ' . $typeid);
+		if ($result === null) {
+			return '';
+		}
+		$result = $result->toArray();
 		return $result['name'];
 	}
 

@@ -43,14 +43,11 @@ class Model_FindFriend {
 
 
 	/**
-	 * @return array $result
+	 * splits the name and searches it in db
+	 *
+	 * @return $result
 	 */
-	public function getFriends() {
-		$this->checkName();
-		$this->checkAnimal();
-	}
-
-	protected function checkName() {
+	public function checkName() {
 		if (!$this->name) {
 			return null;
 		}
@@ -58,16 +55,7 @@ class Model_FindFriend {
 		$partTwo = substr($this->name, 0, strpos($this->name, ' ')); 
 		$user    = new Model_DbTable_User();
 		$result  = $user->findUser($partOne, $partTwo);
-echo "<pre>";
-var_dump($result);
+		return $result;
 	}
-
-
-	protected function checkAnimal() {
-		if (empty($this->animal)) {
-			return null;
-		}	
-		// einfaches auslesen ...
-	}
-
 }
+

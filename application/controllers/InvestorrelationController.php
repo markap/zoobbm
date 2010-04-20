@@ -15,6 +15,10 @@ class InvestorrelationController extends Zend_Controller_Action {
         // just render view 
     }
 
+
+	/**
+	 * show charts
+	 */
     public function getturnoverAction() {
 
 	    $this->_helper->layout->disableLayout();
@@ -69,6 +73,10 @@ class InvestorrelationController extends Zend_Controller_Action {
         // just render view 
     }
 
+
+	/**
+	 * show pie charts
+ 	 */
 	public function getvisitorAction() {
 		$this->_helper->layout->disableLayout();
                         
