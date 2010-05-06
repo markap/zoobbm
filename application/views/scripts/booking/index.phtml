@@ -7,16 +7,11 @@
 <script type="text/javascript" src="/js/booking.js"></script>
 
 <div class="booking">
-
-	<br />
-	<br />
 	<h1 align="center">Ticketbuchung</h1>
-	<br />
-	<br />
 	<br />
 
 	<?php if (!isset($this->content)): ?>
-	<p>Unser Ticket-Rechner zeigt Ihnen automatisch den günstigsten Tarif an. Zum Beispiel  wird Ihnen ab einer Anzahl von 10 Personen automatisch der Gruppentarif gebucht, ohne dass Sie dies angeben müssen. Eine Übersicht über unsere Preise finden Sie <a href="<?php echo $this->baseUrl . '/booking/prices'; ?>">hier</a>.</p>
+	<p>Unser Ticket-Rechner zeigt Ihnen automatisch den günstigsten Tarif an. Zum Beispiel  wird Ihnen ab einer Anzahl von 10 Personen automatisch der Gruppentarif gebucht, ohne dass Sie dies angeben müssen. Eine Übersicht über unsere Preise finden Sie <a href="http://phptests.localhost/xml/liste.xml">hier</a>.</p>
 
 	<?php endif; ?>
 
@@ -26,13 +21,13 @@
 		</div>
 		<?php endif; ?>
 		<?php if (isset($this->content)): ?>
-			<p>Danke für Ihre Buchung! <br /> Ihre Bestätigung wird Ihnen per Email zugesendet. <br /> Wir freuen uns auf Ihren Besuch.</p>
-			<br />
+			<div class="success">
+				<p>Danke für Ihre Buchung! <br /> Ihre Bestätigung wird Ihnen per Email zugesendet. <br /> Wir freuen uns auf Ihren Besuch.</p>
+			</div>
 			<hr />
-			<br />
 			<h2>Ticketinformationen</h2>
 			<?php echo $this->content['date']['startdate'];?> 
-			<?php echo (isset($this->content['date']['enddate'])) ? ' - ' . $this->content['date']['enddate'] :""; ?>
+			<?php echo ($this->content['date']['enddate']) ? ' - ' . $this->content['date']['enddate'] :""; ?>
 			<br />
 			Tarif: <?php echo $this->content['tarif'];?>
 			<br />
@@ -43,28 +38,23 @@
 						<th>Anzahl</th>
 						<th>Gesamtpreis</th>
 					</tr>
-					<!-- <tr>
-						 <td>Datum:</td>
-						<td>
-						</td>
-					</tr> -->
 
 						<td>Erwachsene:</td>
 						<td><?php echo $this->content['adult'][0]; ?></td>
-						<td><?php echo $this->content['adult'][1]; ?></td>
+						<td><?php echo $this->content['adult'][1]; ?>€</td>
 					</tr>
 						<td>Kinder:</td>
 						<td><?php echo $this->content['child'][0]; ?></td>
-						<td><?php echo $this->content['child'][1]; ?></td>
+						<td><?php echo $this->content['child'][1]; ?>€</td>
 					<tr>
 					</tr>
 						<td>Studenten:</td>
 						<td><?php echo $this->content['student'][0]; ?></td>
-						<td><?php echo $this->content['student'][1]; ?></td>
+						<td><?php echo $this->content['student'][1]; ?>€</td>
 					<tr>
 						<td>Summe:</td>
 						<td></td>
-						<td><?php echo $this->content['sum']; ?></td>
+						<td><?php echo $this->content['sum']; ?>€</td>
 					</tr>
 				</table>
 				
@@ -72,8 +62,8 @@
 			<br />
 			<br />
 			
-			<?php var_dump($this->content); ?>
-			<a href="<?php echo $this->baseUrl . '/pdf/' . $this->ticketName; ?>">Ticket downloaden</a>	
+			<?php //var_dump($this->content); ?>
+			<a href="<?php echo $this->baseUrl . '/pdf/' . $this->ticketName; ?>" id="button">Ticket downloaden</a>	
 		<?php endif; ?>
 </div>
 <?php echo $this->form; ?>

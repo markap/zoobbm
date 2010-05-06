@@ -56,12 +56,12 @@ class Model_Validation_RegisterValidation {
 
 		$isFirstNameShort  = $lengthValidation->isValid($data['firstname']);
 		if ($isFirstNameShort === false) {
-			$errors[] = 'long_first';
+			$errors[] = 'Zu langer Vorname';
 		}
 
 		$isLastNameShort   = $lengthValidation->isValid($data['lastname']);
 		if ($isLastNameShort === false) {
-			$errors[] = 'long_last';
+			$errors[] = 'Zu langer Nachname';
 		}
 
 		$this->mergeErrors($errors);
@@ -85,18 +85,18 @@ class Model_Validation_RegisterValidation {
 
 		$isUserShort = $lengthValidation->isValid($data['user']);		
 		if ($isUserShort === false) {
-			$errors[] = 'long_user';
+			$errors[] = 'Zu langer Username';
 		}
 		
 		$spaces 	= strpos($data['user'], ' ');
 		if ($spaces !== false) {
-			$errors[] = 'wrong_user';
+			$errors[] = 'Kein gültiger Username';
 		}
 
 		$uniqueUserValidate = new Zend_Validate_Db_RecordExists('user', 'username');
 		$existsUser = $uniqueUserValidate->isValid($data['user']);
 		if ($existsUser === true) {
-			$errors[] = 'user_exists';
+			$errors[] = 'Username existiert bereits';
 		}
 
 		$this->mergeErrors($errors);
@@ -120,16 +120,16 @@ class Model_Validation_RegisterValidation {
 
 		$isMailValid  = $mailValidate->isValid($data['mail']);
 		if ($isMailValid === false) {
-			$errors[] = 'wrong_mail';
+			$errors[] = 'Keine gültige Emailadresse';
 		}
 
 		$isMailRepeatValid = $mailValidate->isValid($data['mail_repeat']);
 		if ($isMailRepeatValid === false) {
-			$errors[] = 'wrong_mailrepeat';
+			$errors[] = 'Falsche Emailwiederholung';
 		}
 
 		if ($data['mail'] !== $data['mail_repeat']) {
-			$errors[] = 'different_mail';
+			$errors[] = 'Falsche Emailwiederholung';
 		}
 
 		$this->mergeErrors($errors);
@@ -150,7 +150,7 @@ class Model_Validation_RegisterValidation {
 		$uniqueMailValidate = new Zend_Validate_Db_RecordExists('user', 'mail');
 		$existsMail = $uniqueMailValidate->isValid($data['mail']);
 		if ($existsMail === true) {
-			$errors[] = 'mail_exists';
+			$errors[] = 'Email existiert bereits';
 		}
 
 		$this->mergeErrors($errors);
@@ -175,11 +175,11 @@ class Model_Validation_RegisterValidation {
 		$validPasswordPattern =  "/(?=^.{5,35}$)(?![.\n])(?=.*[A-Z]).*$/i";
 		$isValidPassword = preg_match($validPasswordPattern, $data['password']);
 		if ($isValidPassword === 0) {
-			$errors[] = 'wrong_pass';
+			$errors[] = 'Passwort ist nicht gültig';
 		}
 
 		if ($data['password'] !== $data['password_repeat']) {
-			$errors[] = 'different_pass';
+			$errors[] = 'Passwortwhd falsch';
 		}
 
 		$this->mergeErrors($errors);

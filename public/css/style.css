@@ -3,6 +3,9 @@
  * Diese Datei ist das Haupt Stylesheet
  */
 
+#html {
+}
+
 #container {
 	width: 900px;
 	margin: auto;
@@ -10,8 +13,8 @@
 
 #header {
 	width: 900px;
-	height: 150px;
-	background: #3d301d url(/img/header.jpg);
+	height: 190px;
+	background: #C2DBA5 url(/img/header.png);
 }
 
 #header td.theme-green {
@@ -38,29 +41,28 @@
 #login {
 	width: 900px;
 	height: 30px;
-	background-color: #FFFFFF;
+	background: transparent url(/img/login-head.jpg);
 	border-bottom: 2px solid #003900;
-	padding-top:10px;
 }
 
 #login1 {
 	float:left;
-	width: 500px;
+	width: 450px;
 	height: 30px;
-	background-color: #FFFFFF;
+	background-color: transparent;
 }
 
 #login2 {
 	float:left;
-	width: 400px;
+	width: 450px;
 	height: 30px;
-	background-color: #FFFFFF;
+	background-color: transparent;
 }
 
 
 #login a {
 	font-weight:bold;
-	background:#FFFFFF;
+	background:transparent;
 	color:#003900;
 	padding:9px 25px 10px 25px;
 }
@@ -68,9 +70,12 @@
 
 #login a:hover {
 	font-weight:bold;
-	color:#003900;
 	background:#E4FDC7;
 	padding:10px 25px 10px 25px;
+	filter:alpha(opacity=50);
+	-moz-opacity:0.5;
+	-khtml-opacity: 0.5;
+	opacity: 0.5;
 }
 
 	
@@ -88,11 +93,14 @@
 }
 
 #navi h3 {
-	width:140px;
-	background:#F5FED8;
+	width:145px;
+	background:url(/img/elephant.png);
 	font-size:20px;
-	padding-left:20px;
+	padding-left:15px;
 	margin-bottom:0px;
+	padding-top:8px;
+	
+	
 }
 
 
@@ -113,25 +121,26 @@
 }
 
 #content {
-	width: 655px;
-	height: 760px;
+	float:left;
+	height:960px;
+	width:658px;
 	background:#FFFFFF;
-	padding:15px;
-    margin-left: 210px;
-	margin-right:500px;
+	padding:20px;
 }
 
 #footer {
 	clear: both;
-	background-color: #FFFFFF;
+	background: #C2DBA5 url(/img/footer.png);
 	height: 30px;
 	width:900px;
-	border-top:1px solid #003900;
+	color:#FFFFFF;
+	font-weight:bold;
+	font-size:110%;
 }
 
 body {
 	font-family:arial,helvetica,sans-serif;
-	background:#FFFFFF;
+	background:#C2DBA5 url(/img/bg.jpg) repeat-x;
 	color:#003900;
 }
 
@@ -142,6 +151,7 @@ h1 {
 a {
 	color:#003900;
 	text-decoration:none;
+	font-weight:bold;
 }
 
 a:hover {
@@ -183,6 +193,16 @@ h3 {
 #profile a {
 	font-weight:bold;
 	background-color:#C2DBA5;
+}
+
+#watchprofile {
+	border:thin solid #003900;
+	font-family:arial,helvetica,sans-serif;
+	font-size:15px;
+	color:#000000 !important;
+	background:#d4d0c8 !important;
+	font-weight:normal !important;
+	padding:3px;
 }
 
 #messages a {
@@ -255,6 +275,20 @@ h3 {
 	font-weight:bold;
 }
 
+.booking span {
+	border:thin solid #003900;
+	font-family:arial,helvetica,sans-serif;
+	font-size:15px;
+	color:#000000;
+	background:#d4d0c8;
+	font-weight:normal;
+	padding:3px;
+}
+
+.booking span:hover {
+	cursor:pointer;
+}
+
 
 #amazon {
 	display:block;
@@ -316,6 +350,7 @@ h3 {
 
 #showmessage th {
 	background:#C2DBA5;
+	width:50%;
 }
 #showmessage h3 {
 	background:#C2DBA5;
@@ -331,7 +366,7 @@ h3 {
 #game a {
 	font-weight:bold;
 	width:200px;
-	margin-left:80%;
+	margin-left:70%;
 }
 
 #game h3 {
@@ -384,4 +419,59 @@ h3 {
 #countdown {
 	width:60px;
 	height:55px;
+}
+
+#button {
+	border:thin solid #003900;
+	font-family:arial,helvetica,sans-serif;
+	font-size:15px;
+	color:#000000;
+	background:#d4d0c8;
+	font-weight:normal;
+	padding:3px;
+}
+
+/*#button:hover {
+	background:#dee8d4;
+}*/
+
+#link-label {
+	font-size:90%;
+	background:#D4D0C8;
+	color:#000000;
+	width:113px;
+	border:1px solid #003900;
+	padding: 2px 4px 2px 4px;
+	margin-top:5px;
+}
+
+#main_page table {
+	margin:0px auto;
+}
+
+#main_page th {
+	background:#C2DBA5;
+	padding:2px;
+	text-align:left;
+}
+
+#main_page td{
+	background:#eff9e5;
+}
+
+#td1 {
+	width:400px;
+}
+
+#blank {
+	padding-left:300px;
+}
+
+#blank a {
+	font-weight:bold;
+}
+
+#privmessage {
+	width:100% !important;
+	background:none !important;
 }

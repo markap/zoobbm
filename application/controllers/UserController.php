@@ -195,7 +195,7 @@ class UserController extends Zend_Controller_Action {
 		$typeDb  = new Model_DbTable_Type();
 		$profile['visit'] = $visitDb->getVisit($profile['visit']);
 		$profile['type'] = $typeDb->getType($profile['type']);
-		$profile['image'] = ($profile['image'] !== "") ? $profile['image'] : 'default';
+		$profile['image'] = ($profile['image'] !== "") ? $profile['image'] : 'default.jpg';
 
 		// animals
 		$hasAnimalDb = new Model_DbTable_HasAnimal();

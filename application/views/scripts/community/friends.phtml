@@ -1,18 +1,18 @@
 <div id="profile">
 
-	<br />
-	<br />
-	<br />
+
 	<h1><?php echo $this->fullname; ?>'s Freunde</h1>
 	<br />
 	<br />
 	<br />
 	
-	 <?php var_dump($this->friendsProfile); ?> 
+	 <?php //var_dump($this->friendsProfile); ?> 
 	
 	<?php if (!empty($this->friendsProfile)): ?>
 	
 	<h3><?php echo $this->fullname; ?> hat <?php echo count($this->friendsProfile); ?> Freund(e)</h3>
+	<br />
+	<br />
 		<table>
 			<colgroup>
 				<col class="tableleft">
@@ -21,7 +21,8 @@
 			</colgroup>
 			<tr>
 				<td rowspan="6">
-				<img src="<?php echo $this->baseUrl."/img/uploads/".$friendsProfile['profile']['image']; ?>" width="100px"> </td>
+				<?php $image = ($friendsProfile['profile']['image'] === null) ? 'default' : $friendsProfile['profile']['image']; ?>
+				<img src="<?php echo $this->baseUrl."/img/uploads/".$image . ".jpg"; ?>" width="100px" /> </td>
 
 			</tr>
 			<tr>

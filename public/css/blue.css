@@ -3,6 +3,9 @@
  * Diese Datei ist das Haupt Stylesheet
  */
 
+#html {
+}
+
 #container {
 	width: 900px;
 	margin: auto;
@@ -10,8 +13,8 @@
 
 #header {
 	width: 900px;
-	height: 150px;
-	background: #3d301d url(/img/header.jpg);
+	height: 190px;
+	background: #CECEFF url(/img/header.png);
 }
 
 #header td.theme-green {
@@ -38,39 +41,41 @@
 #login {
 	width: 900px;
 	height: 30px;
-	background-color: #FFFFFF;
-	border-bottom: 2px solid #003900;
-	padding-top:10px;
+	background: transparent url(/img/login-head.jpg);
+	border-bottom: 2px solid #000088;
 }
 
 #login1 {
 	float:left;
-	width: 500px;
+	width: 450px;
 	height: 30px;
-	background-color: #FFFFFF;
+	background-color: transparent;
 }
 
 #login2 {
 	float:left;
-	width: 400px;
+	width: 450px;
 	height: 30px;
-	background-color: #FFFFFF;
+	background-color: transparent;
 }
 
 
 #login a {
 	font-weight:bold;
-	background:#FFFFFF;
-	color:#003900;
+	background:transparent;
+	color:#000088;
 	padding:9px 25px 10px 25px;
 }
 
 
 #login a:hover {
 	font-weight:bold;
-	color:#000099;
-	background:#b1c1fd;
+	background:#CCDDFF;
 	padding:10px 25px 10px 25px;
+	filter:alpha(opacity=50);
+	-moz-opacity:0.5;
+	-khtml-opacity: 0.5;
+	opacity: 0.5;
 }
 
 	
@@ -78,8 +83,8 @@
 	float: left;
 	width: 200px;
 	height: 1000px;
-	background-color: #ced2ed;
-	border-right: 1px solid #003900;
+	background-color: #CECEFF;
+	border-right: 1px solid #000088;
 }
 
 #navi ul {
@@ -88,60 +93,69 @@
 }
 
 #navi h3 {
-	width:140px;
-	background:#b1c1fd;
+	width:145px;
+	background:url(/img/elephant.png);
 	font-size:20px;
-	padding-left:20px;
+	padding-left:15px;
 	margin-bottom:0px;
+	padding-top:8px;
+	
+	
 }
 
 
 
 #navi a {
 	display:block;
-	color:#000000;
 	width:185px;
-	background:#ced2ed;
+	color:#000088;
+	background:#CECEFF;
 	text-decoration:none;
 	padding:4px 0 0 15px;
 	font-weight:bold;
 }
 
 #navi a:hover {
-	color:#000088;
-	background-color:#90a0dc;	
+	color:#4444CC;
+	background-color:#F5FED8;	
 }
 
 #content {
-	width: 655px;
-	height: 760px;
+	float:left;
+	height:960px;
+	width:658px;
 	background:#FFFFFF;
-	padding:15px;
-    margin-left: 210px;
-	margin-right:500px;
+	padding:20px;
 }
 
 #footer {
 	clear: both;
-	background-color: #FFFFFF;
+	background: #CECEFF url(/img/footer.png);
 	height: 30px;
 	width:900px;
-	border-top:1px solid #003900;
+	color:#FFFFFF;
+	font-weight:bold;
+	font-size:110%;
 }
 
 body {
 	font-family:arial,helvetica,sans-serif;
-	background:#FFFFFF;
-	color:#003900;
+	background:#CECEFF url(/img/bg.jpg) repeat-x;
+	color:#000088;
+}
+
+h1 {
+	text-align:center;
 }
 
 a {
-	color:#003900;
+	color:#000088;
 	text-decoration:none;
+	font-weight:bold;
 }
 
 a:hover {
-	color:#000099;
+	color:#6666AA;
 	text-decoration:none;
 }
 
@@ -161,12 +175,12 @@ h3 {
 #profile table {
 	border:0px;
 	width:670px;
-	background:#ced2ed;
+	background:#DDEFDD;
 	text-align:left;
 }
 
 #profile h3 {
-	background:#B1C1FD;
+	background:#CECEFF;
 	width:665px;
 	margin:0px;
 	padding-left:5px;
@@ -178,17 +192,12 @@ h3 {
 
 #profile a {
 	font-weight:bold;
-	background-color:#B1C1FD;
-	color:#000000;
-}
-
-#profile a:hover {
-	color:#000099;
+	background-color:#CECEFF;
 }
 
 #messages a {
 	font-weight:normal;
-	background-color:#CED2ED;
+	background-color:#DDEFDD;
 }
 
 #normlinks a {
@@ -211,7 +220,7 @@ h3 {
 #tablelink a, img {
 	text-decoration:none;
 	border:0px;
-	background:#CED2ED;
+	background:#DDEFDD;
 }
 
 .error  {
@@ -247,11 +256,212 @@ h3 {
 .booking table {
 	border:0px;
 	width:670px;
-	background:#eff9e5;
+	background:#DDEFDD;
 	text-align:left;
 }
 .booking th {
 	padding-left:3px;
-	background:#C2DBA5;
+	background:#CECEFF;
 	font-weight:bold;
+}
+
+.booking span {
+	display: block;
+	border:1px solid #000088;
+	padding:3px;
+	font-weight:bold;
+	text-align:center;
+}
+
+.booking span:hover {
+	cursor:pointer;
+	background:#dee8d4;
+}
+
+
+#amazon {
+	display:block;
+	width:670px;
+	height:650px;
+	border: 0px solid #202020;
+}
+
+#amazon img {
+	height:80px;
+}
+
+#vote1 {
+	font-weight:bold;
+	text-align:center;
+	height:20px;
+	background-color:#FF0000;
+}
+
+#vote2 {
+	font-weight:bold;
+	text-align:center;
+	height:20px;
+	background-color:#00FF00;
+}
+
+#vote3 {
+	font-weight:bold;
+	text-align:center;
+	height:20px;
+	background-color:#0000FF;
+}
+
+#vote4 {
+	font-weight:bold;
+	text-align:center;
+	height:20px;
+	background-color:#884488;
+}
+
+
+
+#showmessage {
+	width:670px;
+	height:650px;
+	border: 0px solid #202020;
+}
+
+#showmessage table {
+	border:0px;
+	width:400px;
+	background:#DDEFDD;
+	text-align:left;
+}
+
+#showmessage #date {
+	font-size:80%;
+}
+
+#showmessage th {
+	background:#CECEFF;
+	width:50%;
+}
+#showmessage h3 {
+	background:#CECEFF;
+	width:395px;
+	margin:0px;
+	padding-left:5px;
+}
+#showmessage h1 {
+	margin:0px;
+}
+
+
+#game a {
+	font-weight:bold;
+	width:200px;
+	margin-left:70%;
+}
+
+#game h3 {
+	background:#CECEFF;
+	width:400px;
+	margin:0 auto;
+}
+
+#game .answer {
+	border:1px solid #000088;
+	width:300px;
+	padding:3px;
+	cursor:pointer;
+}
+
+#game .answer:hover {
+	background:#dee8d4;
+}
+
+#send_answer {
+	border:1px solid #000088;
+	padding:3px;
+	cursor:pointer;
+}
+
+#send_answer:hover {
+	background:#dee8d4;
+}
+
+#statistik {
+	margin:0 auto;
+	width:400px;
+	background:#DDEFDD;
+}
+
+#questions {
+	width:500px;
+	background:#DDEFDD;
+	padding:5px;
+}
+
+#questions th {
+	width:200px;
+}
+
+#questions td {
+	padding:5px;
+}
+
+#countdown {
+	width:60px;
+	height:55px;
+}
+
+#button {
+	border:1px solid #000088;
+	padding:3px;
+	font-weight:bold;
+	text-align:center;
+}
+
+#button:hover {
+	color:#000088;
+}
+
+/*#button:hover {
+	background:#dee8d4;
+}*/
+
+#link-label {
+	font-size:90%;
+	background:#D4D0C8;
+	color:#000000;
+	width:113px;
+	border:1px solid #000088;
+	padding: 2px 4px 2px 4px;
+	margin-top:5px;
+}
+
+#main_page table {
+	margin:0px auto;
+}
+
+#main_page th {
+	background:#CECEFF;
+	padding:2px;
+	text-align:left;
+}
+
+#main_page td{
+	background:#DDEFDD;
+}
+
+#td1 {
+	width:400px;
+}
+
+#blank {
+	padding-left:300px;
+}
+
+#blank a {
+	font-weight:bold;
+}
+
+#privmessage {
+	width:100% !important;
+	background:none !important;
 }

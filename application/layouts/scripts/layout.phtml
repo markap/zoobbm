@@ -61,12 +61,14 @@
 			} else {
 				$link = "/user/login";	
 				$text = "Login";
+				echo '<a href="' . $this->baseUrl() . '/user/register">Registrieren</a>';
 			}
 			echo '<a href="' . $this->baseUrl().$link; 
 			?>">
 		<?php echo $text ?></a>
 		</div>
 	</div>
+	
 	<div id="navi">
 		<br />
 		<br />
@@ -82,16 +84,15 @@
 		<h3>Interaktiv</h3>
 		<ul>
 			<li><a href="<?php echo $this->baseUrl . '/webcam'; ?>">Zoo Webcam</a></li>
-			<li><a href="<?php echo $this->baseUrl . '/survey'; ?>">Umfrage</a></li>
-			<li><a href="<?php echo $this->baseUrl . '/game'; ?>">Spiel</a></li>
-			
+			<li><a href="<?php echo $this->baseUrl . '/survey'; ?>">Umfrage</a></li>			
+			<li><a href="<?php echo $this->baseUrl . '/guestbook/rundgang'; ?>">Rundgang</a></li>			
 			<br />
 			<br />
 		</ul>
 		<h3>Community</h3>
 		<ul>
 			<li><a href="<?php echo $this->baseUrl . '/community'; ?>">Die Zoo-Community</a></li>
-			<li><a href="<?php echo $this->baseUrl . '/'; ?>">G�stebuch</a></li>
+			<li><a href="<?php echo $this->baseUrl . '/guestbook'; ?>">G&auml;stebuch</a></li>
 			<br />
 			<br />
 		</ul>
@@ -127,7 +128,7 @@
 	</div>
 
 	<div id="footer" align="right">
-		Hier kommt irgendein Text hin
+		&copy; Zoo-Mannheim 2010
 	</div>
 
   </body>

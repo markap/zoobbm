@@ -9,9 +9,6 @@
 <h1>Adressdaten bearbeiten</h1>
 <br />
 
-
-
-	
 <?php if (!empty($this->errors)): ?>
 
 	<div class="error">
@@ -22,17 +19,17 @@
 		</ul>
 	</div>
 <?php endif; ?>
-
-	
-<?php echo $this->form; ?>
-
 <?php if ($this->success === true): ?>
 	<div class="success">
 			<p>Änderungen gespeichert.</p>
 	</div>
 <?php endif; ?>
+	
+<?php echo $this->form; ?>
+
+
 
 <br />
 <br />
 
-<a href="<?php echo $this->baseUrl . '/user/profile'; ?>">Zurück zum Profil</a>
+<a href="<?php echo $this->baseUrl . '/user/profile'; ?>"><< Zurück zum Profil</a>

@@ -1,11 +1,8 @@
 <div id="profile">
 
-	<?php var_dump($this->user); ?><br />
-	<?php var_dump($this->profile); ?>
-	<br />
-	<br />
+	<?php //var_dump($this->user); ?><br />
+	<?php //var_dump($this->profile); ?>
 	<h1><?php echo $this->user['username'] ?>' Profil</h1>
-	<br />
 	<br />
 	<br />
 	<h3><?php echo $this->user['username'] ?></h3>
@@ -16,8 +13,7 @@
 			<col class="tableright">
 		</colgroup>
 		<tr>
-		<?php echo $this->profile['image']; ?>
-			<td rowspan="5" class="tableleft"><img width="100px" src="<?php echo '/img/' . $this->profile['image']; ?>"></td>
+			<td rowspan="5" class="tableleft"><img width="100px" src="<?php echo '/img/uploads/' . $this->profile['image']; ?>"></td>
 			<td>Vorname</td>
 			<td><?php echo $this->user['firstname'] ?></td>
 		</tr>

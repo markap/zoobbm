@@ -31,10 +31,10 @@
 			</tr>
 			<tr>
 				<td>E-Mail</td>
-				<td><?php echo baseUrl.$userData['user']['mail']; ?></td>
+				<td><?php echo $userData['user']['mail']; ?></td>
 			</tr>
 			<tr>
-				<td><a href="<?php echo $this->baseUrl. '/community/profile/user/'. $userData['user']['userid']; ?>"><?php echo 'Profil anschauen'; ?></a></td>
+				<td><a href="<?php echo $this->baseUrl. '/community/profile/user/'. $userData['user']['userid']; ?>" id="watchprofile"><?php echo 'Profil anschauen'; ?></a></td>
 		</table>
 		<br />
 		<br />

@@ -1,18 +1,44 @@
-<?php if (!empty($this->messages)): ?>
-    <?php foreach($this->messages as $message): ?>
-		<?php echo $message['date']; ?><br />
-		<?php echo $message['fullname']; ?><br />
-		<?php echo $message['subject']; ?><br />
-		<?php echo $message['message']; ?>
-		<a href="
-		<?php echo $this->baseUrl 
-					. '/community/message/to/'
-					. $message['to']['userid']; ?>">
-		Weitere Nachricht an <?php echo $message['fullname']; ?> schicken</a>
-		<hr />
-    <?php endforeach; ?>
-<?php endif; ?>
+<div id="profile">
+	<h1>Gesendete Nachrichten</h1>
+	<br />
+	<br />
+	<?php if (!empty($this->messages)): ?>
+		
+		<?php foreach($this->messages as $message): ?>
+		<br />
+		<br />
 
+		<table>
+			<tr>
+				<th><?php echo $message['fullname']; ?></th>
+				<th><?php echo $message['subject']; ?></th>
+			</tr>
+			<tr>
+				<td id="date"><?php echo $message['date']; ?></td>
+			</tr>
+			<tr>
+				<td><?php echo $message['message']; ?></td>
+			</tr>
+			<tr>
+				<td>
+					<a href="<?php echo $this->baseUrl . '/community/message/to/'. $message['to']['userid']; ?>">Weitere Nachricht an <?php echo $message['fullname']; ?> schicken</a>
+				</td>
+			</tr>
+		</table>
+		<?php endforeach; ?>
 
-<a href="<?php echo $this->baseUrl . '/user/profile'; ?>">Zurück zum Profil</a>
-
+		<?php else: ?>
+			<div class="error">
+				<table id="privmessage">
+					<tr>
+						<th>Keine Nachrichten versendet</th>
+					</tr>
+				</table>	
+			</div>
+	<?php endif; ?>
+	<br />
+	<br />
+	<br />
+	
+	<a id="privmessage" href="<?php echo $this->baseUrl . '/user/profile'; ?>"><< Zurück zum Profil</a>
+</div>

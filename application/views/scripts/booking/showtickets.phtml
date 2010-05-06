@@ -1,32 +1,57 @@
-<script type="text/javascript" src="/js/3rdParty/jQuery.js"></script>
-<script type="text/javascript" src="/js/showtickets.js"></script>
+<div class="booking">
+	<script type="text/javascript" src="/js/3rdParty/jQuery.js"></script>
+	<script type="text/javascript" src="/js/showtickets.js"></script>
 
-<br />
-<br />
-<h1 align="center">Ihre Ticketbuchungen</h1>
-<br />
-<br />
-<br />
-<div id="storno"></div>
+	<h1 align="center">Ihre Ticketbuchungen</h1>
+	<br />
 
-<?php if (!empty($this->tickets)): ?>
-<h2>Zukünftige Tickets</h2>
-    <?php foreach($this->tickets as $ticket): ?>
-		<div class="ticket">
-       <?php var_dump($ticket); ?>
-	   <a href="<?php echo $this->baseUrl . '/pdf/booking' . $ticket['tid'] . '.pdf'; ?>">Ticket zum download</a>
-		<span class="delete" id="<?php echo $ticket['tid']; ?>">Stornieren</span>
-		<hr />
-		</div>
-    <?php endforeach; ?>
-<?php endif; ?>
+	<div id="storno"></div>
 
-<?php if (!empty($this->oldTickets)): ?>
-<h2>Abgelaufene Tickets</h2>
-    <?php foreach($this->oldTickets as $oldTicket): ?>
-       <?php var_dump($oldTicket); ?>
-	   <a href="<?php echo $this->baseUrl . '/pdf/booking' . $oldTicket['tid'] . '.pdf'; ?>">Ticket zum download</a>
-		<hr />
-    <?php endforeach; ?>
-<?php endif; ?>
+	<?php if (!empty($this->tickets)): ?>
+	<h2>Zukünftige Tickets</h2>
+		<?php foreach($this->tickets as $ticket): ?>
 
+			<div class="ticket">
+			<br />
+				<table style="width:400px">
+					<tr>
+						<th>
+							<?php echo $ticket['starttime']?> 
+							<?php echo (isset($ticket['endtime'])) ? ' - ' . $ticket['endtime'] :""; ?>
+						</th>
+						<th>Anzahl</th>
+					</tr>
+
+						<td>Erwachsene:</td>
+						<td><?php echo $ticket['adults']; ?></td>
+					</tr>
+						<td>Kinder:</td>
+						<td><?php echo $ticket['childs']; ?></td>
+					</tr>
+					<tr>
+						<td>Studenten:</td>
+						<td><?php echo $ticket['students']; ?></td>
+					</tr>
+					<tr>
+						<td><a id="button" href="<?php echo $this->baseUrl . '/pdf/booking' . $ticket['tid'] . '.pdf'; ?>">Ticket zum download</a></td>
+						<td><span class="delete" id="<?php echo $ticket['tid']; ?>">Stornieren</span></td>
+					</tr>
+					
+				</table>
+		   <?php //var_dump($ticket); ?>
+
+			<hr />
+			</div>
+		<?php endforeach; ?>
+	<?php endif; ?>
+
+	<?php if (!empty($this->oldTickets)): ?>
+	<h3>Abgelaufene Tickets</h3>
+		<?php foreach($this->oldTickets as $oldTicket): ?>
+		   <?php //var_dump($oldTicket); ?>
+		   <a href="<?php echo $this->baseUrl . '/pdf/booking' . $oldTicket['tid'] . '.pdf'; ?>">Ticket zum download</a>
+			<hr />
+		<?php endforeach; ?>
+	<?php endif; ?>
+
+</div>

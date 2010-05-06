@@ -112,6 +112,7 @@ class Model_DbTable_HasAnimal extends Zend_Db_Table_Abstract {
 		$animals 	= array();
 		foreach ($animalIds as $animalId) {
 			$animal	   = $categoryDb->getCategory($animalId);
+			if (!$animalId) continue;
 			$animals[] = $animal[0]['name']; 
 		}
 		return $animals;

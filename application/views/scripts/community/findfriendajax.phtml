@@ -1,1 +1,37 @@
-<?php var_dump( $this->result); ?>
+<div id="profile">
+	<?php if(isset($this->result)): ?>
+		<?php foreach ($this->result as $results): ?>
+
+		<h3><a href="<?php echo $this->baseUrl. '/community/profile/user/'. $results[0]['userid']; ?>"><?php echo $results['username']; ?></a></h3>
+		<table>
+			<colgroup>
+				<col class="tableleft">
+				<col class="tablecenter">
+				<col class="tableright">
+			</colgroup>
+			<tr>
+				<th rowspan="5">
+					<img src="<?php echo $this->baseUrl."/img/uploads/".$results['profile']['image']; ?>" width="100px"> 
+				</th>
+
+			</tr>
+			<tr>
+				<td>Vorname</td>
+				<td><?php echo $results['firstname']; ?></td>
+			</tr>
+			<tr>
+				<td>Nachname</td>
+				<td><?php echo $results['lastname']; ?></td>
+			</tr>
+			<tr>
+				<td>E-Mail</td>
+				<td><?php echo $results['mail']; ?></td>
+			</tr>
+			<tr>
+				<td><a href="<?php echo $this->baseUrl. '/community/profile/user/'. $results['userid']; ?>"><?php echo 'Profil anschauen'; ?></a></td>
+		</table>
+		<br />
+		<br />
+		<?php endforeach; ?>
+	<?php endif; ?>
+</div>	

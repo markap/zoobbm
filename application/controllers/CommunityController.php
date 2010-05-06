@@ -69,7 +69,7 @@ class CommunityController extends Zend_Controller_Action
 		$community = array();
 		foreach ($users as $key => $user) {
 			$profile = $profileDb->getProfile($user['userid']);
-			$profile['image'] = ($profile['image'] !== "") ? $profile['image'] : 'default';
+			$profile['image'] = ($profile['image'] !== "") ? $profile['image'] : 'default.jpg';
 			$community[$key] = array(
 				'user' 		=> $user,
 				'profile'	=> $profile
@@ -102,7 +102,7 @@ class CommunityController extends Zend_Controller_Action
 				
 			$profileDb = new Model_DbTable_Profile();   
 			$profile   = $profileDb->getProfile($userId);
-			$profile['image'] = ($profile['image'] !== '') ? $profile['image'] : 'default';
+			$profile['image'] = ($profile['image'] !== '') ? $profile['image'] : 'default.jpg';
 		} catch (Exception $e) {
 			$user 	 = false;	
 			$profile = false;
